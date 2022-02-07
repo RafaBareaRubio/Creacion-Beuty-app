@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Iniciar Sesión</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.0.2 -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/iniciar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <!-- link para iconos -->
+    <link rel="stylesheet" href="../css/fontawesome-free-5.15.4-web/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="bloque container mt-5">
+        <!-- Primera fila -->
+        <div class="col-12">
+            <div class="row">
+                <div class="col-3">
+                    <img src="../img/LOGO.png" alt="logo">
+                    <!-- Check tamaño -->
+                </div>
+
+                <div class="col-6">
+                    <h2>LA CREACI&#211;N</h2>
+                    <p>BEUTY CONCEPT</p>
+                </div>
+            </div>
+        </div>
+        <!-- Segunda fila -->
+        <div class="col-12 mt-3">
+            <div class="row">
+                <div class="col-6">
+                    <img class="fotoInicio" src="../img/IniciarS.jpg" width="450em" alt="peluqueria">
+                    <!-- Check tamaño -->
+                </div>
+
+                <div class="col-6">
+                    <div class="formulario p-5 text-center" width="450em">
+                        <form method="get" action="../index.html">
+                            <table>
+                                <tr>
+                                    <th>Nombre:</th>
+                                    <td><input type="text" id="nombre" required /></td>
+                                </tr>
+                                <tr>
+                                    <th>Contrase&ntilde;a:</th>
+                                    <td><input type="password" id="contra" required></td>
+                                    <td><button type="button" onclick="mostrar()"><i class="far fa-eye"></i></button>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br />
+                            <input class="boton" type="submit" value="INICIAR SESION">
+                            <br>
+                            <div id="errores" class="errores"></div>
+                            <br><br>
+                            <a href="Registrarse.html">Registrate</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="../js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

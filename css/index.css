@@ -29,9 +29,14 @@ h2, .centrar{
     margin-left: 26%;
 }
 
-.slide1, .slide2, .slide3{
+.slide1{
     width: 60%;
     margin-left: 20%;
+}
+
+.slide2{
+    width: 85%;
+    margin-left: 5%;
 }
 
 .botonI{

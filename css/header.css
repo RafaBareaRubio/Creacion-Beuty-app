@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&family=Montserrat:wght@100&display=swap');
+
+#entrar{
+    border: 0.2em solid #c98f40;
+    border-radius: 50%;
+    padding: 2%;
+    color: #c98f40;
+}
+
+#entrar:hover{
+    border: 0.2em solid #c98f40;
+    opacity: 80%;
+    border-radius: 50%;
+    padding: 2%;
+    color: #c98f40;
+}
+.titulo{
+    font-family: 'Alice', serif;
+    
+}
+
+.subtitulo{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
+    color: #c98f40;
+}
+
+li:hover{
+    opacity: 80%;
+}

@@ -48,6 +48,7 @@ input{
   font-size: 12pt;
 }
 textarea{
+  margin-top: 2%;
   border-radius: 10px;
   border: 1px solid #e2e2e2;  
   outline: none;

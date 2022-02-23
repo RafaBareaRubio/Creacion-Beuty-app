@@ -61,3 +61,17 @@ i{
     border-radius: 10%;
     border: black 1px solid;
 }
+
+/* JAVASCRIPT FORMULARIO */
+
+.error{
+    border: 1px solid red;
+}
+
+#errores {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    float: left;
+    background: #FF6633;
+    width: 325px;
+}

@@ -68,3 +68,16 @@ a{
     border: 0.1em solid #c98f40;
     border-radius: 45%;
 }
+
+/* Contactanos */
+.emoji{
+    border: #253243 1px solid;
+    border-radius: 50%;
+    margin-right: 2%;
+    margin-left: 2%;
+    opacity: 70%;
+}
+
+textarea{
+    width: 40.7%;
+}

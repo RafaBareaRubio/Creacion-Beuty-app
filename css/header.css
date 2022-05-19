@@ -1,22 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Alice&family=Montserrat:wght@100&display=swap');
 
-#entrar{
-    border: 0.2em solid #c98f40;
-    border-radius: 50%;
-    padding: 2%;
-    color: #c98f40;
+nav{
+    background-color: #253243;
+    color: white;
 }
 
-#entrar:hover{
-    border: 0.2em solid #c98f40;
-    opacity: 80%;
-    border-radius: 50%;
-    padding: 2%;
-    color: #c98f40;
+#Inicio{
+   margin-right: 0.3em;
+    
 }
+
+#Inicio:hover{
+   background-color: #c98f40;
+   opacity: 80%;
+}
+
+#Registro:hover{
+    background-color: #c98f40;
+    opacity: 80%;
+ }
+
 .titulo{
     font-family: 'Alice', serif;
-    
+    width: 100%;
 }
 
 .subtitulo{
@@ -25,6 +31,15 @@
     color: #c98f40;
 }
 
-li:hover{
+li a:hover{
     opacity: 80%;
 }
+
+ul{
+    font-size:  1.2em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+

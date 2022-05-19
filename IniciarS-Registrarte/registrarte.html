@@ -17,52 +17,50 @@
 </head>
 
 <body>
-    <div class="bloque container mt-5">
-        <!-- Primera fila -->
-        <div class="col-12">
-            <div class="row">
-                <div class="col-3">
-                    <a href="../index.html"><img src="../img/LOGO.png" alt="logo"></a>
-                    <!-- Check tamaño -->
-                </div>
+    <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
-                <div class="col-6">
-                    <h2>LA CREACI&#211;N</h2>
-                    <p>BEUTY CONCEPT</p>
+    <div class="bloque container mt-5">
+        
+        <div class="col-12">
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <a href="../index.html"><img src="../img/LOGO2.png" width="100%" alt="logo"></a>
                 </div>
             </div>
         </div>
-        <!-- Segunda fila -->
+        <!-- Formulario -->
         <div class="col-12 mt-3">
-            <div class="row">
-                <div class="col-6">
-                    <img class="fotoInicio" src="../img/IniciarS.jpg" width="450em" alt="peluqueria">
-                    <!-- Check tamaño -->
-                </div>
-
-                <div class="col-6">
-                    <div id="formulario" name="formulario" class="formulario p-3 text-center">
-                        <form method="get" action="iniciarSesion.html">
-                            <div class="d-flex justify-content-center">
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <div name="formulario" id="formulario" class="formulario p-5 text-center">
+                            <form method="get" action="../index.html">
+                                <div class="tablaFormulario">
                                 <table>
-                                    <tr>
+                                    <tr style="text-align: left;">
                                         <th>Nombre:</th>
-                                        <td><input type="text" id="nombre" required /></td>
+                                        <td><div class="inputFormulario"><input class="input2" type="text" id="nombre" required /></td></div>
                                     </tr>
-                                    <!-- Meter espacios -->
-                                    <tr>
+                                    <tr style="opacity: 0;">
+                                        <th style="font-size: 20%;">Nombre:</th>
+                                    </tr>
+                                    <tr style="text-align: left;">
                                         <th>Apellido:</th>
-                                        <td><input type="text" id="apellidos" required/></td>
+                                        <td><div class="inputFormulario"><input class="input2" type="text" id="apellidos" required/></td></div>
                                     </tr>
-                                    <tr>
+                                    <tr style="opacity: 0;">
+                                        <th style="font-size: 20%;">Nombre:</th>
+                                    </tr>
+                                    <tr style="text-align: left;">
                                         <th>E-mail:</th>
-                                        <td><input type="email" id="correo" required/></td>
+                                        <td><div class="inputFormulario"><input class="input2" type="email" id="correo" required/></td></div>
                                     </tr>
-                                    <tr>
+                                    <tr style="opacity: 0;">
+                                        <th style="font-size: 20%;">Nombre:</th>
+                                    </tr>
+                                    <tr style="text-align: left;">
                                         <th>Contrase&ntilde;a:</th>
-                                        <td><input type="password" id="contra" required></td>
-                                        <td><button type="button" onclick="mostrar()"><i class="far fa-eye"></i></button>
-                                        </td>
+                                        <td><div class="inputFormulario"><input class="input2" type="password" id="contra" required></td></div>
+                                        <td><button class="botonMostrar" type="button" onclick="mostrar()"><i class="far fa-eye"></i></button></td>
                                     </tr>
                                 </table>
                             </div>

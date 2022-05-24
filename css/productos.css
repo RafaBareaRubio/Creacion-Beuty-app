@@ -193,16 +193,12 @@
   }
 }
 
-.pagar{
-    padding: 2%;
-    border:  1px solid #2b2b2b;
-    border-radius: 50%;
-    background-color: #c98f40;
+.carritoTexto{
+    margin-left: 8%;
 }
 
-.pagar:hover{
-    padding: 2%;
-    border:  1px solid #253243;
-    border-radius: 50%;
-    background-color: #cf9d57;
+.botonMenuCarrito{
+    border-radius: 25%;
+    background-color: #253243;
+    color: #fff;
 }

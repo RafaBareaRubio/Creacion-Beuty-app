@@ -10,15 +10,13 @@
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/productos.css">
     <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/carrito.css">
     <!-- link para iconos -->
     <link rel="stylesheet" href="../css/fontawesome-free-5.15.4-web/css/all.min.css">
     <title>Productos</title>
 </head>
 
 <body>
-
-    <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-
     <header>
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
@@ -40,31 +38,40 @@
                                             src="../img/LOGO.png" alt="logo" width="200px"></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="servicios.html">Servicios <i class="fas fa-cut"></i></a>
+                                    <a class="nav-link active text-white" href="servicios.html">Servicios <i
+                                            class="fas fa-cut"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="rituales.html">Ofertas <i class="fas fa-coins"></i></a>
+                                    <a class="nav-link active text-white" href="rituales.html">Ofertas <i
+                                            class="fas fa-coins"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="productos.html" tabindex="-1">Productos <i class="fab fa-product-hunt"></i></a>
+                                    <a class="nav-link active text-white" href="productos.html" tabindex="-1">Productos
+                                        <i class="fab fa-product-hunt"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="nosotros.html" tabindex="-1">Nosotros <i class="fas fa-photo-video"></i></a>
+                                    <a class="nav-link active text-white" href="nosotros.html" tabindex="-1">Nosotros <i
+                                            class="fas fa-photo-video"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="contactanos.html" tabindex="-1">Contáctanos <i class="fas fa-id-card"></i></a>
+                                    <a class="nav-link active text-white" href="contactanos.html"
+                                        tabindex="-1">Contáctanos <i class="fas fa-id-card"></i></a>
                                 </li>
 
                                 <li class="nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4">
-                                    <button id="Inicio" type="button" value="Inicio" class="btn btn-warning" data-toggle="modal" data-target="#Modal" href="../IniciarS-Registrarte/iniciarSesion.html"> Iniciar Sesion</button>
-                                    <button id="Registro" type="button" value="Registro" class="btn btn-warning" data-toggle="modal" data-target="#Modal" href="../IniciarS-Registrarte/registrarte.html"> Registrarse</button>
+                                    <button id="Inicio" type="button" value="Inicio" class="btn btn-warning"
+                                        data-toggle="modal" data-target="#Modal"
+                                        href="../IniciarS-Registrarte/iniciarSesion.html"> Iniciar Sesion</button>
+                                    <button id="Registro" type="button" value="Registro" class="btn btn-warning"
+                                        data-toggle="modal" data-target="#Modal"
+                                        href="../IniciarS-Registrarte/registrarte.html"> Registrarse</button>
                                 </li>
 
                             </ul>
                         </div>
 
+                    </div>
                 </div>
-            </div>
         </nav>
     </header>
 
@@ -76,11 +83,45 @@
                 <div class="container">
                     <div>
                         <div class="shape right-skew">
-                            <h2 class="text-center">Productos Barbería</h2>
+                            <h2 class="text-center mt-5">Productos Barbería</h2>
                         </div>
                     </div>
-                    <div class="slider carousel col-12">
+                    <!-- Carrito a la derecha -->
+
+
+
+                    <div class="offcanvas offcanvas-start" style="width: 25%;" tabindex="-1" id="offcanvas" data-bs-keyboard="false"
+                        data-bs-backdrop="false">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title d-none d-sm-block carritoTexto" id="offcanvas">CARRITO</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body px-0">
+                            <hr style="width: 80%; margin-left: 10%;">
+                            <div class="container col-12">
+                                <div class="row">
+                                    <div class="col-lg-4 col-12-xs">Vaciar Carrito <button class="botonMenuCarrito"><i class="fas fa-cart-arrow-down"></i></button></div>
+                                    <div class="col-lg-4 col-12-xs">Precio total = 300€</div>
+                                    <div class="col-lg-4 col-12-xs">Confirmar <a href="confirmar.html"><button class="botonMenuCarrito"><i class="fas fa-paper-plane"></i></button></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
                         <div class="row">
+                            <div class="col">
+                                <!-- toggler -->
+                                <button class="btn float-end" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
+                                    role="button">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider carousel col-12 mt-5">
+                        <div class="row justify-content-center">
                             <div class="producto item">
                                 <div class="contenedor-imagen">
                                     <a href="#" class="link"></a>
@@ -90,21 +131,15 @@
                                 <div class="datos">
                                     <div class="starrr"></div>
                                     <small><a href="#">Gopro</a></small>
-                                    <h3><a href="#">Gopro hero silver 7</a></h3>
-                                    <small>SKU: 32383ee090pi</small>
+                                    <h3><a id="nombreProducto">Gopro hero silver </a></h3>
                                 </div>
                                 <div class="precios">
-                                    <div class="internet">
-                                        <small>Internet</small>
-                                        <span>$189.000</span>
-                                    </div>
                                     <div>
-                                        <small>Normal</small>
-                                        <span>$250.000</span>
+                                        <small>Precio</small>
+                                        <span id="precioProducto">250.000</span>
                                     </div>
                                 </div>
-                                <a class="btn-carrito"><i
-                                        class="fas fa-shopping-basket"></i> Agregar al carrito</a>
+                                <button class="btn-carrito"><i class="fas fa-shopping-basket"></i>Agregar al carrito</a></button>
                             </div>
 
                             <div class="producto item">
@@ -115,22 +150,16 @@
                                 </div>
                                 <div class="datos">
                                     <div class="starrr"></div>
-                                    <small><a href="#">Sony</a></small>
-                                    <h3><a href="#">PARLANTE SONY GTK-PG10</a></h3>
-                                    <small>SKU: 32383ee090pi</small>
+                                    <small><a href="#">Tijera</a></small>
+                                    <h3><a id="nombreProducto">Tijera gold </a></h3>
                                 </div>
                                 <div class="precios">
-                                    <div class="internet">
-                                        <small>Internet</small>
-                                        <span>$189.000</span>
-                                    </div>
                                     <div>
-                                        <small>Normal</small>
-                                        <span>$250.000</span>
+                                        <small>Precio</small>
+                                        <span id="precioProducto">24</span>
                                     </div>
                                 </div>
-                                <a class="btn-carrito"><i class="fas fa-shopping-basket"></i>
-                                    Agregar al carrito</a>
+                                <button class="btn-carrito"><i class="fas fa-shopping-basket"></i>Agregar al carrito</a></button>
                             </div>
 
                             <div class="producto item">
@@ -155,8 +184,7 @@
                                         <span>$250.000</span>
                                     </div>
                                 </div>
-                                <a class="btn-carrito"><i class="fas fa-shopping-basket"></i>
-                                    Agregar al carrito</a>
+                                <button class="btn-carrito"><i class="fas fa-shopping-basket"></i>Agregar al carrito</a></button>
                             </div>
 
                             <div class="producto item">
@@ -181,8 +209,7 @@
                                         <span>$250.000</span>
                                     </div>
                                 </div>
-                                <a class="btn-carrito"><i class="fas fa-shopping-basket"></i>
-                                    Agregar al carrito</a>
+                                <button class="btn-carrito"><i class="fas fa-shopping-basket"></i>Agregar al carrito</a></button>
                             </div>
 
                             <div class="producto item">
@@ -293,19 +320,6 @@
                 </div>
             </section>
 
-            <section>
-                <div class="container">
-                    <div class="row justify-content-center align-content-center">
-                        <div class="col-auto pagar">
-
-                            <a href="" class="btn-carrito"><i class="fas fa-shopping-basket"></i> Pagar</a>
-
-                        </div>
-                    </div>
-                </div>
-
-            </section>
-
     </article>
     <!-- FOOTER -->
     <footer id="footer" class="footer-1 mt-5">
@@ -398,9 +412,9 @@
             </div>
         </div>
     </footer>
-
-    <script src="../js/efectocarrito"></script>
+    <script src="../js/anadirCarrito.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
+    <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </body>
 
 </html>

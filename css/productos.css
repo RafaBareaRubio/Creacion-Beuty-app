@@ -20,6 +20,7 @@
 	padding: 10px 0 20px 0;
 	margin-right: 20px;
 	border-radius: 10px;
+    text-align: center;
 }
 .producto .contenedor-imagen{
 	min-height: 220px;
@@ -59,27 +60,9 @@
 .producto .datos h3{
 	margin: 10px 0;
 }
-.producto .datos h3 a{
-	text-decoration: none;
-    color: #2b2b2b;
-    font-size: 14px;
-    display: block;
-    text-transform: uppercase;
-}
-.producto .datos h3 a:hover{
-	text-decoration: underline;
-}
-.producto .datos small a{
-	text-transform: uppercase;
-    font-weight: 600;
-    text-decoration: none;
-    display: block;
-    margin-top: 10px;
-    color: #5a5a5a;
-    font-size: 11px;
-}
+
 .producto .datos small{
-	font-size: 14px;
+	font-size: 12px;
     text-transform: uppercase;
     color: #5a5a5a;
 }
@@ -92,19 +75,11 @@
 }
 .producto .precios div small{
     display: block;
-    font-size: 15px;
     margin-bottom: 5px;
-    color: #828282;
     font-weight: 600;
-}
-.producto .precios div.internet span{
-	font-weight: bold;
-    font-size: 23px;
-    color: #ff0808;
-}
-.producto .precios div span{
-	font-size: 17px;
-    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #5a5a5a;
 }
 .producto .btn-carrito{
 	display: block;
@@ -128,13 +103,7 @@
 .starrr {
  	display: block; 
 }
-.starrr a {
-    font-size: 16px;
-    padding: 0 1px;
-    cursor: pointer;
-    color: #FFD119;
-    text-decoration: none; 
-}
+
 .slider{
 	margin-top: 20px;
 }

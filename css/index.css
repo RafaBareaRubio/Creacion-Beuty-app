@@ -46,8 +46,11 @@ h2, .centrar{
 .botonD{
     margin-right: 20%;
 }
-
 a{
+    text-decoration: none;
+}
+
+p a{
     text-decoration: none;
     color: red;
 }

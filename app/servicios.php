@@ -81,194 +81,45 @@
     <article>
         <!-- Corte -->
         <section>
-            <div class="container mt-5">
-                <h2>Servicios</h2>
+        <div class="container mt-5">
+            <h2>Servicios</h2>
 
-                <div class="slider carousel col-12 mt-5">
-                    <div class="row justify-content-center">
-                        <a href="https://booksy.com/es-es/20227_la-creacion-beauty-concept_barberia_29784_bencarron#ba_s=sr_1"
-                            style="color: black;">
-                            <div class="producto item">
-                                <div class="contenedor-imagen">
-                                    <img src="../img/Servicios/CORTE1.jpg" class="img-nohover">
-                                    <img src="../img/Servicios/CORTE1.jpg" class="img-hover">
-                                </div>
-                                <div class="datos">
-                                    <div class="starrr"></div>
-                                    <h4 id="nombreServicio">Diseño corte personzalizado</h4>
-                                    <small id="caracteristicas">Te asesoramos y adaptamos tu cabello a tu estilo,
-                                        genetica capilar y rostro. Lavado con shot de champu específico para tu cabello
-                                        o cuero cabelludo con un masaje express. Corte localizado y aplicación de un
-                                        producto específico de peinado.</small>
-                                </div>
-                                <div class="precios">
-                                    <div>
-                                        <h5>Precio</h5>
-                                        <small id="precioServicio">12€</small>
-                                    </div>
-                                </div>
-                        </a>
-                    </div>
+            <div class="slider carousel col-12 mt-5">
+                <div class="row justify-content-center">
 
-                    <div class="producto item">
-                        <div class="contenedor-imagen">
-                            <img src="../img/Servicios/CORTE4.jpg" class="img-nohover">
-                            <img src="../img/Servicios/CORTE4.jpg" class="img-hover">
-                        </div>
-                        <div class="datos">
-                            <div class="starrr"></div>
-                            <h4 id="nombreServicio">Diseño corte personzalizado</h4>
-                            <small id="caracteristicas">Te asesoramos y adaptamos tu cabello a tu estilo, genetica
-                                capilar y rostro. Lavado con shot de champu específico para tu cabello o cuero cabelludo
-                                con un masaje express. Corte localizado y aplicación de un producto específico de
-                                peinado.</small>
-                        </div>
-                        <div class="precios">
-                            <div>
-                                <h5>Precio</h5>
-                                <small id="precioServicio">12€</small>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
+                    <!-- Añado uno a uno cada servicio -->
+                    <?php include_once "../php/metodos.php";
+                    
+                    error_log(0);   
+                        
+                        $servicio=obtenerTodosServicios();
+
+                        for ($i=0;$i<sizeof($servicio);$i++){
+                            echo "<div class='producto item'>";
+                                echo "<a href='https://booksy.com/es-es/20227_la-creacion-beauty-concept_barberia_29784_bencarron#ba_s=sr_1' style='color: black;'>";
+                                    echo "<div class='contenedor-imagen'>";
+                                        echo "<img src='../img/Servicios/CORTE1.jpg' class='img-nohover'>";
+                                        echo "<img src='../img/Servicios/CORTE1.jpg' class='img-hover'>";
+                                    echo "</div>";
+                                    echo "<div class='datos'>";
+                                        echo "<div class='starrr'></div>";
+                                        echo "<h4 id='nombreServicio'>".$servicio[$i]['nombre']."</h4>";
+                                        echo "<small id='caracteristicas'>".$servicio[$i]['descripcion']."</small>";
+                                    echo "</div>";
+                                    echo "<div class='precios'>";
+                                        echo "<div>";
+                                            echo "<h5>Precio</h5>";
+                                            echo "<small id='precioServicio'>".$servicio[$i]['precio']."€</small>";
+                                        echo "</div>";
+                                    echo "</div>";
+                                echo "</a>";
+                            echo "</div>";
+                           
+                        }//Fin Para
+                    ?>              
                 </div>
             </div>
-        </section>
-
-        <!-- Barba -->
-        <section>
-            <div class="container">
-                <h2>Rituales</h2>
-                
-                <div class="slider carousel col-12 mt-5">
-                    <div class="row justify-content-center">
-                        <a href="https://booksy.com/es-es/20227_la-creacion-beauty-concept_barberia_29784_bencarron#ba_s=sr_1"
-                            style="color: black;">
-                            <div class="producto item">
-                                <div class="contenedor-imagen">
-                                    <video width="280" height="320" autoplay loop>
-                                        <source src="../img/video/Ritual2.mp4">
-                                    </video>
-                                </div>
-                                <div class="datos">
-                                    <div class="starrr"></div>
-                                    <h4 id="nombreServicio">Diseño corte personzalizado</h4>
-                                    <small id="caracteristicas">Te asesoramos y adaptamos tu cabello a tu estilo,
-                                        genetica capilar y rostro. Lavado con shot de champu específico para tu cabello
-                                        o cuero cabelludo con un masaje express. Corte localizado y aplicación de un
-                                        producto específico de peinado.</small>
-                                </div>
-                                <div class="precios">
-                                    <div>
-                                        <h5>Precio</h5>
-                                        <small id="precioServicio">12€</small>
-                                    </div>
-                                </div>
-                        </a>
-                    </div>
-
-                    <div class="producto item">
-                        <div class="contenedor-imagen">
-                            <<video width="280" height="320" autoplay loop>
-                                <source src="../img/video/Ritual3.mp4">
-                            </video>
-                        </div>
-                        <div class="datos">
-                            <div class="starrr"></div>
-                            <h4 id="nombreServicio">Diseño corte personzalizado</h4>
-                            <small id="caracteristicas">Te asesoramos y adaptamos tu cabello a tu estilo, genetica
-                                capilar y rostro. Lavado con shot de champu específico para tu cabello o cuero cabelludo
-                                con un masaje express. Corte localizado y aplicación de un producto específico de
-                                peinado.</small>
-                        </div>
-                        <div class="precios">
-                            <div>
-                                <h5>Precio</h5>
-                                <small id="precioServicio">12€</small>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tinte -->
-        <section>
-            <div class="container">
-                <h2 id="CORTE">TINTE</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos vel soluta recusandae inventore
-                    eius, autem quos molestias cumque corporis minus mollitia reprehenderit tenetur rerum quaerat eos
-                    quasi numquam libero voluptates.
-                    Error quidem magnam illo, dolorem vitae modi vero nobis enim consequuntur cumque repudiandae dolore,
-                    quae voluptatum minus incidunt obcaecati molestiae laudantium ipsum! Eum, nesciunt illo tempore quam
-                    eveniet eos id?
-                    A tempora excepturi, eos repellendus reiciendis totam tenetur non officiis delectus pariatur ab
-                    ipsa, nemo, quia in consectetur illum ea. Necessitatibus unde id enim quam consequatur magnam, quo
-                    ipsum vel.</p>
-                <div class="container">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="servicio">
-                                    <a href="citas.html"><img src="../img/Servicios/TINTE1.jpg" class="servicioImg"
-                                            alt="Corte 1"></a>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="servicio">
-                                    <a href="citas.html"><img src="../img/Servicios/TINTE2.jpg" class="servicioImg"
-                                            alt="Corte 1"></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mt-5">
-                            <div class="col-6">
-                                <div class="servicio">
-                                    <a href="citas.html"><img src="../img/Servicios/TINTE3.jpg" class="servicioImg"
-                                            alt="Corte 1"></a>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="servicio">
-                                    <a href="citas.html"><img src="../img/Servicios/TINTE4.jpg" class="servicioImg"
-                                            alt="Corte 1"></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </article>
-
-    <!-- Ritual -->
-
-    <article>
-        <section>
-            <div class="container">
-                <h2 id="CORTE">Ritual 1</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos vel soluta recusandae inventore
-                    eius, autem quos molestias cumque corporis minus mollitia reprehenderit tenetur rerum quaerat eos
-                    quasi numquam libero voluptates.
-                    Error quidem magnam illo, dolorem vitae modi vero nobis enim consequuntur cumque repudiandae dolore,
-                    quae voluptatum minus incidunt obcaecati molestiae laudantium ipsum! Eum, nesciunt illo tempore quam
-                    eveniet eos id?
-                    A tempora excepturi, eos repellendus reiciendis totam tenetur non officiis delectus pariatur ab
-                    ipsa, nemo, quia in consectetur illum ea. Necessitatibus unde id enim quam consequatur magnam, quo
-                    ipsum vel.</p>
-                <div class="container col-12">
-                    <div class="row justify-content-center align-items-center">
-                        <div class="col-auto">
-                            <a href="citas.html"><video src="../img/video/Ritual1.mp4" alt="video ritual 1"
-                                    width="800px" autoplay muted></video></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
     </article>
 
     <!-- FOOTER -->
@@ -362,7 +213,6 @@
             </div>
         </div>
     </footer>
-
 
     <script src="../JavaScript/OBJETOS/ServiciObj.js"></script>
 

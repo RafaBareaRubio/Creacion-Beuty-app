@@ -96,4 +96,59 @@ function insertarProducto($nombre, $unidad, $precio, $oferta, $descripcion)
     return $id;
 }
 
+function obtenerTodosProductos(){
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+        $sql = $con->prepare("SELECT id,nombre,unidad,precio,oferta,descripcion from producto;");
+        $sql->execute();
+        $miArray = [];
+        while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+            $miArray[] = $row;
+        }    
+    } catch (PDOException $e) {
+        echo $e;
+    }
+    $con = null;
+    return $miArray;
+}
+
+function eliminarProducto($id)
+{
+    $retorno = false;
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+        $sql = $con->prepare("DELETE from producto where id=:id");
+        $sql->bindParam(":id", $id);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $retorno = true;
+        }
+    } catch (PDOException $e) {
+        header("location: ../php/error.php");
+    }
+    $con = null;
+    return $retorno;
+}
+function editarProducto($id, $titulo, $publicacion, $tipo, $contenido, $fecha)
+{
+    $retorno = false;
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+        $sql = $con->prepare("UPDATE producto set nombre=:nombre , unidad=:unidad, precio=:precio, oferta=:oferta, descripcion=:descripcion where id=:id;");
+        $sql->bindParam(":id", $id);
+        $sql->bindParam(":nombre", $nombre);
+        $sql->bindParam(":unidad", $unidad);
+        $sql->bindParam(":precio", $precio);
+        $sql->bindParam(":oferta", $oferta);
+        $sql->bindParam(":descripcion", $descripcion);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $retorno = true;
+        }
+    } catch (PDOException $e) {
+        header("location: ../php/error.php");
+    }
+    $con = null;
+    return $retorno;
+}
 ?>

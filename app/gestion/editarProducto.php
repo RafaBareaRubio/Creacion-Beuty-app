@@ -6,20 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS v5.0.2 -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/servicios.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/productos.css">
+    <link rel="stylesheet" href="../../css/footer.css">
+    <link rel="stylesheet" href="../../css/gestion.css">
+    <link rel="stylesheet" href="../../css/formularioGestion.css">
     <!-- link para iconos -->
-    <link rel="stylesheet" href="../css/fontawesome-free-5.15.4-web/css/all.min.css">
-    <title>Rituales</title>
+    <link rel="stylesheet" href="../../css/fontawesome-free-5.15.4-web/css/all.min.css">
+    <title>Productos</title>
 </head>
 
 <body>
-
-    <!-- MENU -->
-
     <header>
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
@@ -38,77 +36,92 @@
                             <ul class="navbar-nav pb-0">
                                 <li class="nav-item mx-2 col-xl-3 col-lg-3 text-center">
                                     <a class="nav-link active" aria-current="page" href="../index.html"><img
-                                            src="../img/LOGO.png" alt="logo" width="200px"></a>
+                                            src="../../img/LOGO.png" alt="logo" width="200px"></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="servicios.html">Servicios <i class="fas fa-cut"></i></a>
+                                    <a class="nav-link active text-white" href="../servicios.html">Servicios <i
+                                            class="fas fa-cut"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="ofertas.html">Ofertas <i class="fas fa-coins"></i></a>
+                                    <a class="nav-link active text-white" href="../ofertas.html">Ofertas <i
+                                            class="fas fa-coins"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="productos.html" tabindex="-1">Productos <i class="fab fa-product-hunt"></i></a>
+                                    <a class="nav-link active text-white" href="../productos.html" tabindex="-1">Productos
+                                        <i class="fab fa-product-hunt"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="nosotros.html" tabindex="-1">Nosotros <i class="fas fa-photo-video"></i></a>
+                                    <a class="nav-link active text-white" href="../nosotros.html" tabindex="-1">Nosotros <i
+                                            class="fas fa-photo-video"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="contactanos.html" tabindex="-1">Contáctanos <i class="fas fa-id-card"></i></a>
+                                    <a class="nav-link active text-white" href="contactanos.html"
+                                        tabindex="-1">Contáctanos <i class="fas fa-id-card"></i></a>
                                 </li>
 
                                 <li class="nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4">
-                                    <a class="btn" id="Inicio" href="../IniciarS-Registrarte/iniciarSesion.html" target="_blank">Iniciar Sesion</a>
-                                    <a class="btn" id="Registro" href="../IniciarS-Registrarte/registrarte.html" target="_blank">Registrate</a>                                
+                                    <a class="btn" id="Inicio" href="../../IniciarS-Registrarte/iniciarSesion.html" target="_blank">Iniciar Sesion</a>
+                                    <a class="btn" id="Registro" href="../../IniciarS-Registrarte/registrarte.html" target="_blank">Registrate</a>                                
                                 </li>
 
                             </ul>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
         </nav>
     </header>
+<body>
 
-    <!-- OFERTAS -->
+    <?php include_once "../../php/metodos.php";
 
-    <article>
+    if (count($_GET) > 0) {
+        $id = $_GET["varId"];
+        $producto = obtenerProducto($id);
+    } else {
+        $id = $_POST["id"];
+        $producto = obtenerProducto($id);
+    }
+    $error = '';
+    if (count($_POST) > 0) {
+        function seguro($valor)
+        {
+            $valor = strip_tags($valor);
+            $valor = stripslashes($valor);
+            $valor = htmlspecialchars($valor);
+            return $valor;
+        }
 
-        <section>
-            <div class="container mt-5">
-                <h2>Ofertas</h2>
-
-                <div class="slider carousel col-12 mt-5">
-                    <div class="row justify-content-center">
-                        <a href="https://booksy.com/es-es/20227_la-creacion-beauty-concept_barberia_29784_bencarron#ba_s=sr_1"
-                            style="color: black;">
-                            <div class="producto item">
-                                <div class="contenedor-imagen">
-                                    <img src="../img/Servicios/CORTE1.jpg" class="img-nohover">
-                                    <img src="../img/Servicios/CORTE1.jpg" class="img-hover">
-                                </div>
-                                <div class="datos">
-                                    <div class="starrr"></div>
-                                    <h4 id="nombreServicio">Diseño corte personzalizado</h4>
-                                    <small id="caracteristicas">Te asesoramos y adaptamos tu cabello a tu estilo,
-                                        genetica capilar y rostro. Lavado con shot de champu específico para tu cabello
-                                        o cuero cabelludo con un masaje express. Corte localizado y aplicación de un
-                                        producto específico de peinado.</small>
-                                </div>
-                                <div class="precios">
-                                    <div>
-                                        <h5>Precio</h5>
-                                        <small id="precioServicio">12€</small>
-                                        <hr>
-                                        <h5>Descuento en este servicio</h5>
-                                        <small id="precioServicio" style="color: red;">2x1</small>
-                                    </div>
-                                </div>
-                        </a>
-                    </div>
-        </section>
-        
+        $cumplido = editarProducto($id, $_POST["nombre"], $_POST["unidad"], $_POST["precio"], $_POST["oferta"], $_POST["descripcion"]);
+        if ($cumplido == true) {
+            header("Location: index.php?varId=" . $id);
+            exit();
+        } else {
+            $error = "Datos incorrectos o no se ha actualizado nada";
+        }
+    }
+    ?>
+<article>
+    <form class="form-register" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
+        <h2 class="form-titulo mt-4">Editando Producto</h2>
+        <div class="contenedor-inputs">
+            <input type="hidden" name="id" value="<?php echo $producto["id"]; ?>">
+            <!--aquí va el id, es hidden por lo tanto no es visible en la web, pero si accesible desde PHP -->
+            
+            <table>
+                <tr><td><p>Nombre</p><input type="text" name="nombre" placeholder='<?php echo $producto["nombre"]; ?>' class="input-100" required value='<?php echo $producto["nombre"]; ?>'><br><br></td></tr>
+                <tr><td><p>Unidad</p><input type="text" name="unidad" class="input-100" required value='<?php $producto["unidad"]; echo $producto["unidad"]; ?>'><br><br></td></tr>
+                <tr><td><p>Precio</p><input type="text" name="precio" class="input-100" value='<?php $producto["precio"]; echo $producto["precio"]; ?>'><br><br></td></tr>
+                <tr><td><p>Oferta</p><textarea name="oferta" id="oferta" placeholder='<?php echo $producto["oferta"]; ?>' value='<?php echo $producto["oferta"]; ?>'></textarea><br><br></td></tr>
+                <tr><td><p>Descripcion</p><textarea name="descripcion" id="descripcion" placeholder='<?php echo $producto["descripcion"]; ?>' value='<?php echo $producto["descripcion"]; ?>'></textarea><br><br></td></tr>
+            </table>
+            <input type="submit" value="Guardar Cambios" class="btn-enviar">
+            <a href="gestionProductos.php"><input type="button" value="Volver" class="btn-enviar"></a>
+            <div id="errores"><?php echo $error; ?></div>
+        </div>
+    </form>
     </article>
+
     <!-- FOOTER -->
     <footer id="footer" class="footer-1 mt-5">
         <div class="main-footer widgets-dark typo-light">
@@ -118,7 +131,7 @@
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="widget subscribe no-box">
                             <h5 class="widget-title">La Creación<span></span></h5>
-                            <a href="../index.html"><img src="../img/LOGO.png" width="150em"></a>
+                            <a href="../../index.html"><img src="../../img/LOGO.png" width="150em"></a>
                             <p class="mt-2">Tu barberia de confianza</p>
                         </div>
                     </div>
@@ -128,22 +141,23 @@
                             <h5 class="widget-title">Enlaces<span></span></h5>
                             <ul class="thumbnail-widget">
                                 <li>
-                                    <div class="thumb-content"><a href="../IniciarS-Registrarte/iniciarSesion.html">Iniciar Sesion</a></div>
+                                    <div class="thumb-content"><a
+                                            href="../../IniciarS-Registrarte/iniciarSesion.html">Iniciar Sesion</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="servicios.html">Servicios</a></div>
+                                    <div class="thumb-content"><a href="../servicios.html">Servicios</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="ofertas.html">Ofertas</a></div>
+                                    <div class="thumb-content"><a href="../ofertas.html">Ofertas</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="productos.html">Productos</a></div>
+                                    <div class="thumb-content"><a href="../productos.html">Productos</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="nosotros.html">Sobre Nosotros</a></div>
+                                    <div class="thumb-content"><a href="../nosotros.html">Sobre Nosotros</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="contactanos.html">Contáctanos</a></div>
+                                    <div class="thumb-content"><a href="../contactanos.html">Contáctanos</a></div>
                                 </li>
                             </ul>
                         </div>
@@ -153,7 +167,8 @@
                         <div class="widget no-box">
                             <h5 class="widget-title">Regístrate<span></span></h5>
                             <p>Únete a nosotros</p>
-                            <a class="btn" href="../IniciarS-Registrarte/registrarte.html" target="_blank">Registrate</a>
+                            <a class="btn" href="../../IniciarS-Registrarte/registrarte.html"
+                                target="_blank">Registrate</a>
                         </div>
                     </div>
 
@@ -198,10 +213,12 @@
             </div>
         </div>
     </footer>
+    <script src="../js/anadirCarrito.js"></script>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+    <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+</body>
 
-
-    <script src="../JavaScript/OBJETOS/ServiciObj.js"></script>
-
+</html>
 </body>
 
 </html>

@@ -8,15 +8,19 @@
     <!-- Bootstrap CSS v5.0.2 -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/productos.css">
+    <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/carrito.css">
+    <link rel="stylesheet" href="../css/servicios.css">
+
     <!-- link para iconos -->
     <link rel="stylesheet" href="../css/fontawesome-free-5.15.4-web/css/all.min.css">
-    <title>Productos</title>
+    <title>Servicios</title>
 </head>
 
 <body>
+
+    <!-- MENU -->
+
     <header>
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
@@ -65,258 +69,58 @@
 
                             </ul>
                         </div>
-
                     </div>
+
                 </div>
+            </div>
         </nav>
     </header>
 
+    <!-- SERVICIOS -->
+
     <article>
+        <!-- Corte -->
         <section>
-            <section class="cards">
+        <div class="container mt-5">
+            <h2>Servicios</h2>
 
-                <!-- Productos -->
-                <div class="container">
-                    <div>
-                        <div class="shape right-skew">
-                            <h2 class="text-center mt-5">Productos Barbería</h2>
-                        </div>
-                    </div>
-                    <!-- Carrito a la derecha -->
+            <div class="slider carousel col-12 mt-5">
+                <div class="row justify-content-center">
 
+                    <!-- Añado uno a uno cada servicio -->
+                    <?php include_once "../php/metodos.php";
+                    
+                    error_log(0);   
+                        
+                        $producto=obtenerTodosProductos();
 
-
-                    <div class="offcanvas offcanvas-start" style="width: 25%;" tabindex="-1" id="offcanvas" data-bs-keyboard="false"
-                        data-bs-backdrop="false">
-                        <div class="offcanvas-header">
-                            <h5 class="offcanvas-title d-none d-sm-block carritoTexto" id="offcanvas">CARRITO</h5>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="offcanvas-body px-0">
-                            <hr style="width: 80%; margin-left: 10%;">
-                            <div class="container col-12">
-                                <div class="row">
-                                    <div class="col-lg-4 col-12-xs">Vaciar Carrito <button class="botonMenuCarrito"><i class="fas fa-cart-arrow-down"></i></button></div>
-                                    <div class="col-lg-4 col-12-xs">Precio total = 300€</div>
-                                    <div class="col-lg-4 col-12-xs">Confirmar <a href="confirmar.html"><button class="botonMenuCarrito"><i class="fas fa-paper-plane"></i></button></a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col">
-                                <!-- toggler -->
-                                <button class="btn float-end" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
-                                    role="button">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="slider carousel col-12 mt-5">
-                        <div class="row justify-content-center">
-                            <div class="producto item">
-                                <div class="contenedor-imagen">
-                                    <a href="#" class="link"></a>
-                                    <img src="../img/productos/tijeras.jpg" class="img-nohover">
-                                    <img src="../img/productos/tijeras.jpg" class="img-hover">
-                                </div>
-                                <div class="datos">
-                                    <div class="starrr"></div>
-                                    <small><a href="#">Gopro</a></small>
-                                    <h3><a id="nombreProducto">Gopro hero silver </a></h3>
-                                </div>
-                                <div class="precios">
-                                    <div>
-                                        <small>Precio</small>
-                                        <span id="precioProducto">250.000</span>
-                                    </div>
-                                </div>
-                                <button class="btn-carrito"><i class="fas fa-shopping-basket"></i>Agregar al carrito</a></button>
-                            </div>
-
-                            <div class="producto item">
-                                <div class="contenedor-imagen">
-                                    <a href="#" class="link"></a>
-                                    <img src="../img/productos/secador.jpg" class="img-nohover">
-                                    <img src="../img/productos/secador.jpg" class="img-hover">
-                                </div>
-                                <div class="datos">
-                                    <div class="starrr"></div>
-                                    <small><a href="#">Tijera</a></small>
-                                    <h3><a id="nombreProducto">Tijera gold </a></h3>
-                                </div>
-                                <div class="precios">
-                                    <div>
-                                        <small>Precio</small>
-                                        <span id="precioProducto">24</span>
-                                    </div>
-                                </div>
-                                <button class="btn-carrito"><i class="fas fa-shopping-basket"></i>Agregar al carrito</a></button>
-                            </div>
-
-                            <div class="producto item">
-                                <div class="contenedor-imagen">
-                                    <a href="#" class="link"></a>
-                                    <img src="../img/productos/maquinilla.jpg" class="img-nohover">
-                                    <img src="../img/productos/maquinilla.jpg" class="img-hover">
-                                </div>
-                                <div class="datos">
-                                    <div class="starrr"></div>
-                                    <small><a href="#">Tbl</a></small>
-                                    <h3><a href="#">AUDIFONOS JBL T110 NEGRO</a></h3>
-                                    <small>SKU: 32383ee090pi</small>
-                                </div>
-                                <div class="precios">
-                                    <div class="internet">
-                                        <small>Internet</small>
-                                        <span>$189.000</span>
-                                    </div>
-                                    <div>
-                                        <small>Normal</small>
-                                        <span>$250.000</span>
-                                    </div>
-                                </div>
-                                <button class="btn-carrito"><i class="fas fa-shopping-basket"></i>Agregar al carrito</a></button>
-                            </div>
-
-                            <div class="producto item">
-                                <div class="contenedor-imagen">
-                                    <a href="#" class="link"></a>
-                                    <img src="../img/productos/champu.jpg" class="img-nohover">
-                                    <img src="../img/productos/champu.jpg" class="img-hover">
-                                </div>
-                                <div class="datos">
-                                    <div class="starrr"></div>
-                                    <small><a href="#">Google</a></small>
-                                    <h3><a href="#">GOOGLE HOME MINI CARBON</a></h3>
-                                    <small>SKU: 32383ee090pi</small>
-                                </div>
-                                <div class="precios">
-                                    <div class="internet">
-                                        <small>Internet</small>
-                                        <span>$189.000</span>
-                                    </div>
-                                    <div>
-                                        <small>Normal</small>
-                                        <span>$250.000</span>
-                                    </div>
-                                </div>
-                                <button class="btn-carrito"><i class="fas fa-shopping-basket"></i>Agregar al carrito</a></button>
-                            </div>
-
-                            <div class="producto item">
-                                <div class="contenedor-imagen">
-                                    <a href="#" class="link"></a>
-                                    <img src="../img/productos/peine.jpg" class="img-nohover">
-                                    <img src="../img/productos/peine.jpg" class="img-hover">
-                                </div>
-                                <div class="datos">
-                                    <div class="starrr"></div>
-                                    <small><a href="#">Gopro</a></small>
-                                    <h3><a href="#">Gopro hero silver 7</a></h3>
-                                    <small>SKU: 32383ee090pi</small>
-                                </div>
-                                <div class="precios">
-                                    <div class="internet">
-                                        <small>Internet</small>
-                                        <span>$189.000</span>
-                                    </div>
-                                    <div>
-                                        <small>Normal</small>
-                                        <span>$250.000</span>
-                                    </div>
-                                </div>
-                                <a class="btn-carrito"><i class="fas fa-shopping-basket"></i>
-                                    Agregar al carrito</a>
-                            </div>
-
-                            <div class="producto item">
-                                <div class="contenedor-imagen">
-                                    <a href="#" class="link"></a>
-                                    <img src="../img/productos/peine2.jpg" class="img-nohover">
-                                    <img src="../img/productos/peine2.jpg" class="img-hover">
-                                </div>
-                                <div class="datos">
-                                    <div class="starrr"></div>
-                                    <small><a href="#">Gopro</a></small>
-                                    <h3><a href="#">Gopro hero silver 7</a></h3>
-                                    <small>SKU: 32383ee090pi</small>
-                                </div>
-                                <div class="precios">
-                                    <div class="internet">
-                                        <small>Internet</small>
-                                        <span>$189.000</span>
-                                    </div>
-                                    <div>
-                                        <small>Normal</small>
-                                        <span>$250.000</span>
-                                    </div>
-                                </div>
-                                <a class="btn-carrito"><i class="fas fa-shopping-basket"></i>
-                                    Agregar al carrito</a>
-                            </div>
-
-                            <div class="producto item">
-                                <div class="contenedor-imagen">
-                                    <a href="#" class="link"></a>
-                                    <img src="../img/productos/fijador.jpg" class="img-nohover">
-                                    <img src="../img/productos/fijador.jpg" class="img-hover">
-                                </div>
-                                <div class="datos">
-                                    <div class="starrr"></div>
-                                    <small><a href="#">Gopro</a></small>
-                                    <h3><a href="#">Gopro hero silver 7</a></h3>
-                                    <small>SKU: 32383ee090pi</small>
-                                </div>
-                                <div class="precios">
-                                    <div class="internet">
-                                        <small>Internet</small>
-                                        <span>$189.000</span>
-                                    </div>
-                                    <div>
-                                        <small>Normal</small>
-                                        <span>$250.000</span>
-                                    </div>
-                                </div>
-                                <a class="btn-carrito"><i class="fas fa-shopping-basket"></i>
-                                    Agregar al carrito</a>
-                            </div>
-
-                            <div class="producto item">
-                                <div class="contenedor-imagen">
-                                    <a href="#" class="link"></a>
-                                    <img src="../img/productos/plancha.jpg" class="img-nohover">
-                                    <img src="../img/productos/plancha.jpg" class="img-hover">
-                                </div>
-                                <div class="datos">
-                                    <div class="starrr"></div>
-                                    <small><a href="#">Gopro</a></small>
-                                    <h3><a href="#">Gopro hero silver 7</a></h3>
-                                    <small>SKU: 32383ee090pi</small>
-                                </div>
-                                <div class="precios">
-                                    <div class="internet">
-                                        <small>Internet</small>
-                                        <span>$189.000</span>
-                                    </div>
-                                    <div>
-                                        <small>Normal</small>
-                                        <span>$250.000</span>
-                                    </div>
-                                </div>
-                                <a class="btn-carrito"><i class="fas fa-shopping-basket"></i>
-                                    Agregar al carrito</a>
-                            </div>
-                        </div>
-                    </div>
+                        for ($i=0;$i<sizeof($producto);$i++){
+                            echo "<div class='producto item'>";
+                                echo "<div class='contenedor-imagen'>";
+                                    echo "<img src='../img/productos/maquinilla.jpg' class='img-nohover'>";
+                                    echo "<img src='../img/Servicios/maquinilla.jpg' class='img-hover'>";
+                                echo "</div>";
+                                echo "<div class='datos'>";
+                                    echo "<div class='starrr'></div>";
+                                    echo "<h4 id='nombreServicio'>".$producto[$i]['nombre']."</h4>";
+                                    echo "<small id='caracteristicas'>".$producto[$i]['descripcion']."</small>";
+                                echo "</div>";                                    
+                                echo "<div class='precios'>";
+                                    echo "<div>";
+                                        echo "<h5>Precio</h5>";
+                                        echo "<small id='precioServicio'>".$producto[$i]['precio']."€</small>";
+                                    echo "</div>";
+                                echo "</div>";
+                                echo "<button class='btn-carrito'><i class='fas fa-shopping-basket'></i>Agregar al carrito</a></button>";
+                        echo "</div>";
+                           
+                        }//Fin Para
+                    ?>              
                 </div>
-            </section>
-
+            </div>
+        </div>
     </article>
+
     <!-- FOOTER -->
     <footer id="footer" class="footer-1 mt-5">
         <div class="main-footer widgets-dark typo-light">
@@ -408,9 +212,9 @@
             </div>
         </div>
     </footer>
-    <script src="../js/anadirCarrito.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <script src="../JavaScript/OBJETOS/ServiciObj.js"></script>
+
 </body>
 
 </html>

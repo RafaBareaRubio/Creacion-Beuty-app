@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../../css/formularioGestion.css">
     <!-- link para iconos -->
     <link rel="stylesheet" href="../../css/fontawesome-free-5.15.4-web/css/all.min.css">
-    <title>Productos</title>
+    <title>Editar Producto</title>
 </head>
 
 <body>
@@ -35,19 +35,15 @@
                         <div class="col-12">
                             <ul class="navbar-nav pb-0">
                                 <li class="nav-item mx-2 col-xl-3 col-lg-3 text-center">
-                                    <a class="nav-link active" aria-current="page" href="../index.html"><img
+                                    <a class="nav-link active" aria-current="page" href="../../index.html"><img
                                             src="../../img/LOGO.png" alt="logo" width="200px"></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="../servicios.html">Servicios <i
+                                    <a class="nav-link active text-white" href="../servicios.php">Servicios <i
                                             class="fas fa-cut"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="../ofertas.html">Ofertas <i
-                                            class="fas fa-coins"></i></a>
-                                </li>
-                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="../productos.html" tabindex="-1">Productos
+                                    <a class="nav-link active text-white" href="../productos.php" tabindex="-1">Productos
                                         <i class="fab fa-product-hunt"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
@@ -92,7 +88,7 @@
             return $valor;
         }
 
-        $cumplido = editarProducto($id, $_POST["nombre"], $_POST["unidad"], $_POST["precio"], $_POST["oferta"], $_POST["descripcion"]);
+        $cumplido = editarProducto($id, $_POST["nombre"], $_POST["precio"], $_POST["tipo"], $_POST["oferta"], $_POST["descripcion"]);
         if ($cumplido == true) {
             header("Location: index.php?varId=" . $id);
             exit();
@@ -116,7 +112,7 @@
                 <tr><td><p>Descripcion</p><textarea name="descripcion" id="descripcion" placeholder='<?php echo $producto["descripcion"]; ?>' value='<?php echo $producto["descripcion"]; ?>'></textarea><br><br></td></tr>
             </table>
             <input type="submit" value="Guardar Cambios" class="btn-enviar">
-            <a href="gestionProductos.php"><input type="button" value="Volver" class="btn-enviar"></a>
+            <a href="gestionProducto.php"><input type="button" value="Volver" class="btn-enviar"></a>
             <div id="errores"><?php echo $error; ?></div>
         </div>
     </form>
@@ -145,13 +141,10 @@
                                             href="../../IniciarS-Registrarte/iniciarSesion.html">Iniciar Sesion</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="../servicios.html">Servicios</a></div>
+                                    <div class="thumb-content"><a href="../servicios.php">Servicios</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="../ofertas.html">Ofertas</a></div>
-                                </li>
-                                <li>
-                                    <div class="thumb-content"><a href="../productos.html">Productos</a></div>
+                                    <div class="thumb-content"><a href="../productos.php">Productos</a></div>
                                 </li>
                                 <li>
                                     <div class="thumb-content"><a href="../nosotros.html">Sobre Nosotros</a></div>

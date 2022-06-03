@@ -11,9 +11,10 @@
     <link rel="stylesheet" href="../../css/productos.css">
     <link rel="stylesheet" href="../../css/footer.css">
     <link rel="stylesheet" href="../../css/gestion.css">
+    <link rel="stylesheet" href="../../css/formularioGestion.css">
     <!-- link para iconos -->
     <link rel="stylesheet" href="../../css/fontawesome-free-5.15.4-web/css/all.min.css">
-    <title>Eliminar Productos</title>
+    <title>Editar Servicio</title>
 </head>
 
 <body>
@@ -42,10 +43,6 @@
                                             class="fas fa-cut"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="../ofertas.html">Ofertas <i
-                                            class="fas fa-coins"></i></a>
-                                </li>
-                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
                                     <a class="nav-link active text-white" href="../productos.php" tabindex="-1">Productos
                                         <i class="fab fa-product-hunt"></i></a>
                                 </li>
@@ -70,28 +67,71 @@
                 </div>
         </nav>
     </header>
-    </div>
-    <!-- ARTICLE -->
-    <article>  
-    <!-- Preguntar antes de eliminar y asegurarse de si tiene permisos como usuario -->
-    <?php include_once "../../php/metodos.php";
-    $id= $_GET["varId"];
+<body>
 
-    $cumplido=eliminarProducto($id);
-    $error='Se ha borrado la publicacion con el id: ' . $id;
-    if(!$cumplido){
-        $error="Error al borrar la publicacion seleccionado";
+    <?php include_once "../../php/metodos.php";
+
+    if (count($_GET) > 0) {
+        $id = $_GET["varId"];
+        $servicio = obtenerServicio($id);
+    } else {
+        $id = $_POST["id"];
+        $servicio = obtenerServicio($id);
     }
-    ?> 
-    
-    <div class="container text-center">
-        <h2><?php echo $error;?></h2>
-        <a href="gestionProductos.php">[Eliminar otro producto]</a>
-        <a href="../../index.php">[Pagina principal]</a>
-    </div>
-     </article>
-<!-- FOOTER -->
-<footer id="footer" class="footer-1 mt-5">
+    $error = '';
+    if (count($_POST) > 0) {
+        function seguro($valor)
+        {
+            $valor = strip_tags($valor);
+            $valor = stripslashes($valor);
+            $valor = htmlspecialchars($valor);
+            return $valor;
+        }
+
+        $cumplido = editarServicio($id, $_POST["nombre"], $_POST["precio"], $_POST["tipo"], $_POST["oferta"], $_POST["descripcion"]);
+        if ($cumplido == true) {
+            header("Location: index.php?varId=" . $id);
+            exit();
+        } else {
+            $error = "Datos incorrectos o no se ha actualizado nada";
+        }
+    }
+    ?>
+<article>
+    <form class="form-register" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
+        <h2 class="form-titulo mt-4">Editando Servicio</h2>
+        <div class="contenedor-inputs">
+            <input type="hidden" name="id" value="<?php echo $servicio["id"]; ?>">
+            <!--aquí va el id, es hidden por lo tanto no es visible en la web, pero si accesible desde PHP -->
+            
+            <table>
+                <tr><td><p>Nombre</p><input type="text" name="nombre" placeholder='<?php echo $servicio["nombre"]; ?>' class="input-100" value='<?php echo $servicio["nombre"]; ?>'><br><br></td></tr>
+                <tr><td><p>Precio</p><input type="text" name="precio" placeholder='<?php echo $servicio["precio"]; ?>' class="input-100" value='<?php echo $servicio["precio"]; ?>'><br><br></td></tr>
+                <tr><td><p>Tipo</p><input type="text" name="tipo" placeholder='<?php echo $servicio["tipo"]; ?>' class="input-100" value='<?php echo $servicio["tipo"]; ?>'><br><br></td></tr>
+
+                <!-- <tr><td>
+                    <p>Tipo</p>
+                    <select placeholder='<?php $servicio["tipo"]; ?>'>
+                        <option value='<?php $servicio["tipo"]; echo $servicio["tipo"]; ?>'></option>
+                        <option value='<?php $servicio["tipo"]; echo $servicio["tipo"]; ?>'></option>
+                        <option value='<?php $servicio["tipo"]; echo $servicio["tipo"]; ?>'></option>
+                        <option value='<?php $servicio["tipo"]; echo $servicio["tipo"]; ?>'></option>
+                        <option value='<?php $servicio["tipo"]; echo $servicio["tipo"]; ?>'></option>
+                        <option value='<?php $servicio["tipo"]; echo $servicio["tipo"]; ?>'></option>
+                    </select><br><br>
+                </td></tr> -->
+                <tr><td><p>Oferta</p><textarea name="oferta" id="oferta" placeholder='<?php echo $servicio["oferta"]; ?>' value='<?php echo $servicio["oferta"]; ?>'></textarea><br><br></td></tr>
+                <tr><td><p>Descripcion</p><textarea name="descripcion" id="descripcion" placeholder='<?php echo $servicio["descripcion"]; ?>' value='<?php echo $servicio["descripcion"]; ?>'></textarea><br><br></td></tr>
+            </table>
+            <input type="submit" value="Guardar Cambios" class="btn-enviar">
+            <a href="gestionServicio.php"><input type="button" value="Volver" class="btn-enviar"></a>
+            <div id="errores"><?php echo $error; ?></div>
+        </div>
+    </form>
+    </article>
+
+    <!-- FOOTER -->
+    <footer id="footer" class="footer-1 mt-5">
         <div class="main-footer widgets-dark typo-light">
             <div class="container">
                 <div class="row">
@@ -114,9 +154,6 @@
                                 </li>
                                 <li>
                                     <div class="thumb-content"><a href="../servicios.php">Servicios</a></div>
-                                </li>
-                                <li>
-                                    <div class="thumb-content"><a href="../ofertas.html">Ofertas</a></div>
                                 </li>
                                 <li>
                                     <div class="thumb-content"><a href="../productos.php">Productos</a></div>

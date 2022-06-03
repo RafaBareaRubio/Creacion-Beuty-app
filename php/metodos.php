@@ -18,22 +18,22 @@ function obtenerServicio($id)
         $sql->execute();
         $row = $sql->fetch(PDO::FETCH_ASSOC); //Recibimos la linea correspondiente en ROW
         $con = null; //Cerramos la conexión
-
+        return $row;
     } catch (PDOException $e) {
         echo $e;
     }
 }
 
-function insertarServicio($precio, $oferta, $descripcion, $tipo, $nombre)
+function insertarServicio($nombre, $precio, $oferta, $tipo, $descripcion)
 {
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-        $sql = $con->prepare("INSERT into servicio values(null,:precio,:oferta,:descripcion,:tipo,:nombre)");
+        $sql = $con->prepare("INSERT into servicio values(null,:nombre,:precio,:oferta,:tipo,:descripcion)");
+        $sql->bindParam(":nombre", $nombre);
         $sql->bindParam(":precio", $precio);
         $sql->bindParam(":oferta", $oferta);
-        $sql->bindParam(":descripcion", $descripcion);
         $sql->bindParam(":tipo", $tipo);
-        $sql->bindParam(":nombre", $nombre);
+        $sql->bindParam(":descripcion", $descripcion);
         $sql->execute();
         $id = $con->lastInsertId();
     } catch (PDOException $e) {
@@ -46,7 +46,7 @@ function insertarServicio($precio, $oferta, $descripcion, $tipo, $nombre)
 function obtenerTodosServicios(){
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-        $sql = $con->prepare("SELECT id,precio,oferta,descripcion,tipo,nombre from servicio;");
+        $sql = $con->prepare("SELECT id,nombre,precio,oferta,tipo,descripcion from servicio;");
         $sql->execute();
         $miArray = [];
         while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
@@ -58,6 +58,50 @@ function obtenerTodosServicios(){
     $con = null;
     return $miArray;
 }
+
+function eliminarServicio($id)
+{
+    $retorno = false;
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+        $sql = $con->prepare("DELETE from servicio where id=:id");
+        $sql->bindParam(":id", $id);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $retorno = true;
+        }
+    } catch (PDOException $e) {
+        header("location: ../php/error.php");
+    }
+    $con = null;
+    return $retorno;
+}
+function editarServicio($id, $nombre, $precio, $tipo, $oferta, $descripcion)
+{
+    $retorno = false;
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+        $sql = $con->prepare("UPDATE servicio set nombre=:nombre , precio=:precio, tipo=:tipo, oferta=:oferta, descripcion=:descripcion where id=:id;");
+        $sql->bindParam(":id", $id);
+        $sql->bindParam(":nombre", $nombre);
+        $sql->bindParam(":precio", $precio);
+        $sql->bindParam(":tipo", $tipo);
+        $sql->bindParam(":oferta", $oferta);
+        $sql->bindParam(":descripcion", $descripcion);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $retorno = true;
+        }
+    } catch (PDOException $e) {
+        header("location: ../php/error.php");
+    }
+    $con = null;
+    return $retorno;
+}
+
+
+
+
 
 // PRODUCTOS
 
@@ -71,7 +115,7 @@ function obtenerProducto($id)
         $sql->execute();
         $row = $sql->fetch(PDO::FETCH_ASSOC); //Recibimos la linea correspondiente en ROW
         $con = null; //Cerramos la conexión
-
+        return $row;
     } catch (PDOException $e) {
         echo $e;
     }

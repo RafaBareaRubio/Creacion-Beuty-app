@@ -42,15 +42,11 @@
                                             src="../img/LOGO.png" alt="logo" width="200px"></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="servicios.html">Servicios <i
+                                    <a class="nav-link active text-white" href="servicios.php">Servicios <i
                                             class="fas fa-cut"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="ofertas.html">Ofertas <i
-                                            class="fas fa-coins"></i></a>
-                                </li>
-                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="productos.html" tabindex="-1">Productos
+                                    <a class="nav-link active text-white" href="productos.php" tabindex="-1">Productos
                                         <i class="fab fa-product-hunt"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
@@ -81,8 +77,20 @@
     <article>
         <!-- Corte -->
         <section>
-        <div class="container mt-5">
+        <div class="container mt-4">
             <h2>Servicios</h2>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                    <!-- toggler -->
+                        <button class="btn float-end m-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
+                            role="button">
+                            <a href="gestion/gestionServicios.php"><i class="fas fa-edit"></i></a>
+                        </button>
+                    </div>
+                </div>
+            </div>
 
             <div class="slider carousel col-12 mt-5">
                 <div class="row justify-content-center">
@@ -145,13 +153,10 @@
                                             href="../IniciarS-Registrarte/iniciarSesion.html">Iniciar Sesion</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="servicios.html">Servicios</a></div>
+                                    <div class="thumb-content"><a href="servicios.php">Servicios</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="ofertas.html">Ofertas</a></div>
-                                </li>
-                                <li>
-                                    <div class="thumb-content"><a href="productos.html">Productos</a></div>
+                                    <div class="thumb-content"><a href="productos.php">Productos</a></div>
                                 </li>
                                 <li>
                                     <div class="thumb-content"><a href="nosotros.html">Sobre Nosotros</a></div>

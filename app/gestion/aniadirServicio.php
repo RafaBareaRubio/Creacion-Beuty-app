@@ -11,9 +11,10 @@
     <link rel="stylesheet" href="../../css/productos.css">
     <link rel="stylesheet" href="../../css/footer.css">
     <link rel="stylesheet" href="../../css/gestion.css">
+    <link rel="stylesheet" href="../../css/formularioGestion.css">
     <!-- link para iconos -->
     <link rel="stylesheet" href="../../css/fontawesome-free-5.15.4-web/css/all.min.css">
-    <title>Eliminar Productos</title>
+    <title>Añadir Servicio</title>
 </head>
 
 <body>
@@ -42,10 +43,6 @@
                                             class="fas fa-cut"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="../ofertas.html">Ofertas <i
-                                            class="fas fa-coins"></i></a>
-                                </li>
-                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
                                     <a class="nav-link active text-white" href="../productos.php" tabindex="-1">Productos
                                         <i class="fab fa-product-hunt"></i></a>
                                 </li>
@@ -70,27 +67,42 @@
                 </div>
         </nav>
     </header>
-    </div>
-    <!-- ARTICLE -->
-    <article>  
-    <!-- Preguntar antes de eliminar y asegurarse de si tiene permisos como usuario -->
-    <?php include_once "../../php/metodos.php";
-    $id= $_GET["varId"];
 
-    $cumplido=eliminarProducto($id);
-    $error='Se ha borrado la publicacion con el id: ' . $id;
-    if(!$cumplido){
-        $error="Error al borrar la publicacion seleccionado";
-    }
-    ?> 
-    
-    <div class="container text-center">
-        <h2><?php echo $error;?></h2>
-        <a href="gestionProductos.php">[Eliminar otro producto]</a>
-        <a href="../../index.php">[Pagina principal]</a>
-    </div>
-     </article>
-<!-- FOOTER -->
+    <article>
+        <h1 class="mt-4" >Insertar Servicio</h1>
+        <!-- Formulario para insertar el producto -->
+        <section>
+            <form method="post" action="insertarServicio.php">
+                <table>
+                    <tr><td><p>Nombre</p><input name="nombre" id="nombre" type="text" required></td></tr>
+
+                    <tr><td><p>Precio</p><input name="precio" id="precio" type="text" required></td></tr>
+
+
+                    <tr><td>
+                        <p>Tipo</p>
+                        <select name="tipo" id="tipo">
+                            <option value="Corte">Cortes</option>
+                            <option value="Rituales">Rituales</option>
+                            <option value="Barba y Afeitado">Barba y Afeitado</option>
+                            <option value="Tinte y Coloración">Tinte y Coloración</option>
+                            <option value="Tratamientos">Tratamientos</option>
+                            <option value="Depilación">Depilación</option>
+                        </select>
+                    </td></tr>
+                    
+
+                    <tr><td><p>Oferta</p><textarea name="oferta" id="oferta" value="oferta"></textarea></td></tr>
+
+                    <tr><td><p>Descripcion</p><textarea name="descripcion" id="descripcion" value="descripcion" required></textarea></td></tr>
+                </table>
+                <input class="guardar" type="submit" value="Guardar">
+            </form>
+        </section>
+
+    </article>
+
+    <!-- FOOTER -->
 <footer id="footer" class="footer-1 mt-5">
         <div class="main-footer widgets-dark typo-light">
             <div class="container">
@@ -114,9 +126,6 @@
                                 </li>
                                 <li>
                                     <div class="thumb-content"><a href="../servicios.php">Servicios</a></div>
-                                </li>
-                                <li>
-                                    <div class="thumb-content"><a href="../ofertas.html">Ofertas</a></div>
                                 </li>
                                 <li>
                                     <div class="thumb-content"><a href="../productos.php">Productos</a></div>

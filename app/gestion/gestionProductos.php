@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../../css/gestion.css">
     <!-- link para iconos -->
     <link rel="stylesheet" href="../../css/fontawesome-free-5.15.4-web/css/all.min.css">
-    <title>Productos</title>
+    <title>Gestion Productos</title>
 </head>
 
 <body>
@@ -34,16 +34,12 @@
                         <div class="col-12">
                             <ul class="navbar-nav pb-0">
                                 <li class="nav-item mx-2 col-xl-3 col-lg-3 text-center">
-                                    <a class="nav-link active" aria-current="page" href="../index.html"><img
+                                    <a class="nav-link active" aria-current="page" href="../../index.html"><img
                                             src="../../img/LOGO.png" alt="logo" width="200px"></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="../servicios.html">Servicios <i
+                                    <a class="nav-link active text-white" href="../servicios.php">Servicios <i
                                             class="fas fa-cut"></i></a>
-                                </li>
-                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="../ofertas.html">Ofertas <i
-                                            class="fas fa-coins"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
                                     <a class="nav-link active text-white" href="../productos.php" tabindex="-1">Productos
@@ -72,9 +68,11 @@
     </header>
 
     <article>
-        <div class="tablon container">
-            <div class="container">
-                <div class="col-12">
+        <div class="tablon container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <div class="container">
+                        <div class="col-12">
                     <div class="row">
                         <div class="col-8">
                             <h2 class="mt-4">Gestión De Productos</h2>
@@ -87,49 +85,49 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="container col-12">
-                <div class="row">
-                    <div class="col">
-                    <!-- Obtener todos los productos en una tabla -->
-                        <table class="fixed_headers">
-                            <thead>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>Unidad</th>
-                                    <th>Precio</th>
-                                    <th>Oferta</th>
-                                    <th>Descripción</th>
-                                    <th>Editar</th>
-                                    <th>Eliminar</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php include_once "../../php/metodos.php";
-                    
-                                // error_reporting(0);
-                                
-                                $producto=obtenerTodosProductos();
-                                
-                                for ($i=0;$i<sizeof($producto);$i++){
-                                    echo "<tr>";
-                                        echo "<td>".$producto[$i]['nombre']."</td>";
-                                        echo "<td>".$producto[$i]['unidad']."</td>";
-                                        echo "<td>".$producto[$i]['precio']."</td>";
-                                        echo "<td>".$producto[$i]['oferta']."</td>";
-                                        echo "<td>".$producto[$i]['descripcion']."</td>";
-                                        // Añadir foto de editar y eliminar fontawesaome
-                                        echo "<td><a href='editarProducto.php?varId=".$producto[$i]["id"]."'><i class='fas fa-edit'></i></a></td>";
-                                        echo "<td><a href='eliminarProducto.php?varId=".$producto[$i]["id"]."'><i class='fas fa-trash-alt'></i></a></td>";
-                                    echo "</tr>";
-                                }//Fin Para
-                                ?>
-                            </tbody>
-                        </table>
+                <div class="container col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-auto">
+                        <!-- Obtener todos los productos en una tabla -->
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Unidad</th>
+                                        <th>Precio</th>
+                                        <th>Oferta</th>
+                                        <th>Descripción</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php include_once "../../php/metodos.php";
+                        
+                                    // error_reporting(0);
+                                    
+                                    $producto=obtenerTodosProductos();
+                                    
+                                    for ($i=0;$i<sizeof($producto);$i++){
+                                        echo "<tr>";
+                                            echo "<td>".$producto[$i]['nombre']."</td>";
+                                            echo "<td>".$producto[$i]['unidad']."</td>";
+                                            echo "<td>".$producto[$i]['precio']."</td>";
+                                            echo "<td>".$producto[$i]['oferta']."</td>";
+                                            echo "<td>".$producto[$i]['descripcion']."</td>";
+                                            // Añadir foto de editar y eliminar fontawesaome
+                                            echo "<td><a href='editarProducto.php?varId=".$producto[$i]["id"]."'><i class='fas fa-edit'></i></a></td>";
+                                            echo "<td><a href='eliminarProducto.php?varId=".$producto[$i]["id"]."'><i class='fas fa-trash-alt'></i></a></td>";
+                                        echo "</tr>";
+                                    }//Fin Para
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
+                </div>
             </div>
-        </div>
     </article>
 
     <!-- FOOTER -->
@@ -155,13 +153,10 @@
                                             href="../../IniciarS-Registrarte/iniciarSesion.html">Iniciar Sesion</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="../servicios.html">Servicios</a></div>
+                                    <div class="thumb-content"><a href="../servicios.php">Servicios</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="../ofertas.html">Ofertas</a></div>
-                                </li>
-                                <li>
-                                    <div class="thumb-content"><a href="../productos.html">Productos</a></div>
+                                    <div class="thumb-content"><a href="../productos.php">Productos</a></div>
                                 </li>
                                 <li>
                                     <div class="thumb-content"><a href="../nosotros.html">Sobre Nosotros</a></div>

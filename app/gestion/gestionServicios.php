@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../../css/gestion.css">
     <!-- link para iconos -->
     <link rel="stylesheet" href="../../css/fontawesome-free-5.15.4-web/css/all.min.css">
-    <title>Eliminar Productos</title>
+    <title>Gestion Servicios</title>
 </head>
 
 <body>
@@ -42,10 +42,6 @@
                                             class="fas fa-cut"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="../ofertas.html">Ofertas <i
-                                            class="fas fa-coins"></i></a>
-                                </li>
-                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
                                     <a class="nav-link active text-white" href="../productos.php" tabindex="-1">Productos
                                         <i class="fab fa-product-hunt"></i></a>
                                 </li>
@@ -70,28 +66,73 @@
                 </div>
         </nav>
     </header>
-    </div>
-    <!-- ARTICLE -->
-    <article>  
-    <!-- Preguntar antes de eliminar y asegurarse de si tiene permisos como usuario -->
-    <?php include_once "../../php/metodos.php";
-    $id= $_GET["varId"];
 
-    $cumplido=eliminarProducto($id);
-    $error='Se ha borrado la publicacion con el id: ' . $id;
-    if(!$cumplido){
-        $error="Error al borrar la publicacion seleccionado";
-    }
-    ?> 
-    
-    <div class="container text-center">
-        <h2><?php echo $error;?></h2>
-        <a href="gestionProductos.php">[Eliminar otro producto]</a>
-        <a href="../../index.php">[Pagina principal]</a>
-    </div>
-     </article>
-<!-- FOOTER -->
-<footer id="footer" class="footer-1 mt-5">
+    <article>
+        <div class="tablon container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <div class="container">
+                        <div class="col-12">
+                    <div class="row">
+                        <div class="col-8">
+                            <h2 class="mt-4">Gestión De Servicio</h2>
+                        </div>
+                        <div class="col-4 justify-content-end">
+                            <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
+                                <a href="aniadirServicio.php" class="anadirProducto"><i class="far fa-plus-square"></i> Añadir Servicio</a>    
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="container col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-auto">
+                        <!-- Obtener todos los servicios en una tabla -->
+                            <table>
+                                <thead>
+                                    <!-- Ordenar tabla por tipo -->
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Precio</th>
+                                        <th>Tipo</th>
+                                        <th>Oferta</th>
+                                        <th>Descripción</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php include_once "../../php/metodos.php";
+                        
+                                    // error_reporting(0);
+                                    
+                                    $servicio=obtenerTodosServicios();
+                                    
+                                    for ($i=0;$i<sizeof($servicio);$i++){
+                                        echo "<tr>";
+                                            echo "<td name='nombre' id='nombre' method='post' >".$servicio[$i]['nombre']."</td>";
+                                            echo "<td>".$servicio[$i]['precio']."</td>";
+                                            echo "<td>".$servicio[$i]['tipo']."</td>";
+                                            echo "<td>".$servicio[$i]['oferta']."</td>";
+                                            echo "<td>".$servicio[$i]['descripcion']."</td>";
+                                            // Añadir foto de editar y eliminar fontawesaome
+                                            echo "<td><a href='editarServicio.php?varId=".$servicio[$i]["id"]."'><i class='fas fa-edit'></i></a></td>";
+                                            echo "<td><a href='eliminarServicio.php?varId=".$servicio[$i]["id"]."'><i class='fas fa-trash-alt'></i></a></td>";
+                                        echo "</tr>";
+                                    }//Fin Para
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+    </article>
+
+    <!-- FOOTER -->
+    <footer id="footer" class="footer-1 mt-5">
         <div class="main-footer widgets-dark typo-light">
             <div class="container">
                 <div class="row">
@@ -114,9 +155,6 @@
                                 </li>
                                 <li>
                                     <div class="thumb-content"><a href="../servicios.php">Servicios</a></div>
-                                </li>
-                                <li>
-                                    <div class="thumb-content"><a href="../ofertas.html">Ofertas</a></div>
                                 </li>
                                 <li>
                                     <div class="thumb-content"><a href="../productos.php">Productos</a></div>
@@ -182,6 +220,7 @@
         </div>
     </footer>
     <script src="../js/anadirCarrito.js"></script>
+    <script src="../../ordenaTabla.js"></script>
     <script src="../../js/bootstrap.bundle.min.js"></script>
     <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </body>

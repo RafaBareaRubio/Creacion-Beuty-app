@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../../css/gestion.css">
     <!-- link para iconos -->
     <link rel="stylesheet" href="../../css/fontawesome-free-5.15.4-web/css/all.min.css">
-    <title>Eliminar Productos</title>
+    <title>Eliminar Servicio</title>
 </head>
 
 <body>
@@ -75,18 +75,29 @@
     <article>  
     <!-- Preguntar antes de eliminar y asegurarse de si tiene permisos como usuario -->
     <?php include_once "../../php/metodos.php";
-    $id= $_GET["varId"];
+    //Variables
+    $id = $_GET["varId"];
+    if (count($_GET) > 0) { 
+        $servicio = obtenerServicio($id);
+    } else {
+        $servicio = obtenerServicio($id);
+    }
+    
+    
+    //nombre
 
-    $cumplido=eliminarProducto($id);
-    $error='Se ha borrado la publicacion con el id: ' . $id;
+    $cumplido=eliminarServicio($id);
+    $error='Se ha borrado el servicio con el id: ' . $id;
+    $error='Se ha borrado el servicio con el nombre: ' . $servicio["nombre"];
+
     if(!$cumplido){
-        $error="Error al borrar la publicacion seleccionado";
+        $error="Error al borrar el servicio seleccionado";
     }
     ?> 
     
     <div class="container text-center">
         <h2><?php echo $error;?></h2>
-        <a href="gestionProductos.php">[Eliminar otro producto]</a>
+        <a href="gestionServicios.php">[Eliminar otra servicio]</a>
         <a href="../../index.php">[Pagina principal]</a>
     </div>
      </article>

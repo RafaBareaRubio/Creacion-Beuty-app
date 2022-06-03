@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../../css/formularioGestion.css">
     <!-- link para iconos -->
     <link rel="stylesheet" href="../../css/fontawesome-free-5.15.4-web/css/all.min.css">
-    <title>Insertar Producto</title>
+    <title>Insertar Servicio</title>
 </head>
 
 <body>
@@ -76,35 +76,35 @@
         //isset para controlar errores
             
             $nombre = isset($_POST['nombre']);
-            $unidad = $_POST['unidad'];
-            $precio = $_POST['precio'];
+            $tipo = $_POST['tipo'];
+            $precio = isset($_POST['precio']);
             $oferta = $_POST['oferta'];
             $descripcion = $_POST['descripcion'];
 
             //El HTML no lo controlaremos con required, para que así nos puedan meter valores vacios, ademas le daremos type text a todos para que puedan fallar y controlarlo aqui.
             if($nombre==""){
-                $errores .= "<li>Necesitamos saber el nombre del producto</li>";
+                $errores .= "<li>Necesitamos saber el nombre del servicio</li>";
                 $error=true;
             }else{
                 $nombre =$_POST['nombre'];
             }
 
-            if($unidad==""){
-                $errores .= "<li>Es necesario saber la unidad para poder decir si esta o no en stock</li>";
+            if($tipo==""){
+                $errores .= "<li>Es necesario saber el tipo para poder clasidifcarlo</li>";
                 $error=true;
             }else{
-                $unidad =$_POST['unidad'];
+                $tipo =$_POST['tipo'];
             }
 
             if($precio==""){
-                $errores .= "<li>Es obligatorio conocer el precio del producto</li>";
+                $errores .= "<li>Es obligatorio conocer el precio del servicio</li>";
                 $error=true;
             }else{
                 $precio = $_POST['precio'];
             }
 
             if($descripcion==""){
-                $errores .= "<li>Es necesaria una breve descripcion del producto</li>";
+                $errores .= "<li>Es necesaria una breve descripcion del servicio</li>";
                 $error=true;
             }
 
@@ -112,12 +112,12 @@
             if (!$error) {
                 $confirmacion = "Estos son los datos introducidos: <br>";
                 $confirmacion .= "<li>Nombre: $nombre</li>";
-                $confirmacion .= "<li>Unidad: $unidad</li>";
+                $confirmacion .= "<li>Tipo: $tipo</li>";
                 $confirmacion .= "<li>Precio: $precio</li>";
                 $confirmacion .= "<li>Oferta: $oferta</li>";
                 $confirmacion .= "<li>Descripcion: $descripcion</li>";
 
-                insertarProducto( $nombre, $unidad, $precio, $oferta, $descripcion );
+                insertarServicio( $nombre, $precio, $tipo, $oferta, $descripcion );
             }else{
                 $confirmacion = "No se han podido realizar la inserción";
                 $confirmacion .= $errores;
@@ -127,7 +127,7 @@
         ?>
         <div class="container text-center">
             <p><?php print($confirmacion); ?></p>   
-            <a href="gestionProductos.php">[ Insertar otro producto ]</a>
+            <a href="gestionServicios.php">[ Insertar otro servicio ]</a>
             <a href="../../index.php">[ Volver a la pagina principal ]</a>
         </div>
     </article>

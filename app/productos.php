@@ -38,15 +38,11 @@
                                             src="../img/LOGO.png" alt="logo" width="200px"></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="servicios.html">Servicios <i
+                                    <a class="nav-link active text-white" href="servicios.php">Servicios <i
                                             class="fas fa-cut"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="ofertas.html">Ofertas <i
-                                            class="fas fa-coins"></i></a>
-                                </li>
-                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="productos.html" tabindex="-1">Productos
+                                    <a class="nav-link active text-white" href="productos.php" tabindex="-1">Productos
                                         <i class="fab fa-product-hunt"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
@@ -83,8 +79,6 @@
                         </div>
                     </div>
                     <!-- Carrito a la derecha -->
-
-
 
                     <div class="offcanvas offcanvas-start" style="width: 25%;" tabindex="-1" id="offcanvas" data-bs-keyboard="false"
                         data-bs-backdrop="false">
@@ -133,8 +127,8 @@
                         for ($i=0;$i<sizeof($producto);$i++){
                             echo "<div class='producto item'>";
                                 echo "<div class='contenedor-imagen'>";
-                                    echo "<img src='../img/productos/maquinilla.jpg' class='img-nohover'>";
-                                    echo "<img src='../img/Servicios/maquinilla.jpg' class='img-hover'>";
+                                    echo "<img src='../img/productos/producto1.jpeg' class='img-nohover'>";
+                                    echo "<img src='../img/Servicios/producto1.jpeg' class='img-hover'>";
                                 echo "</div>";
                                 echo "<div class='datos'>";
                                     echo "<div class='starrr'></div>";
@@ -180,13 +174,10 @@
                                             href="../IniciarS-Registrarte/iniciarSesion.html">Iniciar Sesion</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="servicios.html">Servicios</a></div>
+                                    <div class="thumb-content"><a href="servicios.php">Servicios</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="ofertas.html">Ofertas</a></div>
-                                </li>
-                                <li>
-                                    <div class="thumb-content"><a href="productos.html">Productos</a></div>
+                                    <div class="thumb-content"><a href="productos.php">Productos</a></div>
                                 </li>
                                 <li>
                                     <div class="thumb-content"><a href="nosotros.html">Sobre Nosotros</a></div>

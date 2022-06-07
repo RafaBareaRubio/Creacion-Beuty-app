@@ -99,15 +99,17 @@
                     <?php include_once "../php/metodos.php";
                     
                     error_log(0);   
-                        
+                    try{
                         $servicio=obtenerTodosServicios();
-
+                        $contador=0;
+                        echo "<h2>"."CORTES"."</h2>";
                         for ($i=0;$i<sizeof($servicio);$i++){
+                            
                             echo "<div class='producto item'>";
                                 echo "<a href='https://booksy.com/es-es/20227_la-creacion-beauty-concept_barberia_29784_bencarron#ba_s=sr_1' style='color: black;'>";
                                     echo "<div class='contenedor-imagen'>";
-                                        echo "<img src='../img/Servicios/CORTE1.jpg' class='img-nohover'>";
-                                        echo "<img src='../img/Servicios/CORTE1.jpg' class='img-hover'>";
+                                        echo "<img src='../img/Servicios/Corte.jpeg' class='img-nohover'>";
+                                        echo "<img src='../img/Servicios/Corte.jpeg' class='img-hover'>";
                                     echo "</div>";
                                     echo "<div class='datos'>";
                                         echo "<div class='starrr'></div>";
@@ -122,8 +124,31 @@
                                     echo "</div>";
                                 echo "</a>";
                             echo "</div>";
-                           
+                            
+                            if($servicio[$i]['tipo']!=$servicio[$i+1]['tipo']){
+                                $contador++;
+                                if($contador==1){
+                                    echo "<h2>"."Rituales"."</h2>";
+                                }
+                                if($contador==2){
+                                    echo "<h2>"."Barba y Afeitado"."</h2>";
+                                }
+                                if($contador==3){
+                                    echo "<h2>"."Tinte y Coloración"."</h2>";
+                                }
+                                if($contador==4){
+                                    echo "<h2>"."Tratamientos"."</h2>";
+                                }
+                                if($contador==5){
+                                    echo "<h2>"."Depilación"."</h2>";
+                                }
+                                
+                            }
                         }//Fin Para
+                    }catch (Exception $e){
+                        echo ("");
+                    }
+                        
                     ?>              
                 </div>
             </div>

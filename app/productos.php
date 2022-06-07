@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/productos.css">
     <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/servicios.css">
     <link rel="stylesheet" href="../css/carrito.css">
     <!-- link para iconos -->
     <link rel="stylesheet" href="../css/fontawesome-free-5.15.4-web/css/all.min.css">
@@ -128,7 +130,7 @@
                             echo "<div class='producto item'>";
                                 echo "<div class='contenedor-imagen'>";
                                     echo "<img src='../img/productos/producto1.jpeg' class='img-nohover'>";
-                                    echo "<img src='../img/Servicios/producto1.jpeg' class='img-hover'>";
+                                    echo "<img src='../img/productos/producto1.jpeg' class='img-hover'>";
                                 echo "</div>";
                                 echo "<div class='datos'>";
                                     echo "<div class='starrr'></div>";

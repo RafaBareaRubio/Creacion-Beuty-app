@@ -46,7 +46,7 @@ function insertarServicio($nombre, $precio, $oferta, $tipo, $descripcion)
 function obtenerTodosServicios(){
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-        $sql = $con->prepare("SELECT id,nombre,precio,oferta,tipo,descripcion from servicio;");
+        $sql = $con->prepare("SELECT id,nombre,precio,oferta,tipo,descripcion from servicio order by tipo;");
         $sql->execute();
         $miArray = [];
         while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {

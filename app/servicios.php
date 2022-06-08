@@ -98,7 +98,7 @@
                     <!-- Añado uno a uno cada servicio -->
                     <?php include_once "../php/metodos.php";
                     
-                    error_log(0);   
+                    error_reporting(0);   
                     try{
                         $servicio=obtenerTodosServicios();
                         $contador=0;

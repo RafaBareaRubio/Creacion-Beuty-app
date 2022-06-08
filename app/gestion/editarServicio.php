@@ -88,9 +88,9 @@
             return $valor;
         }
 
-        $cumplido = editarServicio($id, $_POST["nombre"], $_POST["precio"], $_POST["tipo"], $_POST["oferta"], $_POST["descripcion"]);
+        $cumplido = editarServicio($id, $_POST["nombre"], $_POST["precio"], $_POST["tipoServicio"], $_POST["oferta"], $_POST["descripcion"]);
         if ($cumplido == true) {
-            header("Location: index.php?varId=" . $id);
+            header("Location: gestionServicios.php?varId=" . $id);
             exit();
         } else {
             $error = "Datos incorrectos o no se ha actualizado nada";
@@ -107,24 +107,33 @@
             <table>
                 <tr><td><p>Nombre</p><input type="text" name="nombre" placeholder='<?php echo $servicio["nombre"]; ?>' class="input-100" value='<?php echo $servicio["nombre"]; ?>'><br><br></td></tr>
                 <tr><td><p>Precio</p><input type="text" name="precio" placeholder='<?php echo $servicio["precio"]; ?>' class="input-100" value='<?php echo $servicio["precio"]; ?>'><br><br></td></tr>
-                <tr><td><p>Tipo</p><input type="text" name="tipo" placeholder='<?php echo $servicio["tipo"]; ?>' class="input-100" value='<?php echo $servicio["tipo"]; ?>'><br><br></td></tr>
 
-                <!-- <tr><td>
+                <tr><td>
                     <p>Tipo</p>
-                    <select placeholder='<?php $servicio["tipo"]; ?>'>
-                        <option value='<?php $servicio["tipo"]; echo $servicio["tipo"]; ?>'></option>
-                        <option value='<?php $servicio["tipo"]; echo $servicio["tipo"]; ?>'></option>
-                        <option value='<?php $servicio["tipo"]; echo $servicio["tipo"]; ?>'></option>
-                        <option value='<?php $servicio["tipo"]; echo $servicio["tipo"]; ?>'></option>
-                        <option value='<?php $servicio["tipo"]; echo $servicio["tipo"]; ?>'></option>
-                        <option value='<?php $servicio["tipo"]; echo $servicio["tipo"]; ?>'></option>
+                    <select name="tipoServicio" id="tipoServicio">
+                    <?php
+                    //El tipo que tenia previamente, para que ese tipo no se repita tenemos el if dentro del for
+                    
+                    echo '<option value="'.$servicio['tipo'].'">'.$servicio['tipo'].'</option>';                    
+                    $tipos = obtenerTodosTiposServicios();
+                    //Tipos no se actualiza ni se inserta
+                    
+                    for ($i=0;$i<sizeof($tipos);$i++){
+                        if($servicio['tipo']==$tipos[$i]['tipo']){
+                            
+                        }else{
+                            echo '<option value="'.$tipos[$i]['tipo'].'">'.$tipos[$i]['tipo'].'</option>';                    
+                        }
+                    }
+                    ?>
                     </select><br><br>
-                </td></tr> -->
+                </td></tr>
                 <tr><td><p>Oferta</p><textarea name="oferta" id="oferta" placeholder='<?php echo $servicio["oferta"]; ?>' value='<?php echo $servicio["oferta"]; ?>'></textarea><br><br></td></tr>
                 <tr><td><p>Descripcion</p><textarea name="descripcion" id="descripcion" placeholder='<?php echo $servicio["descripcion"]; ?>' value='<?php echo $servicio["descripcion"]; ?>'></textarea><br><br></td></tr>
             </table>
+            <br>
             <input type="submit" value="Guardar Cambios" class="btn-enviar">
-            <a href="gestionServicio.php"><input type="button" value="Volver" class="btn-enviar"></a>
+            <a href="gestionServicios.php"><input type="button" value="Volver" class="btn-enviar"></a>
             <div id="errores"><?php echo $error; ?></div>
         </div>
     </form>

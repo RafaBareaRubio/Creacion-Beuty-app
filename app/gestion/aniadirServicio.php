@@ -82,13 +82,18 @@
                     <tr><td>
                         <p>Tipo</p>
                         <select name="tipo" id="tipo">
-                            <option value="Corte">Cortes</option>
-                            <option value="Rituales">Rituales</option>
-                            <option value="Barba y Afeitado">Barba y Afeitado</option>
-                            <option value="Tinte y Coloración">Tinte y Coloración</option>
-                            <option value="Tratamientos">Tratamientos</option>
-                            <option value="Depilación">Depilación</option>
-                        </select>
+                        <?php
+                        //El tipo que tenia previamente, para que ese tipo no se repita tenemos el if dentro del for
+                        include_once "../../php/metodos.php";
+                                         
+                        $tipos = obtenerTodosTiposServicios();
+                        //Tipos no se actualiza ni se inserta
+                        
+                        for ($i=0;$i<sizeof($tipos);$i++){
+                            echo '<option value="'.$tipos[$i]['tipo'].'">'.$tipos[$i]['tipo'].'</option>';                    
+                        }
+                        ?>
+                    </select><br><br>
                     </td></tr>
                     
 

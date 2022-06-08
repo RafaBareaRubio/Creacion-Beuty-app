@@ -76,7 +76,7 @@
         //isset para controlar errores
             
             $nombre = isset($_POST['nombre']);
-            $tipo = $_POST['tipo'];
+            $tipo = isset($_POST['tipo']);
             $precio = isset($_POST['precio']);
             $oferta = $_POST['oferta'];
             $descripcion = $_POST['descripcion'];

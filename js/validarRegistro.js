@@ -13,43 +13,46 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //Contadores para comprobar si la password es fuerte
     ok = true;
     errores="";
-    var contadorLetraM=0;
-    var contadorNum=0;
-    var contadorEspe=0;
+// Para contraseña con simbolos obligatoria lo comentado
+
+    // var contadorLetraM=0;
+    // var contadorNum=0;
+    // var contadorEspe=0;
     var contraseña = document.getElementById('contra').value;
     document.getElementsByTagName("input")[3].setAttribute("class", "");
 
-    if(contraseña.length>=10){//Longitud
+
+    if(contraseña.length>=8){//Longitud
 
         for(i=0;i<contraseña.length;i++){
             
             letra=contraseña.charCodeAt(i);
 
-            if(letra>=65 && letra<=90){//Mayuscula
-                contadorLetraM++;
-            }
+            // if(letra>=65 && letra<=90){//Mayuscula
+            //     contadorLetraM++;
+            // }
             
-            if(letra>=48 && letra<=57){//Numero
-                contadorNum++;
-            }
+            // if(letra>=48 && letra<=57){//Numero
+            //     contadorNum++;
+            // }
 
-            if(letra>=33 && letra<=47 || letra>=123 && letra<=255 || letra>=91 && letra<=96){//Especial
-                contadorEspe++;
-            }  
+            // if(letra>=33 && letra<=47 || letra>=123 && letra<=255 || letra>=91 && letra<=96){//Especial
+            //     contadorEspe++;
+            // }  
         }
     }else{
         document.getElementsByTagName("input")[3].setAttribute("class", "error");// cambia el borde del impuct a rojo como señal de error (Todos son iguales)
         errores="Contraseña demasiado corta<br>";
     }
+    
+    // if(contadorEspe == 0 || contadorLetraM == 0 || contadorNum == 0){
+    //     ok=false;
+    //     document.getElementsByTagName("input")[3].setAttribute("class", "error");// cambia el borde del impuct a rojo como señal de error (Todos son iguales)
+    //     errores+="Contraseña no valida puede faltar numeros, mayusculas o simbolos.<br>";
 
-    if(contadorEspe == 0 || contadorLetraM == 0 || contadorNum == 0){
-        ok=false;
-        document.getElementsByTagName("input")[3].setAttribute("class", "error");// cambia el borde del impuct a rojo como señal de error (Todos son iguales)
-        errores+="Contraseña no valida puede faltar numeros, mayusculas o simbolos.<br>";
-
-        // Introduce el mensaje en el div
-        document.getElementById("errores").innerHTML=errores;
-    }
+    //     // Introduce el mensaje en el div
+    //     document.getElementById("errores").innerHTML=errores;
+    // }
         
         // Expresiones regulares
         var nombreApeValido = /(^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{3,16})+$/;

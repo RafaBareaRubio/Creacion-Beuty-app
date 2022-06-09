@@ -33,35 +33,43 @@
             <div class="row justify-content-center">
                 <div class="col-auto">
                     <div name="formulario" id="formulario" class="formulario p-5 text-center">
-                            <form method="get" action="../index.html">
+                            <form action="registrar.php" method="POST" enctype="multipart/form-data" id="formRegistro"">
                                 <div class="tablaFormulario">
                                 <table>
                                     <tr style="text-align: left;">
-                                        <th>Nombre:</th>
-                                        <td><div class="inputFormulario"><input class="input2" type="text" id="nombre" required /></td></div>
+                                        <th>Nombre y Apellido:</th>
+                                        <td><div class="inputFormulario"><input class="input2" type="text" id="nombreYape" required /></td></div>
                                     </tr>
                                     <tr style="opacity: 0;">
-                                        <th style="font-size: 20%;">Nombre:</th>
+                                        <th style="font-size: 20%;">:</th>
                                     </tr>
                                     <tr style="text-align: left;">
-                                        <th>Apellido:</th>
-                                        <td><div class="inputFormulario"><input class="input2" type="text" id="apellidos" required/></td></div>
+                                        <th>Usuario:</th>
+                                        <td><div class="inputFormulario"><input class="input2" type="text" id="usuario" required /></td></div>
                                     </tr>
                                     <tr style="opacity: 0;">
-                                        <th style="font-size: 20%;">Nombre:</th>
+                                        <th style="font-size: 20%;">:</th>
                                     </tr>
                                     <tr style="text-align: left;">
                                         <th>E-mail:</th>
                                         <td><div class="inputFormulario"><input class="input2" type="email" id="correo" required/></td></div>
                                     </tr>
                                     <tr style="opacity: 0;">
-                                        <th style="font-size: 20%;">Nombre:</th>
+                                        <th style="font-size: 20%;">:</th>
+                                    </tr>
+                                    <tr style="text-align: left;">
+                                        <th>DNI:</th>
+                                        <td><div class="inputFormulario"><input class="input2" type="text" id="dni" required/></td></div>
+                                    </tr>
+                                    <tr style="opacity: 0;">
+                                        <th style="font-size: 20%;">:</th>
                                     </tr>
                                     <tr style="text-align: left;">
                                         <th>Contrase&ntilde;a:</th>
                                         <td><div class="inputFormulario"><input class="input2" type="password" id="contra" required></td></div>
                                         <td><button class="botonMostrar" type="button" onclick="mostrar()"><i class="far fa-eye"></i></button></td>
                                     </tr>
+                                    
                                 </table>
                             </div>
                             

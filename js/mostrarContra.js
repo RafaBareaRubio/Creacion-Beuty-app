@@ -2,7 +2,7 @@ function mostrar(){
     contador=0;
 
     //Mostrar contraseña
-    var tipo = document.getElementById("contra");
+    var tipo = document.getElementById("contrasena");
     if(tipo.type=="password"){
         tipo.setAttribute("type","text");
     }else{

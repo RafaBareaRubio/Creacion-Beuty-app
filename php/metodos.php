@@ -212,4 +212,47 @@ function editarProducto($id, $titulo, $publicacion, $tipo, $contenido, $fecha)
     $con = null;
     return $retorno;
 }
+
+//Usuario
+function obtenerUsuario($id)
+{
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+
+        $sql = $con->prepare("SELECT usuario from usuario where id=:id");
+        $sql->bindParam(":id", $id); //Para evitar inyecciones SQL
+        $sql->execute();
+        $row = $sql->fetch(PDO::FETCH_ASSOC); //Recibimos la linea correspondiente en ROW
+        $con = null; //Cerramos la conexión
+        return $row;
+    } catch (PDOException $e) {
+        echo $e;
+    }
+}
+
+function editarUsuario($id, $usuario, $contrasena, $nombreYape, $dni, $gmail, $telefono, $direccion)
+{
+    $retorno = false;
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+        $sql = $con->prepare("UPDATE usuario set usuario=:usuario , contrasena=:contrasena, nombreYape=:nombreYape, dni=:dni, gmail=:gmail, telefono=:telefono, direccion=:direccion where id=:id;");
+        $sql->bindParam(":id", $id);
+        $sql->bindParam(":usuario", $usuario);
+        $sql->bindParam(":contrasena", $contrasena);
+        $sql->bindParam(":nombreYape", $nombreYape);
+        $sql->bindParam(":dni", $dni);
+        $sql->bindParam(":gmail", $gmail);
+        $sql->bindParam(":telefono", $telefono);
+        $sql->bindParam(":direccion", $direccion);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $retorno = true;
+        }
+    } catch (PDOException $e) {
+        header("location: ../php/error.php");
+    }
+    $con = null;
+    return $retorno;
+}
+
 ?>

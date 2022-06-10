@@ -35,31 +35,50 @@
                         <div class="col-12">
                             <ul class="navbar-nav pb-0">
                                 <li class="nav-item mx-2 col-xl-3 col-lg-3 text-center">
-                                    <a class="nav-link active" aria-current="page" href="../../index.html"><img
+                                    <a class="nav-link active" aria-current="page" href="../../index.php"><img
                                             src="../../img/LOGO.png" alt="logo" width="200px"></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
                                     <a class="nav-link active text-white" href="../servicios.php">Servicios <i
                                             class="fas fa-cut"></i></a>
                                 </li>
-                                </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
                                     <a class="nav-link active text-white" href="../productos.php" tabindex="-1">Productos
                                         <i class="fab fa-product-hunt"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="../nosotros.html" tabindex="-1">Nosotros <i
+                                    <a class="nav-link active text-white" href="../nosotros.php" tabindex="-1">Nosotros <i
                                             class="fas fa-photo-video"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="contactanos.html"
+                                    <a class="nav-link active text-white" href="../contactanos.php"
                                         tabindex="-1">Contáctanos <i class="fas fa-id-card"></i></a>
                                 </li>
 
-                                <li class="nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4">
-                                    <a class="btn" id="Inicio" href="../../IniciarS-Registrarte/iniciarSesion.html" target="_blank">Iniciar Sesion</a>
-                                    <a class="btn" id="Registro" href="../../IniciarS-Registrarte/registrarte.html" target="_blank">Registrate</a>                                
-                                </li>
+                                <?php include "../../php/metodos.php";
+                                    // Continuar la sesión
+                                    session_start();
+
+                                    if(isset($_SESSION['sesion_iniciada']) == true ){
+                                        $tipo = session_id();
+                                        if($tipo=="usuario" ){
+                                            echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
+                                        
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='../misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Mi Usuario</></a>
+                                                </li>";
+                                        }
+                                        if($tipo=="admin"){
+                                            echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='../misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Admin Usuario</></a>
+                                                </li>";
+                                        }
+                                    }else{
+                                        echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
+                                                <a class='btn' id='Inicio' href='../../IniciarS-Registrarte/iniciarSesion.html' target='_blank'>Iniciar Sesion</a>
+                                                <a class='btn' id='Registro' href='../../IniciarS-Registrarte/registrarte.html' target='_blank'>Registrate</a>
+                                            </li>";
+                                    }//Fin si
+                                ?>
 
                             </ul>
                         </div>
@@ -97,37 +116,37 @@
             <div class="container">
                 <div class="row">
 
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="widget subscribe no-box">
-                            <h5 class="widget-title">La Creación<span></span></h5>
-                            <a href="../../index.html"><img src="../../img/LOGO.png" width="150em"></a>
-                            <p class="mt-2">Tu barberia de confianza</p>
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="widget subscribe no-box">
+                                <h5 class="widget-title">La Creación<span></span></h5>
+                                <a href="../../index.php"><img src="../../img/LOGO.png" width="150em"></a>
+                                <p class="mt-2">Tu barberia de confianza</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="widget no-box">
-                            <h5 class="widget-title">Enlaces<span></span></h5>
-                            <ul class="thumbnail-widget">
-                                <li>
-                                    <div class="thumb-content"><a
-                                            href="../../IniciarS-Registrarte/iniciarSesion.html">Iniciar Sesion</a></div>
-                                </li>
-                                <li>
-                                    <div class="thumb-content"><a href="../servicios.php">Servicios</a></div>
-                                </li>
-                                <li>
-                                    <div class="thumb-content"><a href="../productos.php">Productos</a></div>
-                                </li>
-                                <li>
-                                    <div class="thumb-content"><a href="../nosotros.html">Sobre Nosotros</a></div>
-                                </li>
-                                <li>
-                                    <div class="thumb-content"><a href="../contactanos.html">Contáctanos</a></div>
-                                </li>
-                            </ul>
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="widget no-box">
+                                <h5 class="widget-title">Enlaces<span></span></h5>
+                                <ul class="thumbnail-widget">
+                                    <li>
+                                        <div class="thumb-content"><a
+                                                href="../../IniciarS-Registrarte/iniciarSesion.html">Iniciar Sesion</a></div>
+                                    </li>
+                                    <li>
+                                        <div class="thumb-content"><a href="../servicios.php">Servicios</a></div>
+                                    </li>
+                                    <li>
+                                        <div class="thumb-content"><a href="../productos.php">Productos</a></div>
+                                    </li>
+                                    <li>
+                                        <div class="thumb-content"><a href="../nosotros.php">Sobre Nosotros</a></div>
+                                    </li>
+                                    <li>
+                                        <div class="thumb-content"><a href="../contactanos.php">Contáctanos</a></div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
 
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="widget no-box">

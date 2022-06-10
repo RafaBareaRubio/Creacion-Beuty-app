@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS v5.0.2 -->
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/header.css">
-    <link rel="stylesheet" href="../../css/productos.css">
-    <link rel="stylesheet" href="../../css/footer.css">
-    <link rel="stylesheet" href="../../css/gestion.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/productos.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/servicios.css">
+    <link rel="stylesheet" href="../css/carrito.css">
     <!-- link para iconos -->
-    <link rel="stylesheet" href="../../css/fontawesome-free-5.15.4-web/css/all.min.css">
-    <title>Gestion Servicios</title>
+    <link rel="stylesheet" href="../css/fontawesome-free-5.15.4-web/css/all.min.css">
+    <title>Pedido Confirmado</title>
 </head>
 
 <body>
@@ -34,27 +36,27 @@
                         <div class="col-12">
                             <ul class="navbar-nav pb-0">
                                 <li class="nav-item mx-2 col-xl-3 col-lg-3 text-center">
-                                    <a class="nav-link active" aria-current="page" href="../../index.php"><img
-                                            src="../../img/LOGO.png" alt="logo" width="200px"></a>
+                                    <a class="nav-link active" aria-current="page" href="../index.php"><img
+                                            src="../img/LOGO.png" alt="logo" width="200px"></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="../servicios.php">Servicios <i
+                                    <a class="nav-link active text-white" href="servicios.php">Servicios <i
                                             class="fas fa-cut"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="../productos.php" tabindex="-1">Productos
+                                    <a class="nav-link active text-white" href="productos.php" tabindex="-1">Productos
                                         <i class="fab fa-product-hunt"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="../nosotros.php" tabindex="-1">Nosotros <i
+                                    <a class="nav-link active text-white" href="nosotros.php" tabindex="-1">Nosotros <i
                                             class="fas fa-photo-video"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="../contactanos.php"
+                                    <a class="nav-link active text-white" href="contactanos.php"
                                         tabindex="-1">Contáctanos <i class="fas fa-id-card"></i></a>
                                 </li>
 
-                                <?php include "../../php/metodos.php";
+                                <?php include "../php/metodos.php";
                                     // Continuar la sesión
                                     session_start();
 
@@ -63,18 +65,18 @@
                                         if($tipo=="usuario" ){
                                             echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
                                         
-                                                    <a class='btn text-uppercase' id='botonUsuario' href='../misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Mi Usuario</></a>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Mi Usuario</></a>
                                                 </li>";
                                         }
                                         if($tipo=="admin"){
                                             echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
-                                                    <a class='btn text-uppercase' id='botonUsuario' href='../misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Admin Usuario</></a>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Admin Usuario</></a>
                                                 </li>";
                                         }
                                     }else{
                                         echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
-                                                <a class='btn' id='Inicio' href='../../IniciarS-Registrarte/iniciarSesion.html' target='_blank'>Iniciar Sesion</a>
-                                                <a class='btn' id='Registro' href='../../IniciarS-Registrarte/registrarte.html' target='_blank'>Registrate</a>
+                                                <a class='btn' id='Inicio' href='../IniciarS-Registrarte/iniciarSesion.html' target='_blank'>Iniciar Sesion</a>
+                                                <a class='btn' id='Registro' href='../IniciarS-Registrarte/registrarte.html' target='_blank'>Registrate</a>
                                             </li>";
                                     }//Fin si
                                 ?>
@@ -87,114 +89,58 @@
         </nav>
     </header>
 
-    <article>
-        <div class="tablon container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-auto">
-                    <div class="container">
-                        <div class="col-12">
-                    <div class="row">
-                        <div class="col-8">
-                            <h2 class="mt-4">Gestión De Servicio</h2>
-                        </div>
-                        <div class="col-4 justify-content-end">
-                            <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
-                                <a href="aniadirServicio.php" class="anadirProducto"><i class="far fa-plus-square"></i> Añadir Servicio</a>    
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                <div class="container col-12">
-                    <div class="row justify-content-center">
-                        <div class="col-auto">
-                        <!-- Obtener todos los servicios en una tabla -->
-                            <table>
-                                <thead>
-                                    <!-- Ordenar tabla por tipo -->
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Precio</th>
-                                        <th>Tipo</th>
-                                        <th>Oferta</th>
-                                        <th>Descripción</th>
-                                        <th>Editar</th>
-                                        <th>Eliminar</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php include_once "../../php/metodos.php";
-                        
-                                    // error_reporting(0);
-                                    
-                                    $servicio=obtenerTodosServicios();
-                                    
-                                    for ($i=0;$i<sizeof($servicio);$i++){
-                                        echo "<tr>";
-                                            echo "<td name='nombre' id='nombre' method='post' >".$servicio[$i]['nombre']."</td>";
-                                            echo "<td>".$servicio[$i]['precio']."</td>";
-                                            echo "<td>".$servicio[$i]['tipo']."</td>";
-                                            echo "<td>".$servicio[$i]['oferta']."</td>";
-                                            echo "<td>".$servicio[$i]['descripcion']."</td>";
-                                            // Añadir foto de editar y eliminar fontawesaome
-                                            echo "<td><a href='editarServicio.php?varId=".$servicio[$i]["id"]."'><i class='fas fa-edit'></i></a></td>";
-                                            echo "<td><a href='eliminarServicio.php?varId=".$servicio[$i]["id"]."'><i class='fas fa-trash-alt'></i></a></td>";
-                                        echo "</tr>";
-                                    }//Fin Para
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-    </article>
+    <!-- OFERTAS -->
 
+    <article>
+
+        <section>
+          <h1>Se enviará un correo con la confirmación de la cita si ha iniciado sesión, y te mandará a registrarte con un mensaje si no lo estas</h1>
+          
+        </section>
+        
+    </article>
     <!-- FOOTER -->
     <footer id="footer" class="footer-1 mt-5">
         <div class="main-footer widgets-dark typo-light">
             <div class="container">
                 <div class="row">
 
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                            <div class="widget subscribe no-box">
-                                <h5 class="widget-title">La Creación<span></span></h5>
-                                <a href="../../index.php"><img src="../../img/LOGO.png" width="150em"></a>
-                                <p class="mt-2">Tu barberia de confianza</p>
-                            </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="widget subscribe no-box">
+                            <h5 class="widget-title">La Creación<span></span></h5>
+                            <a href="../index.php"><img src="../img/LOGO.png" width="150em"></a>
+                            <p class="mt-2">Tu barberia de confianza</p>
                         </div>
+                    </div>
 
-                        <div class="col-xs-12 col-sm-6 col-md-3">
-                            <div class="widget no-box">
-                                <h5 class="widget-title">Enlaces<span></span></h5>
-                                <ul class="thumbnail-widget">
-                                    <li>
-                                        <div class="thumb-content"><a
-                                                href="../../IniciarS-Registrarte/iniciarSesion.html">Iniciar Sesion</a></div>
-                                    </li>
-                                    <li>
-                                        <div class="thumb-content"><a href="../servicios.php">Servicios</a></div>
-                                    </li>
-                                    <li>
-                                        <div class="thumb-content"><a href="../productos.php">Productos</a></div>
-                                    </li>
-                                    <li>
-                                        <div class="thumb-content"><a href="../nosotros.php">Sobre Nosotros</a></div>
-                                    </li>
-                                    <li>
-                                        <div class="thumb-content"><a href="../contactanos.php">Contáctanos</a></div>
-                                    </li>
-                                </ul>
-                            </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="widget no-box">
+                            <h5 class="widget-title">Enlaces<span></span></h5>
+                            <ul class="thumbnail-widget">
+                                <li>
+                                    <div class="thumb-content"><a href="../IniciarS-Registrarte/iniciarSesion.html">Iniciar Sesion</a></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="servicios.php">Servicios</a></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="productos.php">Productos</a></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="nosotros.php">Sobre Nosotros</a></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="contactanos.php">Contáctanos</a></div>
+                                </li>
+                            </ul>
                         </div>
+                    </div>
 
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="widget no-box">
                             <h5 class="widget-title">Regístrate<span></span></h5>
                             <p>Únete a nosotros</p>
-                            <a class="btn" href="../../IniciarS-Registrarte/registrarte.html"
-                                target="_blank">Registrate</a>
+                            <a class="btn" href="../IniciarS-Registrarte/registrarte.html" target="_blank">Registrate</a>
                         </div>
                     </div>
 
@@ -239,13 +185,10 @@
             </div>
         </div>
     </footer>
-    <script src="../js/anadirCarrito.js"></script>
-    <script src="../../ordenaTabla.js"></script>
-    <script src="../../js/bootstrap.bundle.min.js"></script>
-    <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-</body>
 
-</html>
+
+    <script src="../JavaScript/OBJETOS/ServiciObj.js"></script>
+
 </body>
 
 </html>

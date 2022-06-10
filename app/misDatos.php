@@ -8,17 +8,19 @@
     <!-- Bootstrap CSS v5.0.2 -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/productos.css">
     <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/servicios.css">
+    <link rel="stylesheet" href="../css/carrito.css">
+
+
     <!-- link para iconos -->
     <link rel="stylesheet" href="../css/fontawesome-free-5.15.4-web/css/all.min.css">
-    <title>Pedido Confirmado</title>
+    <title>Mis Datos</title>
 </head>
 
 <body>
-
-    <!-- MENU -->
-
     <header>
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
@@ -36,48 +38,126 @@
                         <div class="col-12">
                             <ul class="navbar-nav pb-0">
                                 <li class="nav-item mx-2 col-xl-3 col-lg-3 text-center">
-                                    <a class="nav-link active" aria-current="page" href="../index.html"><img
+                                    <a class="nav-link active" aria-current="page" href="../index.php"><img
                                             src="../img/LOGO.png" alt="logo" width="200px"></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="servicios.php">Servicios <i class="fas fa-cut"></i></a>
+                                    <a class="nav-link active text-white" href="servicios.php">Servicios <i
+                                            class="fas fa-cut"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="productos.php" tabindex="-1">Productos <i class="fab fa-product-hunt"></i></a>
+                                    <a class="nav-link active text-white" href="productos.php" tabindex="-1">Productos
+                                        <i class="fab fa-product-hunt"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="nosotros.html" tabindex="-1">Nosotros <i class="fas fa-photo-video"></i></a>
+                                    <a class="nav-link active text-white" href="nosotros.php" tabindex="-1">Nosotros <i
+                                            class="fas fa-photo-video"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="contactanos.html" tabindex="-1">Contáctanos <i class="fas fa-id-card"></i></a>
+                                    <a class="nav-link active text-white" href="contactanos.php"
+                                        tabindex="-1">Contáctanos <i class="fas fa-id-card"></i></a>
                                 </li>
 
-                                <li class="nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4">
-                                    <a class="btn" id="Inicio" href="../IniciarS-Registrarte/iniciarSesion.html" target="_blank">Iniciar Sesion</a>
-                                    <a class="btn" id="Registro" href="../IniciarS-Registrarte/registrarte.html" target="_blank">Registrate</a>                                
-                                </li>
+                                <?php include "../php/metodos.php";
+                                    // Continuar la sesión
+                                    session_start();
+
+                                    if(isset($_SESSION['sesion_iniciada']) == true ){
+                                        $tipo = session_id();
+                                        if($tipo=="usuario" ){
+                                            echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
+                                        
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='' tabindex='-1'><i class='far fa-user-circle'></i> Mi Usuario</></a>
+                                                </li>";
+                                        }
+                                        if($tipo=="admin"){
+                                            echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='' tabindex='-1'><i class='far fa-user-circle'></i> Admin Usuario</></a>
+                                                </li>";
+                                        }
+                                    }else{
+                                        echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
+                                                <a class='btn' id='Inicio' href='../IniciarS-Registrarte/iniciarSesion.html' target='_blank'>Iniciar Sesion</a>
+                                                <a class='btn' id='Registro' href='../IniciarS-Registrarte/registrarte.html' target='_blank'>Registrate</a>
+                                            </li>";
+                                    }//Fin si
+                                ?>
 
                             </ul>
                         </div>
+
                     </div>
-
                 </div>
-            </div>
         </nav>
-    </header>
+    </header> 
+ 
+ <section>
+    <h2 class="text-start hr90 mt-5">Mis Datos</h2>
+    <hr class="hr90">
+    <?php include_once "../php/metodos.php";
 
-    <!-- OFERTAS -->
+    if (count($_GET) > 0) {
+        $id = $_GET["varId"];
+        $cliente = obtenerUsuario($id);
+    } else {
+        $id = $_POST["id"];
+        $cliente = obtenerUsuario($id);
+    }
+    $error = '';
+    if (count($_POST) > 0) {
+        function seguro($valor)
+        {
+            $valor = strip_tags($valor);
+            $valor = stripslashes($valor);
+            $valor = htmlspecialchars($valor);
+            return $valor;
+        }
 
+        $cumplido = editarUsuario($id, $_POST["usuario"], $_POST["contrasena"], $_POST["nombreYape"], $_POST["dni"], $_POST["gmail"], $_POST["telefono"], $_POST["direccion"]);
+        if ($cumplido == true) {
+            header("Location: ../index.php?varId=" . $id);
+            exit();
+        } else {
+            $error = "Datos incorrectos o no se ha actualizado nada";
+        }
+    }
+    ?>
     <article>
-
-        <section>
-          <h1>Se enviará un correo con la confirmación de la cita si ha iniciado sesión, y te mandará a registrarte con un mensaje si no lo estas</h1>
-          
-        </section>
-        
+        <div class="container misDatosBloque">
+            <form class="form-register" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="<?php echo $cliente["id"]; ?>">
+                    <!--aquí va el id, es hidden por lo tanto no es visible en la web, pero si accesible desde PHP -->
+                    
+                        <div class="container">
+                            <div class="row col-12">
+                                <div class="col-3"> Usuario: <input type="text" name="usuario" placeholder='<?php echo $cliente["usuario"]; ?>' value='<?php echo $cliente["usuario"]; ?>'></div>
+                                <div class="col-3"> Contraseña: <input type="text" name="contrasena" placeholder='<?php echo $cliente["contrasena"]; ?>' class="inputContra" value='<?php echo $cliente["contrasena"]; ?>'></div>
+                                <div class="col-6"> Nombre Y Apellidos: <input type="text" name="nombreYape" placeholder='<?php echo $cliente["nombreYape"]; ?>' value='<?php echo $cliente["nombreYape"]; ?>'></div>                           
+                            </div>
+                            <br><br>
+                            <div class="row col-12">
+                                <div class="col-3"> DNI: <input type="text" name="dni" placeholder='<?php echo $cliente["dni"]; ?>' value='<?php echo $cliente["dni"]; ?>'></div>
+                                <div class="col-3"> Gmail: <input type="text" name="gmail" placeholder='<?php echo $cliente["gmail"]; ?>' value='<?php echo $cliente["gmail"]; ?>'></div>
+                                <div class="col-3"> Teléfono: <input type="text" name="telefono" placeholder='<?php echo $cliente["telefono"]; ?>' value='<?php echo $cliente["telefono"]; ?>'></div>                            
+                                <div class="col-3"> Direccion: <input type="text" name="direccion" placeholder='<?php echo $cliente["direccion"]; ?>' value='<?php echo $cliente["direccion"]; ?>'></div>                            
+                            </div>
+                        </div>
+                    
+                    <br>
+                    <div class="text-center">
+                        <input type="submit" value="Guardar Cambios" class="btn-enviar">
+                        <a href="../index.php"><input type="button" value="Volver" class="btn-enviar"></a>
+                    </div>
+                    
+                    <div id="errores"><?php echo $error; ?></div>
+                </div>
+            </form>
+        </div>
     </article>
-    <!-- FOOTER -->
-    <footer id="footer" class="footer-1 mt-5">
+ </section>
+ 
+ <!-- FOOTER -->
+ <footer id="footer" class="footer-1 mt-5">
         <div class="main-footer widgets-dark typo-light">
             <div class="container">
                 <div class="row">
@@ -85,7 +165,7 @@
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="widget subscribe no-box">
                             <h5 class="widget-title">La Creación<span></span></h5>
-                            <a href="../index.html"><img src="../img/LOGO.png" width="150em"></a>
+                            <a href="../index.php"><img src="../img/LOGO.png" width="150em"></a>
                             <p class="mt-2">Tu barberia de confianza</p>
                         </div>
                     </div>
@@ -95,7 +175,8 @@
                             <h5 class="widget-title">Enlaces<span></span></h5>
                             <ul class="thumbnail-widget">
                                 <li>
-                                    <div class="thumb-content"><a href="../IniciarS-Registrarte/iniciarSesion.html">Iniciar Sesion</a></div>
+                                    <div class="thumb-content"><a
+                                            href="../IniciarS-Registrarte/iniciarSesion.html">Iniciar Sesion</a></div>
                                 </li>
                                 <li>
                                     <div class="thumb-content"><a href="servicios.php">Servicios</a></div>
@@ -104,10 +185,10 @@
                                     <div class="thumb-content"><a href="productos.php">Productos</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="nosotros.html">Sobre Nosotros</a></div>
+                                    <div class="thumb-content"><a href="nosotros.php">Sobre Nosotros</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="contactanos.html">Contáctanos</a></div>
+                                    <div class="thumb-content"><a href="contactanos.php">Contáctanos</a></div>
                                 </li>
                             </ul>
                         </div>
@@ -117,7 +198,8 @@
                         <div class="widget no-box">
                             <h5 class="widget-title">Regístrate<span></span></h5>
                             <p>Únete a nosotros</p>
-                            <a class="btn" href="../IniciarS-Registrarte/registrarte.html" target="_blank">Registrate</a>
+                            <a class="btn" href="../IniciarS-Registrarte/registrarte.html"
+                                target="_blank">Registrate</a>
                         </div>
                     </div>
 
@@ -162,10 +244,9 @@
             </div>
         </div>
     </footer>
-
-
-    <script src="../JavaScript/OBJETOS/ServiciObj.js"></script>
-
+    <script src="../js/anadirCarrito.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </body>
 
 </html>

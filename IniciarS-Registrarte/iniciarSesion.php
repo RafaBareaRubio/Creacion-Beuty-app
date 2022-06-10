@@ -1,7 +1,7 @@
 <?php
 
     $servidor = "localhost";
-    $baseDatos = "cleanvibes";
+    $baseDatos = "creacion";
     $user = "root";
     $pass = "";
 
@@ -18,7 +18,7 @@
         $persona = $sql->fetch(PDO::FETCH_ASSOC); //Recibimos el id
 
         if ($persona!="") {
-            if($persona['confirmado']=='1'){
+            if($persona['confirmado']=='0'){
                 //Inicio sesion
                 //Sesion id seria el tipo de usuario
                 session_id($persona['tipo']);
@@ -30,7 +30,7 @@
                 $_SESSION['id'] = $persona['id'];
                 header("location: ../index.php");   
             }else{
-                echo "Tu usuario aun no ha sido confirmado, puede tardar un par de dias en estar activo<br><br>";
+                echo "Tu usuario ha sido betado momentaneamente<br><br>";
                 echo "<a href='index.php'>[Volver]</a>";
             }
             

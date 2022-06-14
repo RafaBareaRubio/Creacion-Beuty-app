@@ -24,16 +24,17 @@ function obtenerServicio($id)
     }
 }
 
-function insertarServicio($nombre, $precio, $oferta, $tipo, $descripcion)
+function insertarServicio($nombre, $precio, $oferta, $tipo, $descripcion, $foto)
 {
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-        $sql = $con->prepare("INSERT into servicio values(null,:nombre,:precio,:oferta,:tipo,:descripcion)");
+        $sql = $con->prepare("INSERT into servicio values(null,:nombre,:precio,:oferta,:tipo,:descripcion,:foto)");
         $sql->bindParam(":nombre", $nombre);
         $sql->bindParam(":precio", $precio);
         $sql->bindParam(":oferta", $oferta);
         $sql->bindParam(":tipo", $tipo);
         $sql->bindParam(":descripcion", $descripcion);
+        $sql->bindParam(":foto", $foto);
         $sql->execute();
         $id = $con->lastInsertId();
     } catch (PDOException $e) {
@@ -46,7 +47,7 @@ function insertarServicio($nombre, $precio, $oferta, $tipo, $descripcion)
 function obtenerTodosServicios(){
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-        $sql = $con->prepare("SELECT id,nombre,precio,oferta,tipo,descripcion from servicio order by tipo;");
+        $sql = $con->prepare("SELECT id,nombre,precio,oferta,tipo,descripcion,foto from servicio order by tipo;");
         $sql->execute();
         $miArray = [];
         while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
@@ -93,18 +94,19 @@ function eliminarServicio($id)
     $con = null;
     return $retorno;
 }
-function editarServicio($id, $nombre, $precio, $tipo, $oferta, $descripcion)
+function editarServicio($id, $nombre, $precio, $tipo, $oferta, $descripcion, $foto)
 {
     $retorno = false;
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-        $sql = $con->prepare("UPDATE servicio set nombre=:nombre , precio=:precio, tipo=:tipo, oferta=:oferta, descripcion=:descripcion where id=:id;");
+        $sql = $con->prepare("UPDATE servicio set nombre=:nombre , precio=:precio, tipo=:tipo, oferta=:oferta, descripcion=:descripcion, foto=:foto where id=:id;");
         $sql->bindParam(":id", $id);
         $sql->bindParam(":nombre", $nombre);
         $sql->bindParam(":precio", $precio);
         $sql->bindParam(":tipo", $tipo);
         $sql->bindParam(":oferta", $oferta);
         $sql->bindParam(":descripcion", $descripcion);
+        $sql->bindParam(":foto", $foto);
         $sql->execute();
         if ($sql->rowCount() > 0) {
             $retorno = true;
@@ -138,16 +140,17 @@ function obtenerProducto($id)
     }
 }
 
-function insertarProducto($nombre, $unidad, $precio, $oferta, $descripcion)
+function insertarProducto($nombre, $unidad, $precio, $oferta, $descripcion, $foto)
 {
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-        $sql = $con->prepare("INSERT into producto values(null,:nombre,:unidad,:precio,:oferta,:descripcion)");
+        $sql = $con->prepare("INSERT into producto values(null,:nombre,:unidad,:precio,:oferta,:descripcion, :foto)");
         $sql->bindParam(":nombre", $nombre);
         $sql->bindParam(":unidad", $unidad);
         $sql->bindParam(":precio", $precio);
         $sql->bindParam(":oferta", $oferta);
         $sql->bindParam(":descripcion", $descripcion);
+        $sql->bindParam(":foto", $foto);
         $sql->execute();
         $id = $con->lastInsertId();
     } catch (PDOException $e) {
@@ -160,7 +163,7 @@ function insertarProducto($nombre, $unidad, $precio, $oferta, $descripcion)
 function obtenerTodosProductos(){
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-        $sql = $con->prepare("SELECT id,nombre,unidad,precio,oferta,descripcion from producto;");
+        $sql = $con->prepare("SELECT id,nombre,unidad,precio,oferta,descripcion,foto from producto;");
         $sql->execute();
         $miArray = [];
         while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
@@ -190,18 +193,19 @@ function eliminarProducto($id)
     $con = null;
     return $retorno;
 }
-function editarProducto($id, $titulo, $publicacion, $tipo, $contenido, $fecha)
+function editarProducto($id, $titulo, $publicacion, $tipo, $contenido, $fecha, $foto)
 {
     $retorno = false;
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-        $sql = $con->prepare("UPDATE producto set nombre=:nombre , unidad=:unidad, precio=:precio, oferta=:oferta, descripcion=:descripcion where id=:id;");
+        $sql = $con->prepare("UPDATE producto set nombre=:nombre , unidad=:unidad, precio=:precio, oferta=:oferta, descripcion=:descripcion, foto=:foto where id=:id;");
         $sql->bindParam(":id", $id);
         $sql->bindParam(":nombre", $nombre);
         $sql->bindParam(":unidad", $unidad);
         $sql->bindParam(":precio", $precio);
         $sql->bindParam(":oferta", $oferta);
         $sql->bindParam(":descripcion", $descripcion);
+        $sql->bindParam(":foto", $foto);
         $sql->execute();
         if ($sql->rowCount() > 0) {
             $retorno = true;
@@ -219,7 +223,7 @@ function obtenerUsuario($id)
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
 
-        $sql = $con->prepare("SELECT usuario from usuario where id=:id");
+        $sql = $con->prepare("SELECT * from usuario where id=:id");
         $sql->bindParam(":id", $id); //Para evitar inyecciones SQL
         $sql->execute();
         $row = $sql->fetch(PDO::FETCH_ASSOC); //Recibimos la linea correspondiente en ROW
@@ -253,6 +257,57 @@ function editarUsuario($id, $usuario, $contrasena, $nombreYape, $dni, $gmail, $t
     }
     $con = null;
     return $retorno;
+}
+//Ofertas
+
+function obtenerTodosServiciosOfertas(){
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+        $sql = $con->prepare("SELECT id,nombre,precio,oferta,descripcion from servicio where oferta is not null;");
+        $sql->execute();
+        $miArray = [];
+        while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+            $miArray[] = $row;
+        }    
+    } catch (PDOException $e) {
+        echo $e;
+    }
+    $con = null;
+    return $miArray;
+}
+
+function obtenerTodosProductosOfertas(){
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+        $sql = $con->prepare("SELECT id,nombre,precio,oferta,descripcion from producto where oferta!=null;");
+        $sql->execute();
+        $miArray = [];
+        while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+            $miArray[] = $row;
+        }    
+    } catch (PDOException $e) {
+        echo $e;
+    }
+    $con = null;
+    return $miArray;
+}
+
+//Formulario
+//Aqui hay redundancia porque el usuario se puede sacar a partir del id, pero es por comodidad para mostrar los datos
+function insertarMensaje($usuario, $texto)
+{
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+        $sql = $con->prepare("INSERT into mensaje values(null,:usuario,:texto)");
+        $sql->bindParam(":usuario", $usuario);
+        $sql->bindParam(":texto", $texto);
+        $sql->execute();
+        $id = $con->lastInsertId();
+    } catch (PDOException $e) {
+        echo $e;
+    }
+    $con = null;
+    return $id;
 }
 
 ?>

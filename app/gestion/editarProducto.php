@@ -54,6 +54,9 @@
                                     <a class="nav-link active text-white" href="../contactanos.php"
                                         tabindex="-1">Contáctanos <i class="fas fa-id-card"></i></a>
                                 </li>
+                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
+                                    <a class="nav-link active text-white" href="../promociones.php" tabindex="-1">Promociones <i class="fas fa-id-card"></i></a>
+                                </li>
 
                                 <?php include "../../php/metodos.php";
                                     // Continuar la sesión
@@ -63,19 +66,20 @@
                                         $tipo = session_id();
                                         if($tipo=="usuario" ){
                                             echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
-                                        
-                                                    <a class='btn text-uppercase' id='botonUsuario' href='../misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Mi Usuario</></a>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Mi Usuario</></a>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='../../php/logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
                                                 </li>";
                                         }
                                         if($tipo=="admin"){
                                             echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
-                                                    <a class='btn text-uppercase' id='botonUsuario' href='../misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Admin Usuario</></a>
-                                                </li>";
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Admin Usuario</></a>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='../../php/logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
+                                               </li>";
                                         }
                                     }else{
                                         echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
-                                                <a class='btn' id='Inicio' href='../../IniciarS-Registrarte/iniciarSesion.html' target='_blank'>Iniciar Sesion</a>
-                                                <a class='btn' id='Registro' href='../../IniciarS-Registrarte/registrarte.html' target='_blank'>Registrate</a>
+                                                <a class='btn' id='Inicio' href='../IniciarS-Registrarte/iniciarSesion.html' target='_blank'>Iniciar Sesion</a>
+                                                <a class='btn' id='Registro' href='../IniciarS-Registrarte/registrarte.html' target='_blank'>Registrate</a>
                                             </li>";
                                     }//Fin si
                                 ?>
@@ -108,6 +112,18 @@
             return $valor;
         }
 
+        $image = '';
+        if ($_FILES["foto"]["name"] != '') {
+            $image = $_FILES["foto"]["name"];
+            $temp = $_FILES['foto']['tmp_name'];
+            if (move_uploaded_file($temp, '../../img/productos/' . $image)) {
+                //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
+                chmod('../../img/productos/' . $image, 0777);
+            }
+        } else {
+            $image = $productos["foto"];
+        }
+
         $cumplido = editarProducto($id, $_POST["nombre"], $_POST["precio"], $_POST["tipo"], $_POST["oferta"], $_POST["descripcion"]);
         if ($cumplido == true) {
             header("Location: index.php?varId=" . $id);
@@ -130,6 +146,11 @@
                 <tr><td><p>Precio</p><input type="text" name="precio" class="input-100" value='<?php $producto["precio"]; echo $producto["precio"]; ?>'><br><br></td></tr>
                 <tr><td><p>Oferta</p><textarea name="oferta" id="oferta" placeholder='<?php echo $producto["oferta"]; ?>' value='<?php echo $producto["oferta"]; ?>'></textarea><br><br></td></tr>
                 <tr><td><p>Descripcion</p><textarea name="descripcion" id="descripcion" placeholder='<?php echo $producto["descripcion"]; ?>' value='<?php echo $producto["descripcion"]; ?>'></textarea><br><br></td></tr>
+                <tr><td><p>Foto Actual</p><img name="fotoActual" width=200px <?php if ($producto["foto"] != '' && file_exists("../../img/productos/" . $producto["foto"])) {
+                                                        echo "src='../../img/productos/" . $producto['foto'] . "'";
+                                                    } ?>><!-- Aquí tienes que cargar la imagen actual -->
+                <tr><td><p>Foto Nueva</p><input type="file" name="foto" accept="image/png, image/jpeg" class="input-100"></td></tr>
+            
             </table>
             <input type="submit" value="Guardar Cambios" class="btn-enviar">
             <a href="gestionProducto.php"><input type="button" value="Volver" class="btn-enviar"></a>
@@ -190,7 +211,7 @@
                         <div class="widget no-box">
                             <h5 class="widget-title">Redes Sociales<span></span></h5>
 
-                            <p><a href="mailto:info@domain.com" title="glorythemes">rafabarea.20@campuscamara.es</a></p>
+                            <p><a href="mailto:lacreacionbeuty@gmail.com" title="glorythemes">lacreacionbeuty@gmail.com</a></p>
                             <ul class="social-footer2">
                                 <li class=""><a title="youtube" target="_blank" href="https://bit.ly/3m9avif"><img
                                             alt="youtube" width="30" height="30"
@@ -220,7 +241,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <p>Copyright Company Name © 2021. All rights reserved.</p>
+                        <p>Copyright La Creción © 2022. All rights reserved.</p>
                     </div>
                 </div>
             </div>

@@ -55,6 +55,9 @@
                                     <a class="nav-link active text-white" href="contactanos.php"
                                         tabindex="-1">Contáctanos <i class="fas fa-id-card"></i></a>
                                 </li>
+                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
+                                    <a class="nav-link active text-white" href="promociones.php" tabindex="-1">Promociones <i class="fas fa-id-card"></i></a>
+                                </li>
 
                                 <?php include "../php/metodos.php";
                                     // Continuar la sesión
@@ -64,14 +67,15 @@
                                         $tipo = session_id();
                                         if($tipo=="usuario" ){
                                             echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
-                                        
                                                     <a class='btn text-uppercase' id='botonUsuario' href='misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Mi Usuario</></a>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='../php/logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
                                                 </li>";
                                         }
                                         if($tipo=="admin"){
                                             echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
                                                     <a class='btn text-uppercase' id='botonUsuario' href='misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Admin Usuario</></a>
-                                                </li>";
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='../php/logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
+                                               </li>";
                                         }
                                     }else{
                                         echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
@@ -129,7 +133,7 @@
                                     $tipo = session_id();
                                     if($tipo=="admin"){
                                         echo "<button class='btn float-end m-2' data-bs-toggle='offcanvas' data-bs-target='#offcanvas'role='button'>
-                                                <a href='gestion/gestionServicios.php'><i class='fas fa-edit'></i></a>
+                                                <a href='gestion/gestionProductos.php'><i class='fas fa-edit'></i></a>
                                             </button>";
                                     }
                                 }//Fin si
@@ -156,8 +160,8 @@
                         for ($i=0;$i<sizeof($producto);$i++){
                             echo "<div class='producto item'>";
                                 echo "<div class='contenedor-imagen'>";
-                                    echo "<img src='../img/productos/producto1.jpeg' class='img-nohover'>";
-                                    echo "<img src='../img/productos/producto1.jpeg' class='img-hover'>";
+                                    echo "<img src='../img/productos/".$producto[$i]['foto']."' class='img-nohover'>";
+                                    echo "<img src='../img/productos/".$producto[$i]['foto']."' class='img-hover'>";
                                 echo "</div>";
                                 echo "<div class='datos'>";
                                     echo "<div class='starrr'></div>";
@@ -232,7 +236,7 @@
                         <div class="widget no-box">
                             <h5 class="widget-title">Redes Sociales<span></span></h5>
 
-                            <p><a href="mailto:info@domain.com" title="glorythemes">rafabarea.20@campuscamara.es</a></p>
+                            <p><a href="mailto:lacreacionbeuty@gmail.com" title="glorythemes">lacreacionbeuty@gmail.com</a></p>
                             <ul class="social-footer2">
                                 <li class=""><a title="youtube" target="_blank" href="https://bit.ly/3m9avif"><img
                                             alt="youtube" width="30" height="30"
@@ -262,7 +266,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <p>Copyright Company Name © 2021. All rights reserved.</p>
+                        <p>Copyright La Creción © 2022. All rights reserved.</p>
                     </div>
                 </div>
             </div>

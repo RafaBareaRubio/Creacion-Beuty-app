@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/carousel.css">
+    <link rel="stylesheet" href="css/cookies.css">
     <link rel="stylesheet" href="css/productos.css">
     <link rel="stylesheet" href="css/footer.css">
     <!-- link para iconos -->
@@ -53,6 +54,9 @@
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
                                     <a class="nav-link active text-white" href="app/contactanos.php" tabindex="-1">Contáctanos <i class="fas fa-id-card"></i></a>
                                 </li>
+                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
+                                    <a class="nav-link active text-white" href="app/promociones.php" tabindex="-1">Promociones <i class="fas fa-id-card"></i></a>
+                                </li>
                                 
                                     <!-- Enseñaremos el iniciar sesion o registrarse en caso de que no haya iniciado sesion -->
                                 <?php include "php/metodos.php";
@@ -63,14 +67,16 @@
                                         $tipo = session_id();
                                         if($tipo=="usuario" ){
                                             echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
-                                        
                                                     <a class='btn text-uppercase' id='botonUsuario' href='app/misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Mi Usuario</></a>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='php/logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
                                                 </li>";
                                         }
                                         if($tipo=="admin"){
                                             echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
                                                     <a class='btn text-uppercase' id='botonUsuario' href='app/misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Admin Usuario</></a>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='php/logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
                                                 </li>";
+
                                         }
                                     }else{
                                         echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
@@ -93,103 +99,11 @@
     <!-- SERVICIOS -->
 
     <article>
-        <section>
-            <h2 class="mt-5">Ofertas</h2>
 
-            <div class="slider carousel col-12 mt-5">
-                <div class="row justify-content-center">
-
-                    <!-- Añado uno a uno cada servicio -->
-                    <?php include_once "php/metodos.php";
-                    
-                    error_log(0);   
-                        
-                        $servicio=obtenerTodosServicios();
-
-                        for ($i=0;$i<3;$i++){
-                            echo "<div class='producto item'>";
-                                echo "<a href='https://booksy.com/es-es/20227_la-creacion-beauty-concept_barberia_29784_bencarron#ba_s=sr_1' style='color: black;'>";
-                                    echo "<div class='contenedor-imagen'>";
-                                        echo "<img src='img/Servicios/Barba2.jpeg' class='img-nohover'>";
-                                        echo "<img src='img/Servicios/Barba2.jpeg' class='img-hover'>";
-                                    echo "</div>";
-                                    echo "<div class='datos'>";
-                                        echo "<div class='starrr'></div>";
-                                        echo "<h4 id='nombreServicio'>".$servicio[$i]['nombre']."</h4>";
-                                        echo "<small id='caracteristicas'>".$servicio[$i]['descripcion']."</small>";
-                                    echo "</div>";
-                                    echo "<div class='precios'>";
-                                        echo "<div>";
-                                            echo "<h5>Precio</h5>";
-                                            echo "<small id='precioServicio'>".$servicio[$i]['precio']."</small>";
-                                        echo "</div>";
-                                    echo "</div>";
-                                    echo "<div class='precios'>";
-                                        echo "<div>";
-                                            echo "<h5>Oferta</h5>";
-                                            echo "<small id='precioServicio'>".$servicio[$i]['oferta']."</small>";
-                                        echo "</div>";
-                                    echo "</div>";
-                                echo "</a>";
-                            echo "</div>";
-                           
-                        }//Fin Para
-                    ?>              
-                </div>
-            </div>
-        </section>
-        
-        <hr class="hr50">
-
-        <!-- Productos -->
-        <section>
-            <h2 class="mt-5">Productos</h2>
-
-            <div class="container mt-5">
-                <div class="row justify-content-center">
-                    <a class="col-auto" href="app/productos.php"><div><img src="img/productos/marketinProductos.jpeg"></div></a>
-                </div>
-            </div>
-
-            <div class="slider carousel col-12 mt-5">
-                <div class="row justify-content-center">
-
-                <!-- Añado uno a uno cada producto -->
-                <?php
-                    
-                error_log(0);   
-                        
-                $producto=obtenerTodosProductos();
-
-                        for ($i=0;$i<2;$i++){
-                            echo "<div class='producto item'>";
-                                echo "<div class='contenedor-imagen'>";
-                                    echo "<img src='img/productos/producto1.jpeg' class='img-nohover'>";
-                                    echo "<img src='img/productos/producto1.jpeg' class='img-hover'>";
-                                echo "</div>";
-                                echo "<div class='datos'>";
-                                    echo "<div class='starrr'></div>";
-                                    echo "<h4 id='nombreServicio'>".$producto[$i]['nombre']."</h4>";
-                                    echo "<small id='caracteristicas'>".$producto[$i]['descripcion']."</small>";
-                                echo "</div>";                                    
-                                echo "<div class='precios'>";
-                                    echo "<div>";
-                                        echo "<h5>Precio</h5>";
-                                        echo "<small id='precioServicio'>".$producto[$i]['precio']."€</small>";
-                                    echo "</div>";
-                                echo "</div>";
-                            echo "</div>";
-                           
-                        }//Fin Para
-                ?>              
-                </div>
-            </div>
-        </section>
-        <hr class="hr50">
-
-        <!-- Galeria -->
-        <section>
-            <h2 class="mt-5">Nosotros</h2>
+                                    
+    <!-- Galeria -->
+    <section>
+            <h2 class="mt-5">Bienvenido a nuestra barberia</h2>
             <div id="myCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
@@ -223,7 +137,64 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
+            <div class="container-fluid hr50">
+                <p class="me-5 ms-5">La Creación es una barbería que apuesta por el método tradicional y por el cuidado del bienestar y la estética, un  lugar de reunión donde se corta el pelo con esmero y oficio. Y se mantiene el ritual de afeitado con toallas calientes.</p>
+            </div>
         </section>
+
+        <hr class="hr50">
+
+        <!-- Ofertas -->
+        <section>
+            <div class="slider carousel col-12 mt-5">
+                <div class="row justify-content-center">
+                      
+                    <!-- Añado uno a uno cada servicio -->
+                    <?php include_once "php/metodos.php";
+                    
+                    error_reporting(0);   
+                    try{
+                        $servicio=obtenerTodosServicios();
+                        $contador=0;
+                        echo "<h2>"."CORTES"."</h2>";
+                        echo "<div class='slider carousel col-12 mt-1 mb-2'>";
+                            echo "<div class='row justify-content-center'>";
+                                echo "<div class='col-auto'>
+                                        <p class='me-5 ms-5'>Estos son algunos de los resultados de nuestros clientes.</p>
+                                    </div>";
+                            echo "</div>";
+                        echo "</div>";
+                        for ($i=0;$i<3;$i++){
+                            
+                            echo "<div class='producto item'>";
+                                echo "<a href='https://booksy.com/es-es/20227_la-creacion-beauty-concept_barberia_29784_bencarron#ba_s=sr_1' style='color: black;'>";
+                                    echo "<div class='contenedor-imagen'>";
+                                        echo "<img src='img/Servicios/".$servicio[$i]['foto']."' class='img-nohover'>";
+                                        echo "<img src='img/Servicios/".$servicio[$i]['foto']."' class='img-hover'>";
+                                    echo "</div>";
+                                    echo "<div class='datos'>";
+                                        echo "<div class='starrr'></div>";
+                                        echo "<h4 id='nombreServicio'>".$servicio[$i]['nombre']."</h4>";
+                                        echo "<small id='caracteristicas'>".$servicio[$i]['descripcion']."</small>";
+                                    echo "</div>";
+                                    echo "<div class='precios'>";
+                                        echo "<div>";
+                                            echo "<h5>Precio</h5>";
+                                            echo "<small id='precioServicio'>".$servicio[$i]['precio']."€</small>";
+                                        echo "</div>";
+                                    echo "</div>";
+                                echo "</a>";
+                            echo "</div>";
+                        }
+                    }catch (Exception $e){
+                        echo ("");
+                    }
+                    ?>              
+                </div>
+            </div>
+        </section>
+       
+        <hr class="hr50">
 
         <section>
             <p class="centrar mt-3"><a href="app/contactanos.html">Contáctanos</a></p>
@@ -264,6 +235,9 @@
                                 <li>
                                     <div class="thumb-content"><a href="app/contactanos.php">Contáctanos</a></div>
                                 </li>
+                                <li>
+                                    <div class="thumb-content"><a href="app/promociones.php">Promociones</a></div>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -281,7 +255,7 @@
                         <div class="widget no-box">
                             <h5 class="widget-title">Redes Sociales<span></span></h5>
 
-                            <p><a href="https://www.instagram.com/lacreacionbeauty/" title="glorythemes">rafabarea.20@campuscamara.es</a></p>
+                            <p><a href="mailto:lacreacionbeuty@gmail.com" title="glorythemes">lacreacionbeuty@gmail.com</a></p>
                             <ul class="social-footer2">
                                 <li class=""><a title="youtube" target="_blank" href="https://bit.ly/3m9avif"><img
                                             alt="youtube" width="30" height="30"
@@ -308,17 +282,20 @@
         </div>
 
         <div class="footer-copyright">
-            <div class="container">
+            <div class="container col-12">
                 <div class="row">
-                    <div class="col-md-12 text-center">
-                        <p>Copyright Company Name © 2021. All rights reserved.</p>
+                    <div class="col-8">
+                        <a href="politicas.php"><p>Politicas de privacidad.</p></a>
+                    </div>
+                    <div class="col-4">
+                        <p>Copyright La Creación © 2022.</p>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
 
-
+    <script src="js/cookies.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
 
 </body>

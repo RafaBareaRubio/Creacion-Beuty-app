@@ -57,6 +57,9 @@
                                     <a class="nav-link active text-white" href="contactanos.php"
                                         tabindex="-1">Contáctanos <i class="fas fa-id-card"></i></a>
                                 </li>
+                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
+                                    <a class="nav-link active text-white" href="promociones.php" tabindex="-1">Promociones <i class="fas fa-id-card"></i></a>
+                                </li>
 
                                 <?php include "../php/metodos.php";
                                     // Continuar la sesión
@@ -66,14 +69,15 @@
                                         $tipo = session_id();
                                         if($tipo=="usuario" ){
                                             echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
-                                        
-                                                    <a class='btn text-uppercase' id='botonUsuario' href='' tabindex='-1'><i class='far fa-user-circle'></i> Mi Usuario</></a>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Mi Usuario</></a>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='../php/logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
                                                 </li>";
                                         }
                                         if($tipo=="admin"){
                                             echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
-                                                    <a class='btn text-uppercase' id='botonUsuario' href='' tabindex='-1'><i class='far fa-user-circle'></i> Admin Usuario</></a>
-                                                </li>";
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Admin Usuario</></a>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='../php/logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
+                                               </li>";
                                         }
                                     }else{
                                         echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
@@ -96,13 +100,9 @@
     <hr class="hr90">
     <?php include_once "../php/metodos.php";
 
-    if (count($_GET) > 0) {
-        $id = $_GET["varId"];
-        $cliente = obtenerUsuario($id);
-    } else {
-        $id = $_POST["id"];
-        $cliente = obtenerUsuario($id);
-    }
+    //Saca el id del usuario con la sesion iniciada
+    $cliente = obtenerUsuario($_SESSION['id']);
+
     $error = '';
     if (count($_POST) > 0) {
         function seguro($valor)
@@ -113,9 +113,9 @@
             return $valor;
         }
 
-        $cumplido = editarUsuario($id, $_POST["usuario"], $_POST["contrasena"], $_POST["nombreYape"], $_POST["dni"], $_POST["gmail"], $_POST["telefono"], $_POST["direccion"]);
+        $cumplido = editarUsuario($_SESSION['id'], $_POST["usuario"], $_POST["contrasena"], $_POST["nombreYape"], $_POST["dni"], $_POST["gmail"], $_POST["telefono"], $_POST["direccion"]);
         if ($cumplido == true) {
-            header("Location: ../index.php?varId=" . $id);
+            header("Location: ../index.php?varId=" . $_SESSION['id']);
             exit();
         } else {
             $error = "Datos incorrectos o no se ha actualizado nada";
@@ -125,7 +125,7 @@
     <article>
         <div class="container misDatosBloque">
             <form class="form-register" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="id" value="<?php echo $cliente["id"]; ?>">
+                    <input type="hidden" name="id" value='<?php echo $cliente["id"]; ?>'>
                     <!--aquí va el id, es hidden por lo tanto no es visible en la web, pero si accesible desde PHP -->
                     
                         <div class="container">
@@ -208,7 +208,7 @@
                         <div class="widget no-box">
                             <h5 class="widget-title">Redes Sociales<span></span></h5>
 
-                            <p><a href="mailto:info@domain.com" title="glorythemes">rafabarea.20@campuscamara.es</a></p>
+                            <p><a href="mailto:lacreacionbeuty@gmail.com" title="glorythemes">lacreacionbeuty@gmail.com</a></p>
                             <ul class="social-footer2">
                                 <li class=""><a title="youtube" target="_blank" href="https://bit.ly/3m9avif"><img
                                             alt="youtube" width="30" height="30"
@@ -238,7 +238,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <p>Copyright Company Name © 2021. All rights reserved.</p>
+                        <p>Copyright La Creción © 2022. All rights reserved.</p>
                     </div>
                 </div>
             </div>

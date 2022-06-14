@@ -18,7 +18,9 @@
 </head>
 
 <body>
-<header>
+   <!-- MENU -->
+
+   <header>
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -26,17 +28,73 @@
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-            </div>
-            <div class="col-12 " id="navbarTogglerDemo01">
+                <div class="col-12 " id="navbarTogglerDemo01">
                     <div class="row">
                         <div class="col-12">
                             <h2 class="titulo text-center">La Creación</h2>
                             <p class="subtitulo text-center">Beuty Concept</p>
                         </div>
+                        <div class="col-12">
+                            <ul class="navbar-nav pb-0">
+                                <li class="nav-item mx-2 col-xl-3 col-lg-3 text-center">
+                                    <a class="nav-link active" aria-current="page" href="../index.php"><img
+                                            src="../img/LOGO.png" alt="logo" width="200px"></a>
+                                </li>
+                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
+                                    <a class="nav-link active text-white" href="../app/servicios.php">Servicios <i
+                                            class="fas fa-cut"></i></a>
+                                </li>
+                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
+                                    <a class="nav-link active text-white" href="../app/productos.php" tabindex="-1">Productos
+                                        <i class="fab fa-product-hunt"></i></a>
+                                </li>
+                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
+                                    <a class="nav-link active text-white" href="../app/nosotros.php" tabindex="-1">Nosotros <i
+                                            class="fas fa-photo-video"></i></a>
+                                </li>
+                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
+                                    <a class="nav-link active text-white" href="../app/contactanos.php"
+                                        tabindex="-1">Contáctanos <i class="fas fa-id-card"></i></a>
+                                </li>
+                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
+                                    <a class="nav-link active text-white" href="../app/promociones.php" tabindex="-1">Promociones <i class="fas fa-id-card"></i></a>
+                                </li>
+
+                                <?php include "../php/metodos.php";
+                                    // Continuar la sesión
+                                    session_start();
+
+                                    if(isset($_SESSION['sesion_iniciada']) == true ){
+                                        $tipo = session_id();
+                                        if($tipo=="usuario" ){
+                                            echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Mi Usuario</></a>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
+                                                </li>";
+                                        }
+                                        if($tipo=="admin"){
+                                            echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Admin Usuario</></a>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
+                                               </li>";
+                                        }
+                                    }else{
+                                        echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
+                                                <a class='btn' id='Inicio' href='../IniciarS-Registrarte/iniciarSesion.html' target='_blank'>Iniciar Sesion</a>
+                                                <a class='btn' id='Registro' href='../IniciarS-Registrarte/registrarte.html' target='_blank'>Registrate</a>
+                                            </li>";
+                                    }//Fin si
+                                ?>
+
+                            </ul>
+                        </div>
                     </div>
+
+                </div>
             </div>
         </nav>
     </header>
+
 
     <section class="container text-center">
 
@@ -81,6 +139,9 @@
                             <li>
                                 <div class="thumb-content"><a href="../app/contactanos.html">Contáctanos</a></div>
                             </li>
+                            <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
+                                <a class="nav-link active text-white" href="../app/promociones.php" tabindex="-1">Promociones <i class="fas fa-id-card"></i></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -98,7 +159,7 @@
                     <div class="widget no-box">
                         <h5 class="widget-title">Redes Sociales<span></span></h5>
 
-                        <p><a href="mailto:info@domain.com" title="glorythemes">rafabarea.20@campuscamara.es</a></p>
+                        <p><a href="mailto:lacreacionbeuty@gmail.com" title="glorythemes">lacreacionbeuty@gmail.com</a></p>
                         <ul class="social-footer2">
                             <li class=""><a title="youtube" target="_blank" href="https://bit.ly/3m9avif"><img
                                         alt="youtube" width="30" height="30"
@@ -128,7 +189,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <p>Copyright Company Name © 2021. All rights reserved.</p>
+                    <p>Copyright La Creación © 2022. All rights reserved.</p>
                 </div>
             </div>
         </div>

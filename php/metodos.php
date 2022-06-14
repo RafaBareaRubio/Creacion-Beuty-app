@@ -279,7 +279,7 @@ function obtenerTodosServiciosOfertas(){
 function obtenerTodosProductosOfertas(){
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-        $sql = $con->prepare("SELECT id,nombre,precio,oferta,descripcion from producto where oferta!=null;");
+        $sql = $con->prepare("SELECT id,nombre,precio,oferta,descripcion from producto where oferta is not null;");
         $sql->execute();
         $miArray = [];
         while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {

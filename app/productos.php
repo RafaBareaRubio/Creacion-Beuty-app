@@ -171,7 +171,7 @@
                                 echo "<div class='precios'>";
                                     echo "<div>";
                                         echo "<h5>Precio</h5>";
-                                        echo "<small id='precioServicio'>".$producto[$i]['precio']."€</small>";
+                                        echo "<small id='precioServicio'>".$producto[$i]['precio']."</small>";
                                     echo "</div>";
                                 echo "</div>";
                                 echo "<button class='btn-carrito'><i class='fas fa-shopping-basket'></i>Agregar al carrito</a></button>";

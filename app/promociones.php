@@ -131,13 +131,13 @@
                     error_log(0); 
 
                         
-
+                        $productoOferta=obtenerTodosProductosOfertas();
                         $servicioOferta=obtenerTodosServiciosOfertas();
                         
-                        if( sizeof($servicioOferta)== 0 && sizeof($servicioOferta)== 0 ){//Si no hay promociones
+                        if( sizeof($servicioOferta)== 0 && sizeof($productoOferta)== 0 ){//Si no hay promociones
                             echo "<h2 class='mt-5'>No hay ofertas disponibles</h2>";
-                        }elseif(sizeof($servicioOferta)!= 0 || sizeof($servicioOferta)!= 0){//Si hay promociones
-                            echo "<h2 class='mt-5'>Ofertas Disponibles</h2>";   
+                        }elseif(sizeof($servicioOferta)!= 0 || sizeof($productoOferta)!= 0){//Si hay promociones
+                            echo "<h2 class='mt-5'></h2>";   
                         }
 
                         if(sizeof($servicioOferta)!=0){
@@ -173,7 +173,7 @@
                            
                         }//Fin Para
 
-                        $productoOferta=obtenerTodosProductosOfertas();
+                        
                         if(sizeof($productoOferta)!=0){
                             echo "<h2 class='mt-5'>Ofertas Productos</h2>";
                         }

@@ -65,22 +65,18 @@
                                     // Continuar la sesión
                                     session_start();
 
+
                                     if(isset($_SESSION['sesion_iniciada']) == true ){
+                                        $cliente = obtenerUsuario($_SESSION['id']);
                                         $tipo = session_id();
-                                        if($tipo=="usuario" ){
-                                            echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
-                                                    <a class='btn text-uppercase' id='botonUsuario' href='misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Mi Usuario</></a>
+                                        if($tipo=="usuario" ||  $tipo=="admin"){
+                                            echo "<li class='nav-item mx-2 col-xl-3 col-lg-3 text-center mt-4'>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='../app/misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i>"." ".$cliente["usuario"]."</></a>
                                                     <a class='btn text-uppercase' id='botonUsuario' href='../php/logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
                                                 </li>";
-                                        }
-                                        if($tipo=="admin"){
-                                            echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
-                                                    <a class='btn text-uppercase' id='botonUsuario' href='misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Admin Usuario</></a>
-                                                    <a class='btn text-uppercase' id='botonUsuario' href='../php/logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
-                                               </li>";
-                                        }
+                                        }                           
                                     }else{
-                                        echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
+                                        echo "<li class='nav-item mx-2 col-xl-3 col-lg-3 text-center mt-4'>
                                                 <a class='btn' id='Inicio' href='../IniciarS-Registrarte/iniciarSesion.html' target='_blank'>Iniciar Sesion</a>
                                                 <a class='btn' id='Registro' href='../IniciarS-Registrarte/registrarte.html' target='_blank'>Registrate</a>
                                             </li>";
@@ -251,6 +247,9 @@
                                 <li>
                                     <div class="thumb-content"><a href="contactanos.php">Contáctanos</a></div>
                                 </li>
+                                <li>
+                                    <div class="thumb-content"><a href="promociones.php">Promociones</a></div>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -296,10 +295,13 @@
         </div>
 
         <div class="footer-copyright">
-            <div class="container">
+            <div class="container col-12">
                 <div class="row">
-                    <div class="col-md-12 text-center">
-                        <p>Copyright La Creción © 2022. All rights reserved.</p>
+                    <div class="col-8">
+                        <a href="../politicas.php"><p>Politicas de privacidad.</p></a>
+                    </div>
+                    <div class="col-4">
+                        <p>Copyright La Creación © 2022.</p>
                     </div>
                 </div>
             </div>

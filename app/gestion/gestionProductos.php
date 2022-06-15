@@ -61,24 +61,20 @@
                                     // Continuar la sesión
                                     session_start();
 
+
                                     if(isset($_SESSION['sesion_iniciada']) == true ){
+                                        $cliente = obtenerUsuario($_SESSION['id']);
                                         $tipo = session_id();
-                                        if($tipo=="usuario" ){
-                                            echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
-                                                    <a class='btn text-uppercase' id='botonUsuario' href='misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Mi Usuario</></a>
+                                        if($tipo=="usuario" ||  $tipo=="admin"){
+                                            echo "<li class='nav-item mx-2 col-xl-3 col-lg-3 text-center mt-4'>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='../../app/misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i>"." ".$cliente["usuario"]."</></a>
                                                     <a class='btn text-uppercase' id='botonUsuario' href='../../php/logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
                                                 </li>";
-                                        }
-                                        if($tipo=="admin"){
-                                            echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
-                                                    <a class='btn text-uppercase' id='botonUsuario' href='misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Admin Usuario</></a>
-                                                    <a class='btn text-uppercase' id='botonUsuario' href='../../php/logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
-                                               </li>";
-                                        }
+                                        }                           
                                     }else{
-                                        echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
-                                                <a class='btn' id='Inicio' href='../IniciarS-Registrarte/iniciarSesion.html' target='_blank'>Iniciar Sesion</a>
-                                                <a class='btn' id='Registro' href='../IniciarS-Registrarte/registrarte.html' target='_blank'>Registrate</a>
+                                        echo "<li class='nav-item mx-2 col-xl-3 col-lg-3 text-center mt-4'>
+                                                <a class='btn' id='Inicio' href='../../IniciarS-Registrarte/iniciarSesion.html' target='_blank'>Iniciar Sesion</a>
+                                                <a class='btn' id='Registro' href='../../IniciarS-Registrarte/registrarte.html' target='_blank'>Registrate</a>
                                             </li>";
                                     }//Fin si
                                 ?>
@@ -154,43 +150,47 @@
             </div>
     </article>
 
-    <!-- FOOTER -->
+    
+        <!-- FOOTER -->
     <footer id="footer" class="footer-1 mt-5">
         <div class="main-footer widgets-dark typo-light">
             <div class="container">
                 <div class="row">
 
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                            <div class="widget subscribe no-box">
-                                <h5 class="widget-title">La Creación<span></span></h5>
-                                <a href="../../index.php"><img src="../../img/LOGO.png" width="150em"></a>
-                                <p class="mt-2">Tu barberia de confianza</p>
-                            </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="widget subscribe no-box">
+                            <h5 class="widget-title">La Creación<span></span></h5>
+                            <a href="../../index.php"><img src="../../img/LOGO.png" width="150em"></a>
+                            <p class="mt-2">Tu barberia de confianza</p>
                         </div>
+                    </div>
 
-                        <div class="col-xs-12 col-sm-6 col-md-3">
-                            <div class="widget no-box">
-                                <h5 class="widget-title">Enlaces<span></span></h5>
-                                <ul class="thumbnail-widget">
-                                    <li>
-                                        <div class="thumb-content"><a
-                                                href="../../IniciarS-Registrarte/iniciarSesion.html">Iniciar Sesion</a></div>
-                                    </li>
-                                    <li>
-                                        <div class="thumb-content"><a href="../servicios.php">Servicios</a></div>
-                                    </li>
-                                    <li>
-                                        <div class="thumb-content"><a href="../productos.php">Productos</a></div>
-                                    </li>
-                                    <li>
-                                        <div class="thumb-content"><a href="../nosotros.php">Sobre Nosotros</a></div>
-                                    </li>
-                                    <li>
-                                        <div class="thumb-content"><a href="../contactanos.php">Contáctanos</a></div>
-                                    </li>
-                                </ul>
-                            </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="widget no-box">
+                            <h5 class="widget-title">Enlaces<span></span></h5>
+                            <ul class="thumbnail-widget">
+                                <li>
+                                    <div class="thumb-content"><a
+                                            href="../../IniciarS-Registrarte/iniciarSesion.html">Iniciar Sesion</a></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="../servicios.php">Servicios</a></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="../productos.php">Productos</a></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="../nosotros.php">Sobre Nosotros</a></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="../contactanos.php">Contáctanos</a></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="../promociones.php">Promociones</a></div>
+                                </li>
+                            </ul>
                         </div>
+                    </div>
 
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="widget no-box">
@@ -233,10 +233,13 @@
         </div>
 
         <div class="footer-copyright">
-            <div class="container">
+            <div class="container col-12">
                 <div class="row">
-                    <div class="col-md-12 text-center">
-                        <p>Copyright La Creción © 2022. All rights reserved.</p>
+                    <div class="col-8">
+                        <a href="../../politicas.php"><p>Politicas de privacidad.</p></a>
+                    </div>
+                    <div class="col-4">
+                        <p>Copyright La Creación © 2022.</p>
                     </div>
                 </div>
             </div>
@@ -245,9 +248,6 @@
     <script src="../js/anadirCarrito.js"></script>
     <script src="../../js/bootstrap.bundle.min.js"></script>
     <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-</body>
-
-</html>
 </body>
 
 </html>

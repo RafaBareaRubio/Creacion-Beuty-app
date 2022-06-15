@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-12">
                             <ul class="navbar-nav pb-0">
-                                <li class="nav-item mx-2 col-xl-3 col-lg-3 text-center">
+                                <li class="nav-item mx-2 col-xl-2 col-lg-2 text-center">
                                     <a class="nav-link active" aria-current="page" href="../index.php"><img
                                             src="../img/LOGO.png" alt="logo" width="200px"></a>
                                 </li>
@@ -60,26 +60,22 @@
                                     <a class="nav-link active text-white" href="../app/promociones.php" tabindex="-1">Promociones <i class="fas fa-id-card"></i></a>
                                 </li>
 
-                                <?php include "../php/metodos.php";
+                                <?php include "metodos.php";
                                     // Continuar la sesión
                                     session_start();
 
+
                                     if(isset($_SESSION['sesion_iniciada']) == true ){
+                                        $cliente = obtenerUsuario($_SESSION['id']);
                                         $tipo = session_id();
-                                        if($tipo=="usuario" ){
-                                            echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
-                                                    <a class='btn text-uppercase' id='botonUsuario' href='misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Mi Usuario</></a>
+                                        if($tipo=="usuario" ||  $tipo=="admin"){
+                                            echo "<li class='nav-item mx-2 col-xl-3 col-lg-3 text-center mt-4'>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='../app/misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i>"." ".$cliente["usuario"]."</></a>
                                                     <a class='btn text-uppercase' id='botonUsuario' href='logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
                                                 </li>";
-                                        }
-                                        if($tipo=="admin"){
-                                            echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
-                                                    <a class='btn text-uppercase' id='botonUsuario' href='misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i> Admin Usuario</></a>
-                                                    <a class='btn text-uppercase' id='botonUsuario' href='logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
-                                               </li>";
-                                        }
+                                        }                           
                                     }else{
-                                        echo "<li class='nav-item mx-2 col-xl-4 col-lg-4 text-center mt-4'>
+                                        echo "<li class='nav-item mx-2 col-xl-3 col-lg-3 text-center mt-4'>
                                                 <a class='btn' id='Inicio' href='../IniciarS-Registrarte/iniciarSesion.html' target='_blank'>Iniciar Sesion</a>
                                                 <a class='btn' id='Registro' href='../IniciarS-Registrarte/registrarte.html' target='_blank'>Registrate</a>
                                             </li>";
@@ -125,22 +121,19 @@
                                 <div class="thumb-content"><a href="iniciarSesion.html">Iniciar Sesion</a></div>
                             </li>
                             <li>
-                                <div class="thumb-content"><a href="../app/servicios.html">Servicios</a></div>
+                                <div class="thumb-content"><a href="../app/servicios.php">Servicios</a></div>
                             </li>
                             <li>
-                                <div class="thumb-content"><a href="../app/rituales.html">Rituales</a></div>
+                                <div class="thumb-content"><a href="../app/productos.php">Productos</a></div>
                             </li>
                             <li>
-                                <div class="thumb-content"><a href="../app/productos.html">Productos</a></div>
+                                <div class="thumb-content"><a href="../app/nosotros.php">Sobre Nosotros</a></div>
                             </li>
                             <li>
-                                <div class="thumb-content"><a href="../app/nosotros.html">Sobre Nosotros</a></div>
+                                <div class="thumb-content"><a href="../app/contactanos.php">Contáctanos</a></div>
                             </li>
                             <li>
-                                <div class="thumb-content"><a href="../app/contactanos.html">Contáctanos</a></div>
-                            </li>
-                            <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                <a class="nav-link active text-white" href="../app/promociones.php" tabindex="-1">Promociones <i class="fas fa-id-card"></i></a>
+                                <div class="thumb-content"><a href="../app/promociones.html">Promociones</a></div>
                             </li>
                         </ul>
                     </div>
@@ -186,14 +179,17 @@
     </div>
 
     <div class="footer-copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <p>Copyright La Creación © 2022. All rights reserved.</p>
+            <div class="container col-12">
+                <div class="row">
+                    <div class="col-8">
+                        <a href="../politicas.php"><p>Politicas de privacidad.</p></a>
+                    </div>
+                    <div class="col-4">
+                        <p>Copyright La Creación © 2022.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </footer>
 
 

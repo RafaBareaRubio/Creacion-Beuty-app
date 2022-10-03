@@ -59,14 +59,14 @@
                                     </tr>
                                     <tr style="text-align: left;">
                                         <th>DNI:</th>
-                                        <td><div class="inputFormulario"><input class="input2" type="text" name="dni" id="dni" required/></td></div>
+                                        <td><div class="inputFormulario"><input class="input2" type="text" name="dni" id="dni" minlength="9" maxlength="9" required/></td></div>
                                     </tr>
                                     <tr style="opacity: 0;">
                                         <th style="font-size: 20%;">:</th>
                                     </tr>
                                     <tr style="text-align: left;">
                                         <th>Contrase&ntilde;a:</th>
-                                        <td><div class="inputFormulario"><input class="input2" type="password" name="contrasena" id="contrasena" required></td></div>
+                                        <td><div class="inputFormulario"><input class="input2" type="password" name="contrasena" id="contrasena" minlength="8" required></td></div>
                                         <td><button class="botonMostrar" type="button" onclick="mostrar()"><i  id="icono" class="far fa-eye"></i></button></td>
                                     </tr>
                                     
@@ -77,66 +77,58 @@
                             <input class="boton" type="submit" value="Regístrate">
                             <div class="container">
                                 <div class="row justify-content-center align-content-center">
-                                    
-                                
-                                <?php 
-    //Conexion BD
-    $servidor = "localhost";
-    $baseDatos = "creacion";
-    $user = "root";
-    $pass = "";
+                                    <?php 
+                                        error_reporting(0);
+                                        //Conexion BD
+                                        $servidor = "localhost";
+                                        $baseDatos = "creacion";
+                                        $user = "root";
+                                        $pass = "";
 
-    //Variables
-    $usuario= $_POST['usuario'];
-    $contrasena= $_POST['contrasena'];
-    $nombreYape= $_POST['nombreYape'];
-    $dni= $_POST['dni'];
-    $correo= $_POST['correo'];
-     
-    
-// Validacion hecha en JS
+                                        //Variables
+                                        $usu= $_POST['usuario'];
+                                        $contrasena= $_POST['contrasena'];
+                                        $nombreYape= $_POST['nombreYape'];
+                                        $dni= $_POST['dni'];
+                                        $correo= $_POST['correo'];
+                                        $error=false;
+                                        
+                                        try {
+                                            if($usu=="" || $contrasena=="" || $nombreYape=="" || $dni=="" || $correo==""){
+                                                
+                                                
+                                            }else{
 
-    $letra = substr($dni, -1);
-    $numeros = substr($dni, 0, -1);
-  
-    if($usuario=="" || $contrasena=="" || $nombreYape=="" || $dni=="" || $correo==""){
-        
-        echo "Debe rellenar todos los campos<br><br>";
-        echo "<a href='index.php'>[Volver]</a>";
+                                                include_once "../php/metodos.php";
+                                                $todosUsuarios = obtenerTodosLosUsuarios();
+                                                for($i=0;$i<sizeof($todosUsuarios);$i++){
+                                                                
+                                                    if($todosUsuarios[$i]['usuario']== $usu){
+                                                        echo '<div id="errores" class="col-auto errores">El nombre de usuario ya existe, pruebe con otro</div>';
+                                                        $error=true;
+                                                    }
 
-    // }else if(substr("TRWAGMYFPDXBNJZSQVHLCKE", $numeros%23, 1) == $letra && strlen($letra) == 1 && strlen ($numeros) == 8){
+                                                }
+                                                
+                                            }
+                                            if(!$error){
+                                                $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
+                                                $sql = $con->prepare("INSERT into usuario values(null, :usuario , :contrasena , :nombreYape , :dni , :correo,null,'0','usuario',null)");
+                                                $sql->bindParam(":usuario", $usu);
+                                                $sql->bindParam(":contrasena", $contrasena);
+                                                $sql->bindParam(":nombreYape", $nombreYape);
+                                                $sql->bindParam(":dni", $dni);
+                                                $sql->bindParam(":correo", $correo);
+                                                $sql->execute();
+                                                $id = $con->lastInsertId();
+                                                $con = null;
+                                                redirect("iniciarSesion.php");
+                                            }
+                                        } catch (PDOException $e) {
+                                            header("location: ../php/error.php");
+                                        }
 
-        echo "DNI incorrecto<br><br>";
-        echo "<a href='registrarte.html'>[Volver]</a>";
-    
-    }
-
-        try {
-            $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
-            $sql = $con->prepare("INSERT into usuario values(null, :usuario , :contrasena , :nombreYape , :dni , :correo,null,'0','usuario',null)");
-            $sql->bindParam(":usuario", $usuario);
-            $sql->bindParam(":contrasena", $contrasena);
-            $sql->bindParam(":nombreYape", $nombreYape);
-            $sql->bindParam(":dni", $dni);
-            $sql->bindParam(":correo", $correo);
-            $sql->execute();
-            $id = $con->lastInsertId();
-            $con = null;
-            if ($id != 0) {
-                header("Location: ../index.php");
-            } else {
-                echo "Datos incorrectos<br><br>";
-                echo "<a href='../index.php'>[Volver]</a>";
-            }
-        } catch (PDOException $e) {
-            header("location: ../php/error.php");
-        }
-
-    // }
-    }
-?>
-
-
+                                    ?>
                                 </div>
                             </div>
                             <a class="mt-3" href="iniciarSesion.php">Iniciar Sesión</a>
@@ -243,9 +235,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="../js/RegistroUsuarios.js"></script>
     <script src="../js/mostrarContra.js"></script>
-    <script src="../js/validarRegistro.js"></script>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="../js/bootstrap.bundle.min.js"></script>
 </body>

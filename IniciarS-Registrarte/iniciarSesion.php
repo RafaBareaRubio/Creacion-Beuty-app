@@ -57,13 +57,16 @@
                                     <div class="row justify-content-center align-content-center">
                                     
                                     <?php
+
+                                        error_reporting(0);
+
                                         $servidor = "localhost";
                                         $baseDatos = "creacion";
                                         $user = "root";
                                         $pass = "";
 
-                                        $usuario= isset($_POST["usuario"]);
-                                        $contrasena= isset($_POST["contra"]);
+                                        $usuario= $_POST["usuario"];
+                                        $contrasena= $_POST["contra"];
 
                                         try {
                                             $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);

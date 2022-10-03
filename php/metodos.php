@@ -76,6 +76,23 @@ function obtenerTodosTiposServicios(){
     return $miArray;
 }
 
+function obtenerTodosNombreServicios(){
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+        $sql = $con->prepare("SELECT DISTINCT nombre from servicio;");
+        $sql->execute();
+        $miArray = [];
+        while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+            $miArray[] = $row;
+        }    
+    } catch (PDOException $e) {
+        echo $e;
+    }
+    $con = null;
+    return $miArray;
+}
+
+
 
 function eliminarServicio($id)
 {
@@ -258,6 +275,22 @@ function editarUsuario($id, $usuario, $contrasena, $nombreYape, $dni, $gmail, $t
     $con = null;
     return $retorno;
 }
+function obtenerTodosLosUsuarios(){
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+        $sql = $con->prepare("SELECT DISTINCT * from usuario");
+        $sql->execute();
+        $miArray = [];
+        while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+            $miArray[] = $row;
+        }    
+    } catch (PDOException $e) {
+        echo $e;
+    }
+    $con = null;
+    return $miArray;
+}
+
 //Ofertas
 
 function obtenerTodosServiciosOfertas(){

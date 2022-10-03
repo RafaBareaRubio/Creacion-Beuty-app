@@ -76,7 +76,7 @@
                                         }                           
                                     }else{
                                         echo "<li class='nav-item mx-2 col-xl-3 col-lg-3 text-center mt-4'>
-                                                <a class='btn' id='Inicio' href='../IniciarS-Registrarte/iniciarSesion.html' target='_blank'>Iniciar Sesion</a>
+                                                <a class='btn' id='Inicio' href='../IniciarS-Registrarte/iniciarSesion.php' target='_blank'>Iniciar Sesion</a>
                                                 <a class='btn' id='Registro' href='../IniciarS-Registrarte/registrarte.html' target='_blank'>Registrate</a>
                                             </li>";
                                     }//Fin si
@@ -118,7 +118,7 @@
                         <h5 class="widget-title">Enlaces<span></span></h5>
                         <ul class="thumbnail-widget">
                             <li>
-                                <div class="thumb-content"><a href="iniciarSesion.html">Iniciar Sesion</a></div>
+                                <div class="thumb-content"><a href="iniciarSesion.php">Iniciar Sesion</a></div>
                             </li>
                             <li>
                                 <div class="thumb-content"><a href="../app/servicios.php">Servicios</a></div>

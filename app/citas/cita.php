@@ -1,71 +1,129 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Iniciar Sesión</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS v5.0.2 -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/iniciar.css">
-    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/productos.css">
+    <link rel="stylesheet" href="../../css/footer.css">
+    <link rel="stylesheet" href="../../css/gestion.css">
+    <link rel="stylesheet" href="../../css/formularioGestion.css">
     <!-- link para iconos -->
-    <link rel="stylesheet" href="../css/fontawesome-free-5.15.4-web/css/all.min.css">
-
+    <link rel="stylesheet" href="../../css/fontawesome-free-5.15.4-web/css/all.min.css">
+    <title>Citas</title>
 </head>
 
 <body>
-    <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="col-12 " id="navbarTogglerDemo01">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="titulo text-center">La Creación</h2>
+                            <p class="subtitulo text-center">Beuty Concept</p>
+                        </div>
+                        <div class="col-12">
+                            <ul class="navbar-nav pb-0">
+                                <li class="nav-item mx-2 col-xl-3 col-lg-3 text-center">
+                                    <a class="nav-link active" aria-current="page" href="../../index.php"><img
+                                            src="../../img/LOGO.png" alt="logo" width="200px"></a>
+                                </li>
+                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
+                                    <a class="nav-link active text-white" href="../servicios.php">Servicios <i
+                                            class="fas fa-cut"></i></a>
+                                </li>
+                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
+                                    <a class="nav-link active text-white" href="../productos.php" tabindex="-1">Productos
+                                        <i class="fab fa-product-hunt"></i></a>
+                                </li>
+                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
+                                    <a class="nav-link active text-white" href="../nosotros.php" tabindex="-1">Nosotros <i
+                                            class="fas fa-photo-video"></i></a>
+                                </li>
+                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
+                                    <a class="nav-link active text-white" href="../contactanos.php"
+                                        tabindex="-1">Contáctanos <i class="fas fa-id-card"></i></a>
+                                </li>
+                                <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
+                                    <a class="nav-link active text-white" href="../promociones.php" tabindex="-1">Promociones <i class="fas fa-id-card"></i></a>
+                                </li>
 
-    <div class="bloque container mt-5">
-        
-        <div class="col-12">
-            <div class="row justify-content-center">
-                <div class="col-auto">
-                    <a href="../index.html"><img src="../img/LOGO2.png" width="100%" alt="logo"></a>
-                </div>
-            </div>
-        </div>
-        <!-- Formulario -->
-        <div class="col-12 mt-3">
-            <div class="row justify-content-center">
-                <div class="col-auto">
-                    <div name="formulario" id="formulario" class="formulario p-5 text-center">
-                            <form action="iniciarSesion.php" method="post" id="formRegistro">
-                                <div class="tablaFormulario">
-                                    <table>
-                                        <tr>
-                                            <th style="text-align: left;">Usuario:</th>
-                                            <td><div class="inputFormulario"><input class="input2" type="text" name="usuario" id="usuario" required /></div></td>
-                                        </tr>
-                                        <tr style="opacity: 0;">
-                                            <th style="font-size: 20%;">:</th>
-                                        </tr>
-                                        <div>
-                                            <th style="text-align: left;">Contrase&ntilde;a:</th>
-                                            <td><div class="inputFormulario"><input class="input2" type="password" name="contrasena" id="contrasena" required></div></td>
-                                            <td><button class="botonMostrar" type="button" onclick="mostrar()"><i id="icono" class="far fa-eye"></i></button></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <br />
-                                <input class="boton" type="submit" value="Iniciar Sesión">
-                                <br>
-                                <div class="container">
-                                    <div class="row justify-content-center align-content-center">
-                                        <div id="errores" class="col-auto errores"></div>
-                                    </div>
-                                </div>
-                                <a href="registrarte.html">Regístrate</a>
-                            </form>
+                                <?php include "../../php/metodos.php";
+                                    // Continuar la sesión
+                                    session_start();
+
+
+                                    if(isset($_SESSION['sesion_iniciada']) == true ){
+                                        $cliente = obtenerUsuario($_SESSION['id']);
+                                        $tipo = session_id();
+                                        if($tipo=="usuario" ||  $tipo=="admin"){
+                                            echo "<li class='nav-item mx-2 col-xl-3 col-lg-3 text-center mt-4'>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='../../app/misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i>"." ".$cliente["usuario"]."</></a>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='../../php/logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
+                                                </li>";
+                                        }                           
+                                    }else{
+                                        echo "<li class='nav-item mx-2 col-xl-3 col-lg-3 text-center mt-4'>
+                                                <a class='btn' id='Inicio' href='../../IniciarS-Registrarte/iniciarSesion.php' target='_blank'>Iniciar Sesion</a>
+                                                <a class='btn' id='Registro' href='../../IniciarS-Registrarte/registrarte.html' target='_blank'>Registrate</a>
+                                            </li>";
+                                    }//Fin si
+                                ?>
+
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+        </nav>
+    </header>
 
+    <article>
+        <h1 class="mt-4" >Reserva tú cita</h1>
+        <!-- Formulario para insertar el producto -->
+        <section>
+            <form method="post" action="insertarServicio.php" name="formulario" id="formulario">
+                <table>
+                    <tr><td><p>Trabajador</p><input name="nombre" id="nombre" type="text" required></td></tr>
+
+                    <tr><td>
+                        <p>Servicio</p>
+                        <?php
+                            //El nombre que tenia previamente, para que ese tipo no se repita tenemos el if dentro del for
+                            include_once "../../php/metodos.php";
+                            echo '<select name="servicio" id="servicio">';
+                            echo '<option value=""></option>';
+                            
+
+                            $nombre = obtenerTodosNombreServicios();
+                            for ($i=0;$i<sizeof($nombre);$i++){
+                                echo '<option value="'.$nombre[$i]['tipo'].'">'.$nombre[$i]['nombre'].'</option>';                    
+                            }
+                            // cuando no este vacio
+                            if(isset($servicio)){
+                                echo 'hola';
+                            }
+                            ?>
+                        </select><br><br>
+                    </td></tr>
+                    
+
+                </table>
+                <input class="guardar" type="submit" value="Guardar">
+            </form>
+        </section>
+
+    </article>
 
     <!-- FOOTER -->
     <footer id="footer" class="footer-1 mt-5">
@@ -76,7 +134,7 @@
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="widget subscribe no-box">
                             <h5 class="widget-title">La Creación<span></span></h5>
-                            <a href="../index.php"><img src="../img/LOGO.png" width="150em"></a>
+                            <a href="../../index.php"><img src="../../img/LOGO.png" width="150em"></a>
                             <p class="mt-2">Tu barberia de confianza</p>
                         </div>
                     </div>
@@ -86,25 +144,23 @@
                             <h5 class="widget-title">Enlaces<span></span></h5>
                             <ul class="thumbnail-widget">
                                 <li>
-                                    <div class="thumb-content"><a href="iniciarSesion.html">Iniciar Sesion</a></div>
+                                    <div class="thumb-content"><a
+                                            href="../../IniciarS-Registrarte/iniciarSesion.php">Iniciar Sesion</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="../app/servicios.php">Servicios</a></div>
+                                    <div class="thumb-content"><a href="../servicios.php">Servicios</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="../app/rituales.php">Rituales</a></div>
+                                    <div class="thumb-content"><a href="../productos.php">Productos</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="../app/productos.php">Productos</a></div>
+                                    <div class="thumb-content"><a href="../nosotros.php">Sobre Nosotros</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="../app/nosotros.php">Sobre Nosotros</a></div>
+                                    <div class="thumb-content"><a href="../contactanos.php">Contáctanos</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="../app/contactanos.php">Contáctanos</a></div>
-                                </li>
-                                <li>
-                                    <div class="thumb-content"><a href="../app/promociones.php">Promociones</a></div>
+                                    <div class="thumb-content"><a href="../promociones.php">Promociones</a></div>
                                 </li>
                             </ul>
                         </div>
@@ -114,7 +170,8 @@
                         <div class="widget no-box">
                             <h5 class="widget-title">Regístrate<span></span></h5>
                             <p>Únete a nosotros</p>
-                            <a class="btn" href="registrarte.html" target="_blank">Registrate</a>
+                            <a class="btn" href="../../IniciarS-Registrarte/registrarte.html"
+                                target="_blank">Registrate</a>
                         </div>
                     </div>
 
@@ -153,7 +210,7 @@
             <div class="container col-12">
                 <div class="row">
                     <div class="col-8">
-                        <a href="../politicas.php"><p>Politicas de privacidad.</p></a>
+                        <a href="../../politicas.php"><p>Politicas de privacidad.</p></a>
                     </div>
                     <div class="col-4">
                         <p>Copyright La Creación © 2022.</p>
@@ -162,12 +219,9 @@
             </div>
         </div>
     </footer>
-
-    <!-- Scripts -->
-    <script src="../js/RegistroUsuarios.js"></script>
-    <script src="../js/mostrarContra.js"></script>
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/anadirCarrito.js"></script>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+    <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </body>
 
 </html>

@@ -97,7 +97,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 var user = {"nombre":nombre.value,"contra":contra.value};
                 localStorage.setItem('key', JSON.stringify(user));
             }
-        return ok;
+        return errores;
         // Si no entra, como no pide que mostremos nada, se enviaran los datos y se registraran automaticamente. Ya estará todo correcto
     }
 });

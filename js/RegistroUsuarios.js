@@ -1,15 +1,15 @@
 
-document.getElementById("formulario").addEventListener('submit', validar);
+document.getElementById("formRegistro").addEventListener('submit', validar);
 function validar(event) {
 // Me traigo los id
     var errores ="";
-    var contrase = document.getElementById('contra').value;
-    var usuario = document.getElementById('nombre').value;
+    var contra = document.getElementById('contra').value;
+    var usuario = document.getElementById('usuario').value;
 
 // Compruebo si ha iniciado sesion
     var user2 = JSON.parse(localStorage.getItem('key'));
 
-    if(user2.nombre!=usuario || user2.contra!=contrase){
+    if(user2.usuario!=usuario || user2.contra!=contra){
         document.getElementsByTagName("input")[0].setAttribute("class", "error");// cambia el borde del impuct a rojo como señal de error (Todos son iguales)
         document.getElementsByTagName("input")[1].setAttribute("class", "error");// cambia el borde del impuct a rojo como señal de error (Todos son iguales)
 

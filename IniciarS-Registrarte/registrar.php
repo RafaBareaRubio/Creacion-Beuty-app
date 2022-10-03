@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Registrandote</title>
+    <title>Regístate</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,7 +16,70 @@
 
 </head>
 
-<?php 
+<body>
+    <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <div class="bloque container mt-5">
+        
+        <div class="col-12">
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <a href="../index.php"><img src="../img/LOGO2.png" width="100%" alt="logo"></a>
+                </div>
+            </div>
+        </div>
+        <!-- Formulario -->
+        <div class="col-12 mt-3">
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <div name="formulario" id="formulario" class="formulario p-5 text-center">
+                            <form method="post" action="registrar.php">
+                                <div class="tablaFormulario">
+                                <table>
+                                    <tr style="text-align: left;">
+                                        <th>Nombre y Apellido:</th>
+                                        <td><div class="inputFormulario"><input class="input2" type="text" name="nombreYape" id="nombreYape" required /></td></div>
+                                    </tr>
+                                    <tr style="opacity: 0;">
+                                        <th style="font-size: 20%;">:</th>
+                                    </tr>
+                                    <tr style="text-align: left;">
+                                        <th>Usuario:</th>
+                                        <td><div class="inputFormulario"><input class="input2" type="text" name="usuario" id="usuario" required /></td></div>
+                                    </tr>
+                                    <tr style="opacity: 0;">
+                                        <th style="font-size: 20%;">:</th>
+                                    </tr>
+                                    <tr style="text-align: left;">
+                                        <th>E-mail:</th>
+                                        <td><div class="inputFormulario"><input class="input2" type="email" name="correo" id="correo" required/></td></div>
+                                    </tr>
+                                    <tr style="opacity: 0;">
+                                        <th style="font-size: 20%;">:</th>
+                                    </tr>
+                                    <tr style="text-align: left;">
+                                        <th>DNI:</th>
+                                        <td><div class="inputFormulario"><input class="input2" type="text" name="dni" id="dni" required/></td></div>
+                                    </tr>
+                                    <tr style="opacity: 0;">
+                                        <th style="font-size: 20%;">:</th>
+                                    </tr>
+                                    <tr style="text-align: left;">
+                                        <th>Contrase&ntilde;a:</th>
+                                        <td><div class="inputFormulario"><input class="input2" type="password" name="contrasena" id="contrasena" required></td></div>
+                                        <td><button class="botonMostrar" type="button" onclick="mostrar()"><i  id="icono" class="far fa-eye"></i></button></td>
+                                    </tr>
+                                    
+                                </table>
+                            </div>
+                            
+                            <br />
+                            <input class="boton" type="submit" value="Regístrate">
+                            <div class="container">
+                                <div class="row justify-content-center align-content-center">
+                                    
+                                
+                                <?php 
     //Conexion BD
     $servidor = "localhost";
     $baseDatos = "creacion";
@@ -44,11 +107,9 @@
     // }else if(substr("TRWAGMYFPDXBNJZSQVHLCKE", $numeros%23, 1) == $letra && strlen($letra) == 1 && strlen ($numeros) == 8){
 
         echo "DNI incorrecto<br><br>";
-        echo "<a href='registrarte.php'>[Volver]</a>";
+        echo "<a href='registrarte.html'>[Volver]</a>";
     
-    }else{
-
-        echo "<h2>Bienvenido a La Creación $nombreYape esperemos que estes cómodo con nosotros</h2>";
+    }
 
         try {
             $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
@@ -74,7 +135,19 @@
     // }
     }
 ?>
-<footer id="footer" class="footer-1 mt-5">
+
+
+                                </div>
+                            </div>
+                            <a class="mt-3" href="iniciarSesion.php">Iniciar Sesión</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer" class="footer-1 mt-5">
         <div class="main-footer widgets-dark typo-light">
             <div class="container">
                 <div class="row">
@@ -92,7 +165,7 @@
                             <h5 class="widget-title">Enlaces<span></span></h5>
                             <ul class="thumbnail-widget">
                                 <li>
-                                    <div class="thumb-content"><a href="iniciarSesion.html">Iniciar Sesion</a></div>
+                                    <div class="thumb-content"><a href="iniciarSesion.php">Iniciar Sesion</a></div>
                                 </li>
                                 <li>
                                     <div class="thumb-content"><a href="../app/servicios.php">Servicios</a></div>
@@ -172,8 +245,10 @@
     <!-- Scripts -->
     <script src="../js/RegistroUsuarios.js"></script>
     <script src="../js/mostrarContra.js"></script>
+    <script src="../js/validarRegistro.js"></script>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="../js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
+

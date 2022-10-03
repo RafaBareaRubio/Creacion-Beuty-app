@@ -59,14 +59,14 @@
                                     </tr>
                                     <tr style="text-align: left;">
                                         <th>DNI:</th>
-                                        <td><div class="inputFormulario"><input class="input2" type="text" name="dni" id="dni" required/></td></div>
+                                        <td><div class="inputFormulario"><input class="input2" type="text" name="dni" id="dni" minlength="9" maxlength="9" required/></td></div>
                                     </tr>
                                     <tr style="opacity: 0;">
                                         <th style="font-size: 20%;">:</th>
                                     </tr>
                                     <tr style="text-align: left;">
                                         <th>Contrase&ntilde;a:</th>
-                                        <td><div class="inputFormulario"><input class="input2" type="password" name="contrasena" id="contrasena" required></td></div>
+                                        <td><div class="inputFormulario"><input class="input2" type="password" name="contrasena" id="contrasena" minlength="8" required></td></div>
                                         <td><button class="botonMostrar" type="button" onclick="mostrar()"><i  id="icono" class="far fa-eye"></i></button></td>
                                     </tr>
                                     
@@ -184,9 +184,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="../js/RegistroUsuarios.js"></script>
     <script src="../js/mostrarContra.js"></script>
-    <script src="../js/validarRegistro.js"></script>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="../js/bootstrap.bundle.min.js"></script>
 </body>

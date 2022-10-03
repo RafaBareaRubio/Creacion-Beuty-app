@@ -24,7 +24,7 @@
         <div class="col-12">
             <div class="row justify-content-center">
                 <div class="col-auto">
-                    <a href="../index.html"><img src="../img/LOGO2.png" width="100%" alt="logo"></a>
+                    <a href="../index.php"><img src="../img/LOGO2.png" width="100%" alt="logo"></a>
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
                                         </tr>
                                         <div>
                                             <th style="text-align: left;">Contrase&ntilde;a:</th>
-                                            <td><div class="inputFormulario"><input class="input2" type="password" name="contra" id="contra" required></div></td>
+                                            <td><div class="inputFormulario"><input class="input2" type="password" name="contra" id="contra" minlength="8" required></div></td>
                                             <td><button class="botonMostrar" type="button" onclick="mostrar()"><i id="icono" class="far fa-eye"></i></button></td>
                                         </tr>
                                     </table>
@@ -62,8 +62,8 @@
                                         $user = "root";
                                         $pass = "";
 
-                                        $usuario=$_POST["usuario"];
-                                        $contrasena= $_POST["contra"];
+                                        $usuario= isset($_POST["usuario"]);
+                                        $contrasena= isset($_POST["contra"]);
 
                                         try {
                                             $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['user'], $GLOBALS['pass']);
@@ -207,7 +207,6 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="../js/RegistroUsuarios.js"></script>
     <script src="../js/mostrarContra.js"></script>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="../js/bootstrap.bundle.min.js"></script>

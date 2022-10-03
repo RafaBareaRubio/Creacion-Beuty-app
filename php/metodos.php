@@ -278,7 +278,7 @@ function editarUsuario($id, $usuario, $contrasena, $nombreYape, $dni, $gmail, $t
 function obtenerTodosLosUsuarios(){
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-        $sql = $con->prepare("SELECT DISTINCT * from usuario");
+        $sql = $con->prepare("SELECT * from usuario;");
         $sql->execute();
         $miArray = [];
         while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {

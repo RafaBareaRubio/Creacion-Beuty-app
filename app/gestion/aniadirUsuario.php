@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../../css/formularioGestion.css">
     <!-- link para iconos -->
     <link rel="stylesheet" href="../../css/fontawesome-free-5.15.4-web/css/all.min.css">
-    <title>Editar Servicio</title>
+    <title>Añadir Usuario</title>
 </head>
 
 <body>
@@ -87,91 +87,58 @@
                 </div>
         </nav>
     </header>
-<body>
 
-    <?php include_once "../../php/metodos.php";
+    <article>
+        <h1 class="mt-4" >Insertar Usuario</h1>
+        <!-- Formulario para insertar el producto -->
+        <section>
+            <form method="post" action="insertarUsuario.php">
+                <table>
+                    <tr><td><p>Usuario</p><input name="nombre" id="nombre" type="text" required></td></tr>
 
-    if (count($_GET) > 0) {
-        $id = $_GET["varId"];
-        $servicio = obtenerServicio($id);
-    } else {
-        $id = $_POST["id"];
-        $servicio = obtenerServicio($id);
-    }
-    $error = '';
-    if (count($_POST) > 0) {
-        function seguro($valor)
-        {
-            $valor = strip_tags($valor);
-            $valor = stripslashes($valor);
-            $valor = htmlspecialchars($valor);
-            return $valor;
-        }
-        $image = '';
-        if ($_FILES["foto"]["name"] != '') {
-            $image = $_FILES["foto"]["name"];
-            $temp = $_FILES['foto']['tmp_name'];
-            if (move_uploaded_file($temp, '../../img/Servicios/' . $image)) {
-                //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
-                chmod('../../img/Servicios/' . $image, 0777);
-            }
-        } else {
-            $image = $servicio["foto"];
-        }
+                    <tr><td><p>Contraseña</p><input name="precio" id="precio" type="text" required></td></tr>
 
-        $cumplido = editarServicio($id, $_POST["nombre"], $_POST["precio"], $_POST["tipoServicio"], $_POST["oferta"], $_POST["descripcion"], $image);
-        if ($cumplido == true) {
-            header("Location: gestionServicios.php?varId=" . $id);
-            exit();
-        } else {
-            $error = "Datos incorrectos o no se ha actualizado nada";
-        }
-    }
-    ?>
-<article>
-    <form class="form-register" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
-        <h2 class="form-titulo mt-4">Editando Servicio</h2>
-        <div class="contenedor-inputs">
-            <input type="hidden" name="id" value="<?php echo $servicio["id"]; ?>">
-            <!--aquí va el id, es hidden por lo tanto no es visible en la web, pero si accesible desde PHP -->
-            
-            <table>
-                <tr><td><p>Nombre</p><input type="text" name="nombre" placeholder='<?php echo $servicio["nombre"]; ?>' class="input-100" value='<?php echo $servicio["nombre"]; ?>'><br><br></td></tr>
-                <tr><td><p>Precio</p><input type="text" name="precio" placeholder='<?php echo $servicio["precio"]; ?>' class="input-100" value='<?php echo $servicio["precio"]; ?>'><br><br></td></tr>
 
-                <tr><td>
-                    <p>Tipo</p>
-                    <select name="tipoServicio" id="tipoServicio">
-                    <?php
-                    //El tipo que tenia previamente, para que ese tipo no se repita tenemos el if dentro del for
-                    
-                    echo '<option value="'.$servicio['tipo'].'">'.$servicio['tipo'].'</option>';                    
-                    $tipos = obtenerTodosTiposServicios();
-                    //Tipos no se actualiza ni se inserta
-                    
-                    for ($i=0;$i<sizeof($tipos);$i++){
-                        if($servicio['tipo']==$tipos[$i]['tipo']){
-                            
-                        }else{
+                    <tr><td>
+                        <p>Tipo</p>
+                        <select name="tipo" id="tipo">
+                        <?php
+                        //El tipo que tenia previamente, para que ese tipo no se repita tenemos el if dentro del for
+                        include_once "../../php/metodos.php";
+                                         
+                        $tipos = obtenerTodosTiposServicios();
+                        $avatar = $_FILES["foto"]["name"];
+                        $temp = $_FILES['foto']['tmp_name'];
+                        if (move_uploaded_file($temp, 'images/' . $avatar)) {
+                            //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
+                            chmod('img/' . $avatar, 0777);
+                        }
+                        //Tipos no se actualiza ni se inserta
+                        
+                        for ($i=0;$i<sizeof($tipos);$i++){
                             echo '<option value="'.$tipos[$i]['tipo'].'">'.$tipos[$i]['tipo'].'</option>';                    
                         }
-                    }
-                    ?>
+                        ?>
                     </select><br><br>
-                </td></tr>
-                <tr><td><p>Oferta</p><textarea name="oferta" id="oferta" placeholder='<?php echo $servicio["oferta"]; ?>' value='<?php echo $servicio["oferta"]; ?>'></textarea><br><br></td></tr>
-                <tr><td><p>Descripcion</p><textarea name="descripcion" id="descripcion" placeholder='<?php echo $servicio["descripcion"]; ?>' value='<?php echo $servicio["descripcion"]; ?>'></textarea><br><br></td></tr>
-                <tr><td><p>Foto Actual</p><img name="fotoActual" width=200px <?php if ($servicio["foto"] != '' && file_exists("../../img/Servicios/" . $servicio["foto"])) {
-                                                        echo "src='../../img/Servicios/" . $servicio['foto'] . "'";
-                                                    } ?>><!-- Aquí tienes que cargar la imagen actual -->
-                <tr><td><p>Foto Nueva</p><input type="file" name="foto" accept="image/png, image/jpeg" class="input-100"></td></tr>
-            </table>
-            <br>
-            <input type="submit" value="Guardar Cambios" class="btn-enviar">
-            <a href="gestionServicios.php"><input type="button" value="Volver" class="btn-enviar"></a>
-            <div id="errores"><?php echo $error; ?></div>
-        </div>
-    </form>
+                    </td></tr>
+                    
+
+                    <tr><td><p>Nombre y apellidos</p><input name="precio" id="precio" type="text" required></td></tr>
+
+                    <tr><td><p>Dni</p><input name="precio" id="precio" type="text" required></td></tr>
+
+                    <tr><td><p>Gmail</p><input name="precio" id="precio" type="text" required></td></tr>
+
+                    <tr><td><p>Telefono</p><input name="precio" id="precio" type="text" required></td></tr>
+
+                    <tr><td><p>direccion</p><input name="precio" id="precio" type="text" required></td></tr>
+
+
+                </table>
+                <input class="guardar" type="submit" value="Guardar">
+            </form>
+        </section>
+
     </article>
 
     <!-- FOOTER -->

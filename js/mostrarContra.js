@@ -6,7 +6,7 @@ function mostrar(){
     if(tipo.type=="password"){
         tipo.setAttribute("type","text");
         $("button").click(function(){
-            $(this).children("i").removeClass("fa-regular fa-eye-slash");
+            $(this).children("i").removeClass("fas fa-eye-slash");
             $(this).children("i").removeClass("far fa-eye");
             $(this).children("i").addClass("far fa-eye");
         });
@@ -14,8 +14,8 @@ function mostrar(){
         tipo.setAttribute("type","password");
         $("button").click(function(){
             $(this).children("i").removeClass("far fa-eye");
-            $(this).children("i").removeClass("fa-regular fa-eye-slash");
-            $(this).children("i").addClass("fa-regular fa-eye-slash");    
+            $(this).children("i").removeClass("fas fa-eye-slash");
+            $(this).children("i").addClass("fas fa-eye-slash");    
         });
     }
 

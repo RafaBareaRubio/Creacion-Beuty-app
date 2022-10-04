@@ -11,10 +11,9 @@
     <link rel="stylesheet" href="../../css/productos.css">
     <link rel="stylesheet" href="../../css/footer.css">
     <link rel="stylesheet" href="../../css/gestion.css">
-    <link rel="stylesheet" href="../../css/formularioGestion.css">
     <!-- link para iconos -->
     <link rel="stylesheet" href="../../css/fontawesome-free-5.15.4-web/css/all.min.css">
-    <title>Editar Servicio</title>
+    <title>Gestion Servicios</title>
 </head>
 
 <body>
@@ -87,95 +86,74 @@
                 </div>
         </nav>
     </header>
-<body>
+ 
+ <section>
+    <article>
+        <div class="tablon container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <div class="container">
+                        <div class="col-12">
+                    <div class="row">
+                        <div class="col-8">
+                            <h2 class="mt-4">Gestión De Usuarios</h2>
+                        </div>
+                        <div class="col-4 justify-content-end">
+                            <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
+                                <a href="aniadirUsuario.php" class="anadirProducto"><i class="far fa-plus-square"></i> Añadir Usuario</a>    
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="container col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-auto">
+                        <!-- Obtener todos los servicios en una tabla -->
+                            <table>
+                                <thead>
+                                    <!-- Ordenar tabla por tipo -->
+                                    <tr>
+                                        <th>Usuario</th>
+                                        <th>Contraseña</th>
+                                        <th>Nombre y apellidos</th>
+                                        <th>Confirmado</th>
+                                        <th>Tipo</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>                        
+                                    <?php include_once "../../php/metodos.php";
 
-    <?php include_once "../../php/metodos.php";
-
-    if (count($_GET) > 0) {
-        $id = $_GET["varId"];
-        $servicio = obtenerServicio($id);
-    } else {
-        $id = $_POST["id"];
-        $servicio = obtenerServicio($id);
-    }
-    $error = '';
-    if (count($_POST) > 0) {
-        function seguro($valor)
-        {
-            $valor = strip_tags($valor);
-            $valor = stripslashes($valor);
-            $valor = htmlspecialchars($valor);
-            return $valor;
-        }
-        $image = '';
-        if ($_FILES["foto"]["name"] != '') {
-            $image = $_FILES["foto"]["name"];
-            $temp = $_FILES['foto']['tmp_name'];
-            if (move_uploaded_file($temp, '../../img/Servicios/' . $image)) {
-                //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
-                chmod('../../img/Servicios/' . $image, 0777);
-            }
-        } else {
-            $image = $servicio["foto"];
-        }
-
-        $cumplido = editarServicio($id, $_POST["nombre"], $_POST["precio"], $_POST["tipoServicio"], $_POST["oferta"], $_POST["descripcion"], $image);
-        if ($cumplido == true) {
-            header("Location: gestionServicios.php?varId=" . $id);
-            exit();
-        } else {
-            $error = "Datos incorrectos o no se ha actualizado nada";
-        }
-    }
-    ?>
-<article>
-    <form class="form-register" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
-        <h2 class="form-titulo mt-4">Editando Servicio</h2>
-        <div class="contenedor-inputs">
-            <input type="hidden" name="id" value="<?php echo $servicio["id"]; ?>">
-            <!--aquí va el id, es hidden por lo tanto no es visible en la web, pero si accesible desde PHP -->
-            
-            <table>
-                <tr><td><p>Nombre</p><input type="text" name="nombre" placeholder='<?php echo $servicio["nombre"]; ?>' class="input-100" value='<?php echo $servicio["nombre"]; ?>'><br><br></td></tr>
-                <tr><td><p>Precio</p><input type="text" name="precio" placeholder='<?php echo $servicio["precio"]; ?>' class="input-100" value='<?php echo $servicio["precio"]; ?>'><br><br></td></tr>
-
-                <tr><td>
-                    <p>Tipo</p>
-                    <select name="tipoServicio" id="tipoServicio">
-                    <?php
-                    //El tipo que tenia previamente, para que ese tipo no se repita tenemos el if dentro del for
-                    
-                    echo '<option value="'.$servicio['tipo'].'">'.$servicio['tipo'].'</option>';                    
-                    $tipos = obtenerTodosTiposServicios();
-                    //Tipos no se actualiza ni se inserta
-                    
-                    for ($i=0;$i<sizeof($tipos);$i++){
-                        if($servicio['tipo']==$tipos[$i]['tipo']){
-                            
-                        }else{
-                            echo '<option value="'.$tipos[$i]['tipo'].'">'.$tipos[$i]['tipo'].'</option>';                    
-                        }
-                    }
-                    ?>
-                    </select><br><br>
-                </td></tr>
-                <tr><td><p>Oferta</p><textarea name="oferta" id="oferta" placeholder='<?php echo $servicio["oferta"]; ?>' value='<?php echo $servicio["oferta"]; ?>'></textarea><br><br></td></tr>
-                <tr><td><p>Descripcion</p><textarea name="descripcion" id="descripcion" placeholder='<?php echo $servicio["descripcion"]; ?>' value='<?php echo $servicio["descripcion"]; ?>'></textarea><br><br></td></tr>
-                <tr><td><p>Foto Actual</p><img name="fotoActual" width=200px <?php if ($servicio["foto"] != '' && file_exists("../../img/Servicios/" . $servicio["foto"])) {
-                                                        echo "src='../../img/Servicios/" . $servicio['foto'] . "'";
-                                                    } ?>><!-- Aquí tienes que cargar la imagen actual -->
-                <tr><td><p>Foto Nueva</p><input type="file" name="foto" accept="image/png, image/jpeg" class="input-100"></td></tr>
-            </table>
-            <br>
-            <input type="submit" value="Guardar Cambios" class="btn-enviar">
-            <a href="gestionServicios.php"><input type="button" value="Volver" class="btn-enviar"></a>
-            <div id="errores"><?php echo $error; ?></div>
-        </div>
-    </form>
+                                    //Saca el id del usuario con la sesion iniciada
+                                    $usuarios =  obtenerTodosLosUsuarios();                                   
+                                    
+                                    for ($i=0;$i<sizeof($usuarios);$i++){
+                                        echo "<tr>";
+                                            echo "<td name='nombre' id='nombre' method='post' >".$usuarios[$i]['usuario']."</td>";
+                                            echo "<td>".$usuarios[$i]['contrasena']."</td>";
+                                            echo "<td>".$usuarios[$i]['nombreYape']."</td>";
+                                            echo "<td>".$usuarios[$i]['confirmado']."</td>";
+                                            echo "<td>".$usuarios[$i]['tipo']."</td>";
+                                            // Añadir foto de editar y eliminar fontawesaome
+                                            echo "<td><a href='editarUsuarios.php?varId=".$usuarios[$i]["id"]."'><i class='fas fa-edit'></i></a></td>";
+                                            echo "<td><a href='eliminarUsuarios.php?varId=".$usuarios[$i]["id"]."'><i class='fas fa-trash-alt'></i></a></td>";
+                                        echo "</tr>";
+                                    }//Fin Para
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
     </article>
-
-    <!-- FOOTER -->
-    <footer id="footer" class="footer-1 mt-5">
+ </section>
+ 
+<!-- FOOTER -->
+<footer id="footer" class="footer-1 mt-5">
         <div class="main-footer widgets-dark typo-light">
             <div class="container">
                 <div class="row">

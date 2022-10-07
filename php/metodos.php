@@ -251,19 +251,21 @@ function obtenerUsuario($id)
     }
 }
 
-function editarUsuario($id, $usuario, $contrasena, $nombreYape, $dni, $gmail, $telefono, $direccion)
+function editarUsuario($id, $usuarioTxt, $contrasena, $nombreYape, $dni, $gmail, $confirmado, $telefono, $tipo, $direccion)
 {
     $retorno = false;
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-        $sql = $con->prepare("UPDATE usuario set usuario=:usuario , contrasena=:contrasena, nombreYape=:nombreYape, dni=:dni, gmail=:gmail, telefono=:telefono, direccion=:direccion where id=:id;");
+        $sql = $con->prepare("UPDATE usuario set usuario=:usuarioTxt , contrasena=:contrasena, nombreYape=:nombreYape, dni=:dni, gmail=:gmail, telefono=:telefono, confirmado=:confirmado, tipo=:tipo,  direccion=:direccion where id=:id;");
         $sql->bindParam(":id", $id);
-        $sql->bindParam(":usuario", $usuario);
+        $sql->bindParam(":usuario", $usuarioTxt);
         $sql->bindParam(":contrasena", $contrasena);
         $sql->bindParam(":nombreYape", $nombreYape);
         $sql->bindParam(":dni", $dni);
         $sql->bindParam(":gmail", $gmail);
         $sql->bindParam(":telefono", $telefono);
+        $sql->bindParam(":confirmado", $confirmado);
+        $sql->bindParam(":tipo", $tipo);
         $sql->bindParam(":direccion", $direccion);
         $sql->execute();
         if ($sql->rowCount() > 0) {
@@ -279,6 +281,78 @@ function obtenerTodosLosUsuarios(){
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
         $sql = $con->prepare("SELECT * from usuario;");
+        $sql->execute();
+        $miArray = [];
+        while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+            $miArray[] = $row;
+        }    
+    } catch (PDOException $e) {
+        echo $e;
+    }
+    $con = null;
+    return $miArray;
+}
+
+function obtenerTiposUsuario(){
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+        $sql = $con->prepare("SELECT DISTINCT tipo from usuario;");
+        $sql->execute();
+        $miArray = [];
+        while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+            $miArray[] = $row;
+        }    
+    } catch (PDOException $e) {
+        echo $e;
+    }
+    $con = null;
+    return $miArray;
+}
+
+function insertarUsuario( $usuarioTxt, $contrasena, $nombreYape, $dni, $gmail, $telefono, $confirmado, $tipo, $direccion ){
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+        $sql = $con->prepare("INSERT into usuario values(null,:usuario,:contrasena,:nombreYape,:dni,:gmail,:telefono,:confirmado,:tipo,:direccion)");
+        $sql->bindParam(":usuario", $usuarioTxt);
+        $sql->bindParam(":contrasena", $contrasena);
+        $sql->bindParam(":nombreYape", $nombreYape);
+        $sql->bindParam(":dni", $dni);
+        $sql->bindParam(":gmail", $gmail);
+        $sql->bindParam(":telefono", $telefono);
+        $sql->bindParam(":confirmado", $confirmado);
+        $sql->bindParam(":tipo", $tipo);
+        $sql->bindParam(":direccion", $direccion);
+        $sql->execute();
+        $id = $con->lastInsertId();
+    } catch (PDOException $e) {
+        echo $e;
+    }
+    $con = null;
+    return $id;
+}
+
+function eliminarUsuario($id)
+{
+    $retorno = false;
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+        $sql = $con->prepare("DELETE from usuario where id=:id");
+        $sql->bindParam(":id", $id);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $retorno = true;
+        }
+    } catch (PDOException $e) {
+        header("location: ../php/error.php");
+    }
+    $con = null;
+    return $retorno;
+}
+
+function obtenerConfirmadoUsuario(){
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+        $sql = $con->prepare("SELECT DISTINCT confirmado from usuario;");
         $sql->execute();
         $miArray = [];
         while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {

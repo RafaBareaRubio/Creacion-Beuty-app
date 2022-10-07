@@ -6,16 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS v5.0.2 -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/productos.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/servicios.css">
-    <link rel="stylesheet" href="../css/carrito.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/productos.css">
+    <link rel="stylesheet" href="../../css/footer.css">
+    <link rel="stylesheet" href="../../css/gestion.css">
+    <link rel="stylesheet" href="../../css/formularioGestion.css">
     <!-- link para iconos -->
-    <link rel="stylesheet" href="../css/fontawesome-free-5.15.4-web/css/all.min.css">
-    <title>Productos</title>
+    <link rel="stylesheet" href="../../css/fontawesome-free-5.15.4-web/css/all.min.css">
+    <title>Editar Usuario</title>
 </head>
 
 <body>
@@ -36,30 +35,30 @@
                         <div class="col-12">
                             <ul class="navbar-nav pb-0">
                                 <li class="nav-item mx-2 col-xl-3 col-lg-3 text-center">
-                                    <a class="nav-link active" aria-current="page" href="../index.php"><img
-                                            src="../img/LOGO.png" alt="logo" width="200px"></a>
+                                    <a class="nav-link active" aria-current="page" href="../../index.php"><img
+                                            src="../../img/LOGO.png" alt="logo" width="200px"></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="servicios.php">Servicios <i
+                                    <a class="nav-link active text-white" href="../servicios.php">Servicios <i
                                             class="fas fa-cut"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="productos.php" tabindex="-1">Productos
+                                    <a class="nav-link active text-white" href="../productos.php" tabindex="-1">Productos
                                         <i class="fab fa-product-hunt"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="nosotros.php" tabindex="-1">Nosotros <i
+                                    <a class="nav-link active text-white" href="../nosotros.php" tabindex="-1">Nosotros <i
                                             class="fas fa-photo-video"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="contactanos.php"
+                                    <a class="nav-link active text-white" href="../contactanos.php"
                                         tabindex="-1">Contáctanos <i class="fas fa-id-card"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="promociones.php" tabindex="-1">Promociones <i class="fas fa-id-card"></i></a>
+                                    <a class="nav-link active text-white" href="../promociones.php" tabindex="-1">Promociones <i class="fas fa-id-card"></i></a>
                                 </li>
 
-                                <?php include "../php/metodos.php";
+                                <?php include "../../php/metodos.php";
                                     // Continuar la sesión
                                     session_start();
 
@@ -69,14 +68,14 @@
                                         $tipo = session_id();
                                         if($tipo=="usuario" ||  $tipo=="admin"){
                                             echo "<li class='nav-item mx-2 col-xl-3 col-lg-3 text-center mt-4'>
-                                                    <a class='btn text-uppercase' id='botonUsuario' href='../app/misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i>"." ".$cliente["usuario"]."</></a>
-                                                    <a class='btn text-uppercase' id='botonUsuario' href='../php/logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='../../app/misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i>"." ".$cliente["usuario"]."</></a>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='../../php/logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
                                                 </li>";
                                         }                           
                                     }else{
                                         echo "<li class='nav-item mx-2 col-xl-3 col-lg-3 text-center mt-4'>
-                                                <a class='btn' id='Inicio' href='../IniciarS-Registrarte/iniciarSesion.php' >Iniciar Sesion</a>
-                                                <a class='btn' id='Registro' href='../IniciarS-Registrarte/registrarte.html' >Registrate</a>
+                                                <a class='btn' id='Inicio' href='../../IniciarS-Registrarte/iniciarSesion.php' >Iniciar Sesion</a>
+                                                <a class='btn' id='Registro' href='../../IniciarS-Registrarte/registrarte.html' >Registrate</a>
                                             </li>";
                                     }//Fin si
                                 ?>
@@ -88,98 +87,105 @@
                 </div>
         </nav>
     </header>
+<body>
 
-    <article>
-        <section>
-            <section class="cards">
+    <?php include_once "../../php/metodos.php";
 
-                <!-- Productos -->
-                <div class="container">
-                    <div>
-                        <div class="shape right-skew">
-                            <h2 class="text-center mt-5">Productos Barbería</h2>
-                        </div>
-                    </div>
-                    <!-- Carrito a la derecha -->
+    if (count($_GET) > 0) {
+        $id = $_GET["varId"];
+        $usuarioCliente = obtenerUsuario($id);
+    } else {
+        $id = $_POST["id"];
+        $usuarioCliente = obtenerUsuario($id);
+    }
+    $error = '';
+    if (count($_POST) > 0) {
+        function seguro($valor)
+        {
+            $valor = strip_tags($valor);
+            $valor = stripslashes($valor);
+            $valor = htmlspecialchars($valor);
+            return $valor;
+        }
 
-                    <div class="offcanvas offcanvas-start" style="width: 25%;" tabindex="-1" id="offcanvas" data-bs-keyboard="false"
-                        data-bs-backdrop="false">
-                        <div class="offcanvas-header">
-                            <h5 class="offcanvas-title d-none d-sm-block carritoTexto" id="offcanvas">CARRITO</h5>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="offcanvas-body px-0">
-                            <hr style="width: 80%; margin-left: 10%;">
-                            <div class="container col-12">
-                                <div class="row">
-                                    <div class="col-lg-4 col-12-xs">Vaciar Carrito <button class="botonMenuCarrito"><i class="fas fa-cart-arrow-down"></i></button></div>
-                                    <div class="col-lg-4 col-12-xs">Precio total = 300€</div>
-                                    <div class="col-lg-4 col-12-xs">Confirmar <a href="confirmar.html"><button class="botonMenuCarrito"><i class="fas fa-paper-plane"></i></button></a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col">
-                            <?php 
-                                // Boton para gestionar sesiones si eres admin
-                                if(isset($_SESSION['sesion_iniciada']) == true ){
-                                    $tipo = session_id();
-                                    if($tipo=="admin"){
-                                        echo "<button class='btn float-end m-2'>
-                                                <a href='gestion/gestionProductos.php'><i class='fas fa-edit'></i></a>
-                                            </button>";
-                                    }
-                                }//Fin si
-                            ?>
-                                <!-- toggler -->
-                                <button class="btn float-end m-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
-                                    role="button">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="slider carousel col-12 mt-5">
-                        <div class="row justify-content-center">
+        $cumplido = editarUsuario($id, $_POST["usuarioTxt"], $_POST["contrasena"], $_POST["nombreYape"], $_POST["dni"], $_POST["gmail"], $_POST["telefono"], $_POST["confirmado"], $_POST["tipo"], $_POST["direccion"]);
+        if ($cumplido == true) {
+            redirect("location: ../php/error.php" . $id);
+            exit();
+        } else {
+            $error = "Datos incorrectos o no se ha actualizado nada";
+        }
+    }
+    ?>
+<article>
+    <form class="form-register" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
+        <h2 class="form-titulo mt-4">Editando Usuario</h2>
+        <div class="contenedor-inputs">
+            <input type="hidden" name="id" value="<?php echo $usuarioCliente["id"]; ?>">
+            <!--aquí va el id, es hidden por lo tanto no es visible en la web, pero si accesible desde PHP -->
+            
+            <table>
+                <tr><td><p>Usuario</p><input type="text" name="usuarioTxt" class="input-100" value='<?php echo $usuarioCliente["usuario"]; ?>'><br><br></td></tr>
+                <tr><td><p>Contraseña</p><input type="text" name="contrasena" class="input-100" value='<?php echo $usuarioCliente["contrasena"]; ?>'><br><br></td></tr>
 
-                    <!-- Añado uno a uno cada producto -->
-                    <?php include_once "../php/metodos.php";
+                <tr><td>
+                    <p>Tipo</p>
+                    <select name="tipo" id="tipo">
+                    <?php
+                    //El tipo que tenia previamente, para que ese tipo no se repita tenemos el if dentro del for
                     
-                    error_log(0);   
-                        
-                        $producto=obtenerTodosProductos();
+                    echo '<option value="'.$usuarioCliente['tipo'].'">'.$usuarioCliente['tipo'].'</option>';                    
+                    $tipos = obtenerTiposUsuario();
+                    //Tipos no se actualiza ni se inserta
+                    
+                    for ($i=0;$i<sizeof($tipos);$i++){
+                        if($usuarioCliente['tipo']==$tipos[$i]['tipo']){
+                            
+                        }else{
+                            echo '<option class="optionInput" value="'.$tipos[$i]['tipo'].'">'.$tipos[$i]['tipo'].'</option>';                    
+                    
+                        }
+                    }
+                    ?>
+                    </select><br><br>
+                </td></tr>
 
-                        for ($i=0;$i<sizeof($producto);$i++){
-                            echo "<div class='producto item'>";
-                                echo "<div class='contenedor-imagen'>";
-                                    echo "<img src='../img/productos/".$producto[$i]['foto']."' class='img-nohover'>";
-                                    echo "<img src='../img/productos/".$producto[$i]['foto']."' class='img-hover'>";
-                                echo "</div>";
-                                echo "<div class='datos'>";
-                                    echo "<div class='starrr'></div>";
-                                    echo "<h4 id='nombreServicio'>".$producto[$i]['nombre']."</h4>";
-                                    echo "<small id='caracteristicas'>".$producto[$i]['descripcion']."</small>";
-                                echo "</div>";                                    
-                                echo "<div class='precios'>";
-                                    echo "<div>";
-                                        echo "<h5>Precio</h5>";
-                                        echo "<small id='precioServicio'>".$producto[$i]['precio']."</small>";
-                                    echo "</div>";
-                                echo "</div>";
-                                echo "<button class='btn-carrito'><i class='fas fa-shopping-basket'></i>Agregar al carrito</a></button>";
-                        echo "</div>";
-                           
-                        }//Fin Para
-                    ?>              
-                </div>
-            </div>
+                <tr><td>
+                    <p>Confirmado</p>
+                    <p>(0=si) (1=no)</p>
+                    <select name="confirmado" id="confirmado">
+                    <?php
+                    //El tipo que tenia previamente, para que ese tipo no se repita tenemos el if dentro del for
+                    
+                    echo '<option value="'.$usuarioCliente['confirmado'].'">'.$usuarioCliente['confirmado'].'</option>';                    
+                    $confirmados = obtenerConfirmadoUsuario();
+                    //Confirmado no se actualiza ni se inserta
+                    
+                    for ($i=0;$i<sizeof($confirmados);$i++){
+                        if($usuarioCliente['confirmado']==$confirmados[$i]['confirmado']){
+                            
+                        }else{
+                            echo '<option class="optionInput" value="'.$confirmados[$i]['confirmado'].'">'.$confirmados[$i]['confirmado'].'</option>';  
+                        }                  
+                    }
+                    ?>
+                    </select><br><br>
+                </td></tr>
+
+                <tr><td><p>Nombre y apellidos</p><input type="text" name="nombreYape" class="input-100" value='<?php echo $usuarioCliente["nombreYape"]; ?>'><br><br></td></tr>
+                <tr><td><p>Dni</p><input type="text" name="dni" class="input-100" value='<?php echo $usuarioCliente["dni"]; ?>'><br><br></td></tr>
+                <tr><td><p>Gmail</p><input type="gmail" name="gmail" class="input-100" value='<?php echo $usuarioCliente["gmail"]; ?>'><br><br></td></tr>
+                <tr><td><p>Telefono</p><input type="text" name="telefono" class="input-100" value='<?php echo $usuarioCliente["telefono"]; ?>'><br><br></td></tr>
+                <tr><td><p>Direccion</p><input type="text" name="direccion" class="input-100" value='<?php echo $usuarioCliente["direccion"]; ?>'><br><br></td></tr>               
+            </table>
+            <br>
+            <input type="submit" value="Guardar Cambios" class="btn-enviar">
+            <a href="gestionUsuarios.php"><input type="button" value="Volver" class="btn-enviar"></a>
+            <div id="errores"><?php echo $error; ?></div>
         </div>
-
+    </form>
     </article>
+
     <!-- FOOTER -->
     <footer id="footer" class="footer-1 mt-5">
         <div class="main-footer widgets-dark typo-light">
@@ -189,7 +195,7 @@
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="widget subscribe no-box">
                             <h5 class="widget-title">La Creación<span></span></h5>
-                            <a href="../index.php"><img src="../img/LOGO.png" width="150em"></a>
+                            <a href="../../index.php"><img src="../../img/LOGO.png" width="150em"></a>
                             <p class="mt-2">Tu barberia de confianza</p>
                         </div>
                     </div>
@@ -200,19 +206,22 @@
                             <ul class="thumbnail-widget">
                                 <li>
                                     <div class="thumb-content"><a
-                                            href="../IniciarS-Registrarte/iniciarSesion.php">Iniciar Sesion</a></div>
+                                            href="../../IniciarS-Registrarte/iniciarSesion.php">Iniciar Sesion</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="servicios.php">Servicios</a></div>
+                                    <div class="thumb-content"><a href="../servicios.php">Servicios</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="productos.php">Productos</a></div>
+                                    <div class="thumb-content"><a href="../productos.php">Productos</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="nosotros.php">Sobre Nosotros</a></div>
+                                    <div class="thumb-content"><a href="../nosotros.php">Sobre Nosotros</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="contactanos.php">Contáctanos</a></div>
+                                    <div class="thumb-content"><a href="../contactanos.php">Contáctanos</a></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="../promociones.php">Promociones</a></div>
                                 </li>
                             </ul>
                         </div>
@@ -222,7 +231,7 @@
                         <div class="widget no-box">
                             <h5 class="widget-title">Regístrate<span></span></h5>
                             <p>Únete a nosotros</p>
-                            <a class="btn" href="../IniciarS-Registrarte/registrarte.html"
+                            <a class="btn" href="../../IniciarS-Registrarte/registrarte.html"
                                 target="_blank">Registrate</a>
                         </div>
                     </div>
@@ -259,17 +268,20 @@
         </div>
 
         <div class="footer-copyright">
-            <div class="container">
+            <div class="container col-12">
                 <div class="row">
-                    <div class="col-md-12 text-center">
-                        <p>Copyright La Creción © 2022. All rights reserved.</p>
+                    <div class="col-8">
+                        <a href="../../politicas.php"><p>Politicas de privacidad.</p></a>
+                    </div>
+                    <div class="col-4">
+                        <p>Copyright La Creación © 2022.</p>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
     <script src="../js/anadirCarrito.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
     <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </body>
 

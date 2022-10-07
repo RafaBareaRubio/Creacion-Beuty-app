@@ -94,9 +94,9 @@
         <section>
             <form method="post" action="insertarUsuario.php">
                 <table>
-                    <tr><td><p>Usuario</p><input name="nombre" id="nombre" type="text" required></td></tr>
+                    <tr><td><p>Usuario</p><input name="usuario" id="usuario" type="text" required></td></tr>
 
-                    <tr><td><p>Contraseña</p><input name="precio" id="precio" type="text" required></td></tr>
+                    <tr><td><p>Contraseña</p><input name="contrasena" id="contrasena" type="text" required></td></tr>
 
 
                     <tr><td>
@@ -106,33 +106,25 @@
                         //El tipo que tenia previamente, para que ese tipo no se repita tenemos el if dentro del for
                         include_once "../../php/metodos.php";
                                          
-                        $tipos = obtenerTodosTiposServicios();
-                        $avatar = $_FILES["foto"]["name"];
-                        $temp = $_FILES['foto']['tmp_name'];
-                        if (move_uploaded_file($temp, 'images/' . $avatar)) {
-                            //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
-                            chmod('img/' . $avatar, 0777);
-                        }
-                        //Tipos no se actualiza ni se inserta
+                        $tipos = obtenerTiposUsuario();
                         
                         for ($i=0;$i<sizeof($tipos);$i++){
-                            echo '<option value="'.$tipos[$i]['tipo'].'">'.$tipos[$i]['tipo'].'</option>';                    
+                            echo '<option class="optionInput" value="'.$tipos[$i]['tipo'].'">'.$tipos[$i]['tipo'].'</option>';                    
                         }
                         ?>
                     </select><br><br>
                     </td></tr>
                     
 
-                    <tr><td><p>Nombre y apellidos</p><input name="precio" id="precio" type="text" required></td></tr>
+                    <tr><td><p>Nombre y apellidos</p><input name="nombreYape" id="nombreYape" type="text" required></td></tr>
 
-                    <tr><td><p>Dni</p><input name="precio" id="precio" type="text" required></td></tr>
+                    <tr><td><p>Dni</p><input name="dni" id="dni" type="text" required></td></tr>
 
-                    <tr><td><p>Gmail</p><input name="precio" id="precio" type="text" required></td></tr>
+                    <tr><td><p>Gmail</p><input name="gmail" id="gmail" type="text" required></td></tr>
 
-                    <tr><td><p>Telefono</p><input name="precio" id="precio" type="text" required></td></tr>
+                    <tr><td><p>Telefono</p><input name="telefono" id="telefono" type="text" required></td></tr>
 
-                    <tr><td><p>direccion</p><input name="precio" id="precio" type="text" required></td></tr>
-
+                    <tr><td><p>Direccion</p><input name="direccion" id="direccion" type="text" required></td></tr>
 
                 </table>
                 <input class="guardar" type="submit" value="Guardar">

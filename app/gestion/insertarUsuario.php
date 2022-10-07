@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS v5.0.2 -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/productos.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/servicios.css">
-    <link rel="stylesheet" href="../css/carrito.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/productos.css">
+    <link rel="stylesheet" href="../../css/footer.css">
+    <link rel="stylesheet" href="../../css/index.css">
+    <link rel="stylesheet" href="../../css/servicios.css">
+    <link rel="stylesheet" href="../../css/carrito.css">
     <!-- link para iconos -->
-    <link rel="stylesheet" href="../css/fontawesome-free-5.15.4-web/css/all.min.css">
-    <title>Productos</title>
+    <link rel="stylesheet" href="../../css/fontawesome-free-5.15.4-web/css/all.min.css">
+    <title>Insertar Usuario</title>
 </head>
 
 <body>
@@ -36,30 +36,30 @@
                         <div class="col-12">
                             <ul class="navbar-nav pb-0">
                                 <li class="nav-item mx-2 col-xl-3 col-lg-3 text-center">
-                                    <a class="nav-link active" aria-current="page" href="../index.php"><img
-                                            src="../img/LOGO.png" alt="logo" width="200px"></a>
+                                    <a class="nav-link active" aria-current="page" href="../../index.php"><img
+                                            src="../../img/LOGO.png" alt="logo" width="200px"></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="servicios.php">Servicios <i
+                                    <a class="nav-link active text-white" href="../servicios.php">Servicios <i
                                             class="fas fa-cut"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="productos.php" tabindex="-1">Productos
+                                    <a class="nav-link active text-white" href="../productos.php" tabindex="-1">Productos
                                         <i class="fab fa-product-hunt"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="nosotros.php" tabindex="-1">Nosotros <i
+                                    <a class="nav-link active text-white" href="../nosotros.php" tabindex="-1">Nosotros <i
                                             class="fas fa-photo-video"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="contactanos.php"
+                                    <a class="nav-link active text-white" href="../contactanos.php"
                                         tabindex="-1">Contáctanos <i class="fas fa-id-card"></i></a>
                                 </li>
                                 <li class="nav-item mx-2 col-xl-1 col-lg-1 text-center mt-4">
-                                    <a class="nav-link active text-white" href="promociones.php" tabindex="-1">Promociones <i class="fas fa-id-card"></i></a>
+                                    <a class="nav-link active text-white" href="../promociones.php" tabindex="-1">Promociones <i class="fas fa-id-card"></i></a>
                                 </li>
 
-                                <?php include "../php/metodos.php";
+                                <?php include "../../php/metodos.php";
                                     // Continuar la sesión
                                     session_start();
 
@@ -69,14 +69,14 @@
                                         $tipo = session_id();
                                         if($tipo=="usuario" ||  $tipo=="admin"){
                                             echo "<li class='nav-item mx-2 col-xl-3 col-lg-3 text-center mt-4'>
-                                                    <a class='btn text-uppercase' id='botonUsuario' href='../app/misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i>"." ".$cliente["usuario"]."</></a>
-                                                    <a class='btn text-uppercase' id='botonUsuario' href='../php/logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='../../app/misDatos.php' tabindex='-1'><i class='far fa-user-circle'></i>"." ".$cliente["usuario"]."</></a>
+                                                    <a class='btn text-uppercase' id='botonUsuario' href='../../php/logout.php' tabindex='-1'><i class='fas fa-user-alt-slash'></i></i> Cerrar Sesion</></a>
                                                 </li>";
                                         }                           
                                     }else{
                                         echo "<li class='nav-item mx-2 col-xl-3 col-lg-3 text-center mt-4'>
-                                                <a class='btn' id='Inicio' href='../IniciarS-Registrarte/iniciarSesion.php' >Iniciar Sesion</a>
-                                                <a class='btn' id='Registro' href='../IniciarS-Registrarte/registrarte.html' >Registrate</a>
+                                                <a class='btn' id='Inicio' href='../../IniciarS-Registrarte/iniciarSesion.php' >Iniciar Sesion</a>
+                                                <a class='btn' id='Registro' href='../../IniciarS-Registrarte/registrarte.html' >Registrate</a>
                                             </li>";
                                     }//Fin si
                                 ?>
@@ -90,96 +90,91 @@
     </header>
 
     <article>
-        <section>
-            <section class="cards">
+        <?php include_once "../../php/metodos.php";
 
-                <!-- Productos -->
-                <div class="container">
-                    <div>
-                        <div class="shape right-skew">
-                            <h2 class="text-center mt-5">Productos Barbería</h2>
-                        </div>
-                    </div>
-                    <!-- Carrito a la derecha -->
+            
 
-                    <div class="offcanvas offcanvas-start" style="width: 25%;" tabindex="-1" id="offcanvas" data-bs-keyboard="false"
-                        data-bs-backdrop="false">
-                        <div class="offcanvas-header">
-                            <h5 class="offcanvas-title d-none d-sm-block carritoTexto" id="offcanvas">CARRITO</h5>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="offcanvas-body px-0">
-                            <hr style="width: 80%; margin-left: 10%;">
-                            <div class="container col-12">
-                                <div class="row">
-                                    <div class="col-lg-4 col-12-xs">Vaciar Carrito <button class="botonMenuCarrito"><i class="fas fa-cart-arrow-down"></i></button></div>
-                                    <div class="col-lg-4 col-12-xs">Precio total = 300€</div>
-                                    <div class="col-lg-4 col-12-xs">Confirmar <a href="confirmar.html"><button class="botonMenuCarrito"><i class="fas fa-paper-plane"></i></button></a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col">
-                            <?php 
-                                // Boton para gestionar sesiones si eres admin
-                                if(isset($_SESSION['sesion_iniciada']) == true ){
-                                    $tipo = session_id();
-                                    if($tipo=="admin"){
-                                        echo "<button class='btn float-end m-2'>
-                                                <a href='gestion/gestionProductos.php'><i class='fas fa-edit'></i></a>
-                                            </button>";
-                                    }
-                                }//Fin si
-                            ?>
-                                <!-- toggler -->
-                                <button class="btn float-end m-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
-                                    role="button">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="slider carousel col-12 mt-5">
-                        <div class="row justify-content-center">
+        $confirmacion = '';
+        $error=false;//Control de errores
+        $errores="";
+        //Variables obtenidas por metodo post del formulario
+        //isset para controlar errores
+            
+            $usuarioTxt = $_POST['usuario'];
+            $contrasena = $_POST['contrasena'];
+            $tipo = $_POST['tipo'];
+            $nombreYape = $_POST['nombreYape'];
+            $dni = $_POST['dni'];
+            $gmail = $_POST['gmail'];
+            $telefono = $_POST['telefono'];
+            $direccion = $_POST['direccion'];
 
-                    <!-- Añado uno a uno cada producto -->
-                    <?php include_once "../php/metodos.php";
-                    
-                    error_log(0);   
-                        
-                        $producto=obtenerTodosProductos();
 
-                        for ($i=0;$i<sizeof($producto);$i++){
-                            echo "<div class='producto item'>";
-                                echo "<div class='contenedor-imagen'>";
-                                    echo "<img src='../img/productos/".$producto[$i]['foto']."' class='img-nohover'>";
-                                    echo "<img src='../img/productos/".$producto[$i]['foto']."' class='img-hover'>";
-                                echo "</div>";
-                                echo "<div class='datos'>";
-                                    echo "<div class='starrr'></div>";
-                                    echo "<h4 id='nombreServicio'>".$producto[$i]['nombre']."</h4>";
-                                    echo "<small id='caracteristicas'>".$producto[$i]['descripcion']."</small>";
-                                echo "</div>";                                    
-                                echo "<div class='precios'>";
-                                    echo "<div>";
-                                        echo "<h5>Precio</h5>";
-                                        echo "<small id='precioServicio'>".$producto[$i]['precio']."</small>";
-                                    echo "</div>";
-                                echo "</div>";
-                                echo "<button class='btn-carrito'><i class='fas fa-shopping-basket'></i>Agregar al carrito</a></button>";
-                        echo "</div>";
-                           
-                        }//Fin Para
-                    ?>              
-                </div>
-            </div>
+            //El HTML no lo controlaremos con required, para que así nos puedan meter valores vacios, ademas le daremos type text a todos para que puedan fallar y controlarlo aqui.
+            if($usuario==""){
+                $errores .= "<li>Necesitamos saber el usuario</li>";
+                $error=true;
+            }
+
+            if($contrasena==""){
+                $errores .= "<li>Necesitamos saber la contraseña del usuario</li>";
+                $error=true;
+            }
+
+            if($tipo==""){
+                $errores .= "<li>Es necesario saber el tipo para poder saber si puede o no gestionar la app</li>";
+                $error=true;
+            }
+
+            if($nombreYape==""){
+                $errores .= "<li>Es obligatorio conocer el nombre y apellidos del usuario</li>";
+                $error=true;
+            }
+
+            if($dni==""){
+                $errores .= "<li>Es necesaria el Dni</li>";
+                $error=true;
+            }
+
+            if($gmail==""){
+                $errores .= "<li>Es necesario saber el gmail del usuario</li>";
+                $error=true;
+            }
+
+            if($dni==""){
+                $errores .= "<li>Es necesaria el Dni</li>";
+                $error=true;
+            }
+
+
+            if (!$error) {
+                $confirmacion = "<br>Estos son los datos introducidos: <br>";
+                $confirmacion .= "<li>Usuario: $usuarioTxt</li>";
+                $confirmacion .= "<li>Contraseña: $contrasena</li>";
+                $confirmacion .= "<li>Tipo: $tipo</li>";
+                $confirmacion .= "<li>Nombre y apellidos: $nombreYape</li>";
+                $confirmacion .= "<li>Dni: $dni</li>";
+                $confirmacion .= "<li>Gmail: $gmail</li>";
+                $confirmacion .= "<li>Telefono: $telefono</li>";// Puede ser null
+                $confirmacion .= "<li>Direccion: $direccion</li>";// Puede ser null
+                $confirmado = 0;
+
+
+                insertarUsuario( $usuarioTxt, $contrasena, $nombreYape, $dni, $gmail, $telefono, $confirmado, $tipo, $direccion );
+            }else{
+                $confirmacion = "No se han podido realizar la inserción";
+                $confirmacion .= $errores;
+
+            }
+
+        ?>
+        <div class="container text-center">
+            <p><?php print($confirmacion); ?></p>   
+            <a href="gestionUsuarios.php">[ Insertar otro usuario ]</a>
+            <a href="../../index.php">[ Volver a la pagina principal ]</a>
         </div>
-
     </article>
+
     <!-- FOOTER -->
     <footer id="footer" class="footer-1 mt-5">
         <div class="main-footer widgets-dark typo-light">
@@ -189,7 +184,7 @@
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="widget subscribe no-box">
                             <h5 class="widget-title">La Creación<span></span></h5>
-                            <a href="../index.php"><img src="../img/LOGO.png" width="150em"></a>
+                            <a href="../../index.php"><img src="../../img/LOGO.png" width="150em"></a>
                             <p class="mt-2">Tu barberia de confianza</p>
                         </div>
                     </div>
@@ -200,19 +195,22 @@
                             <ul class="thumbnail-widget">
                                 <li>
                                     <div class="thumb-content"><a
-                                            href="../IniciarS-Registrarte/iniciarSesion.php">Iniciar Sesion</a></div>
+                                            href="../../IniciarS-Registrarte/iniciarSesion.php">Iniciar Sesion</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="servicios.php">Servicios</a></div>
+                                    <div class="thumb-content"><a href="../servicios.php">Servicios</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="productos.php">Productos</a></div>
+                                    <div class="thumb-content"><a href="../productos.php">Productos</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="nosotros.php">Sobre Nosotros</a></div>
+                                    <div class="thumb-content"><a href="../nosotros.php">Sobre Nosotros</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="contactanos.php">Contáctanos</a></div>
+                                    <div class="thumb-content"><a href="../contactanos.php">Contáctanos</a></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="../promociones.php">Promociones</a></div>
                                 </li>
                             </ul>
                         </div>
@@ -222,7 +220,7 @@
                         <div class="widget no-box">
                             <h5 class="widget-title">Regístrate<span></span></h5>
                             <p>Únete a nosotros</p>
-                            <a class="btn" href="../IniciarS-Registrarte/registrarte.html"
+                            <a class="btn" href="../../IniciarS-Registrarte/registrarte.html"
                                 target="_blank">Registrate</a>
                         </div>
                     </div>
@@ -259,17 +257,20 @@
         </div>
 
         <div class="footer-copyright">
-            <div class="container">
+            <div class="container col-12">
                 <div class="row">
-                    <div class="col-md-12 text-center">
-                        <p>Copyright La Creción © 2022. All rights reserved.</p>
+                    <div class="col-8">
+                        <a href="../../politicas.php"><p>Politicas de privacidad.</p></a>
+                    </div>
+                    <div class="col-4">
+                        <p>Copyright La Creación © 2022.</p>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
     <script src="../js/anadirCarrito.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
     <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </body>
 

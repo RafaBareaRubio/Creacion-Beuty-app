@@ -309,6 +309,22 @@ function obtenerTiposUsuario(){
     return $miArray;
 }
 
+function obtenerTrabajadores(){
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+        $sql = $con->prepare("SELECT DISTINCT nombreYape from usuario where tipo = 'trabajador';");
+        $sql->execute();
+        $miArray = [];
+        while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+            $miArray[] = $row;
+        }    
+    } catch (PDOException $e) {
+        echo $e;
+    }
+    $con = null;
+    return $miArray;
+}
+
 function insertarUsuario( $usuarioTxt, $contrasena, $nombreYape, $dni, $gmail, $telefono, $confirmado, $tipo, $direccion ){
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);

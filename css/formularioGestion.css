@@ -33,3 +33,36 @@ table {
 td {
     padding: 3%;
 }
+
+/*Citas*/
+.containerFormularioFirst{
+    background: url(https://jackrugile.com/images/misc/noise-diagonal.png), linear-gradient(white,rgb(221, 221, 221));
+	border-left: 1px solid #253243;
+	border-right: 1px solid #253243;
+	border-top: 1px solid #253243;
+	border-bottom: 1px solid #253243;
+    border-top-left-radius: 2%;
+    border-top-right-radius: 2%;
+	color: #000;
+	padding: 0.8em 1em;
+}
+
+.containerFormularioMiddle{
+    background: url(https://jackrugile.com/images/misc/noise-diagonal.png), linear-gradient(rgb(221, 221, 221),white);
+	border-left: 1px solid #253243;
+	border-right: 1px solid #253243;
+	color: #000;
+	padding: 0.8em 1em;
+}
+
+.containerFormularioLast{
+    background: url(https://jackrugile.com/images/misc/noise-diagonal.png), linear-gradient(white,rgb(221, 221, 221));
+	border-left: 1px solid #253243;
+    border-top: 1px solid #253243;
+	border-right: 1px solid #253243;
+	border-bottom: 1px solid #253243;
+    border-bottom-left-radius: 2%;
+    border-bottom-right-radius: 2%;
+	color: #000;
+	padding: 0.8em 1em;
+}

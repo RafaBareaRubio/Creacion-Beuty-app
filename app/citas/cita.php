@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../css/productos.css">
     <link rel="stylesheet" href="../../css/footer.css">
     <link rel="stylesheet" href="../../css/gestion.css">
+    <link rel="stylesheet" href="../../css/calendario.less">
     <link rel="stylesheet" href="../../css/formularioGestion.css">
     <!-- link para iconos -->
     <link rel="stylesheet" href="../../css/fontawesome-free-5.15.4-web/css/all.min.css">
@@ -89,38 +90,55 @@
     </header>
 
     <article>
-        <h1 class="mt-4" >Reserva tú cita</h1>
-        <!-- Formulario para insertar el producto -->
         <section>
-            <form method="post" action="insertarServicio.php" name="formulario" id="formulario">
-                <table>
-                    <tr><td><p>Trabajador</p><input name="nombre" id="nombre" type="text" required></td></tr>
+            <div class="containerFormulario col-12">
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <h1 class="mt-4">Reserva tú cita</h1>
+                            <!-- Formulario para insertar el producto -->
+                            <form method="post" action="insertarCita.php" name="reservadaCita" id="reservadaCita">
+                                <div class="containerFormularioFirst">
+                                    <h2>Trabajador</h2>       
+                                        <?php
+                                        //El nombre que tenia previamente, para que ese tipo no se repita tenemos el if dentro del for
+                                        include_once "../../php/metodos.php";
+                        
+                                            $trabajador = obtenerTrabajadores();
+                                            for ($i=0;$i<sizeof($trabajador);$i++){
+                                                echo  '<input type="radio" id="trabajador" name="trabajador" value="trabajador">';
+                                                echo  '<label for="html">'.$trabajador[$i]['nombreYape'].'</label><br>';
+                                            }
+                                        ?>
+                                </div>
+                                <div class="containerFormularioMiddle">
+                                    <h2>Servicio</h2>         
+                                        <?php
+                                        //El nombre que tenia previamente, para que ese tipo no se repita tenemos el if dentro del for
+                                        include_once "../../php/metodos.php";
+                                            echo '<select name="servicio" id="servicio">';
+                                            echo '<option value=""></option>';
 
-                    <tr><td>
-                        <p>Servicio</p>
-                        <?php
-                            //El nombre que tenia previamente, para que ese tipo no se repita tenemos el if dentro del for
-                            include_once "../../php/metodos.php";
-                            echo '<select name="servicio" id="servicio">';
-                            echo '<option value=""></option>';
-                            
-
-                            $nombre = obtenerTodosNombreServicios();
-                            for ($i=0;$i<sizeof($nombre);$i++){
-                                echo '<option value="'.$nombre[$i]['tipo'].'">'.$nombre[$i]['nombre'].'</option>';                    
-                            }
-                            // cuando no este vacio
-                            if(isset($servicio)){
-                                echo 'hola';
-                            }
-                            ?>
-                        </select><br><br>
-                    </td></tr>
-                    
-
-                </table>
-                <input class="guardar" type="submit" value="Guardar">
-            </form>
+                                            $nombre = obtenerTodosNombreServicios();
+                                            for ($i=0;$i<sizeof($nombre);$i++){
+                                                echo '<option class="text-center" value="'.$nombre[$i]['tipo'].'">'.$nombre[$i]['nombre'].'</option>';                    
+                                            }
+                                            echo '</select><br><br>';
+                                        ?>                                       
+                                </div>
+                                <div class="containerFormularioLast">
+                                    <h2>Fecha</h2>         
+                                    <div class="calendar-wrapper">
+                                        <button id="btnPrev" type="button">Anterior</button>
+                                        <button id="btnNext" type="button">Siguiente</button>
+                                        <div id="divCal"></div>
+                                    </div>
+                                  
+                                </div>
+                            <input class="guardar" type="submit" value="Guardar">
+                            </form>
+                    </div>
+                </div>
+            </div>
         </section>
 
     </article>
@@ -219,7 +237,7 @@
             </div>
         </div>
     </footer>
-    <script src="../js/anadirCarrito.js"></script>
+    <script src="../../js/calendario.js"></script>
     <script src="../../js/bootstrap.bundle.min.js"></script>
     <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </body>

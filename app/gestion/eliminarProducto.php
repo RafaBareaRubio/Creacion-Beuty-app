@@ -94,9 +94,9 @@
     $id= $_GET["varId"];
 
     $cumplido=eliminarProducto($id);
-    $error='Se ha borrado la publicacion con el id: ' . $id;
+    $error='Se ha borrado el producto con el id: ' . $id;
     if(!$cumplido){
-        $error="Error al borrar la publicacion seleccionado";
+        $error="Error al borrar el producto seleccionado";
     }
     ?> 
     
@@ -200,7 +200,6 @@
             </div>
         </div>
     </footer>
-    <script src="../js/anadirCarrito.js"></script>
     <script src="../../js/bootstrap.bundle.min.js"></script>
     <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </body>

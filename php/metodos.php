@@ -106,7 +106,7 @@ function eliminarServicio($id)
             $retorno = true;
         }
     } catch (PDOException $e) {
-        header("location: ../php/error.php");
+        redirect();
     }
     $con = null;
     return $retorno;
@@ -129,7 +129,7 @@ function editarServicio($id, $nombre, $precio, $tipo, $oferta, $descripcion, $fo
             $retorno = true;
         }
     } catch (PDOException $e) {
-        header("location: ../php/error.php");
+        redirectGestionServicios();
     }
     $con = null;
     return $retorno;
@@ -205,7 +205,7 @@ function eliminarProducto($id)
             $retorno = true;
         }
     } catch (PDOException $e) {
-        header("location: ../php/error.php");
+        redirect();
     }
     $con = null;
     return $retorno;
@@ -228,7 +228,7 @@ function editarProducto($id, $titulo, $publicacion, $tipo, $contenido, $fecha, $
             $retorno = true;
         }
     } catch (PDOException $e) {
-        header("location: ../php/error.php");
+        redirectGestionProductos();
     }
     $con = null;
     return $retorno;
@@ -272,7 +272,7 @@ function editarUsuario($id, $usuarioTxt, $contrasena, $nombreYape, $dni, $gmail,
             $retorno = true;
         }
     } catch (PDOException $e) {
-        header("location: ../php/error.php");
+        redirectGestionUsuarios();
     }
     $con = null;
     return $retorno;
@@ -359,7 +359,7 @@ function eliminarUsuario($id)
             $retorno = true;
         }
     } catch (PDOException $e) {
-        header("location: ../php/error.php");
+        redirect();
     }
     $con = null;
     return $retorno;
@@ -417,13 +417,14 @@ function obtenerTodosProductosOfertas(){
 
 //Formulario
 //Aqui hay redundancia porque el usuario se puede sacar a partir del id, pero es por comodidad para mostrar los datos
-function insertarMensaje($usuario, $texto)
+function insertarMensaje($txtUsuario, $texto, $emoji)
 {
     try {
         $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
-        $sql = $con->prepare("INSERT into mensaje values(null,:usuario,:texto)");
-        $sql->bindParam(":usuario", $usuario);
+        $sql = $con->prepare("INSERT into mensaje values(null,:txtUsuario,:texto,:emoji)");
+        $sql->bindParam(":txtUsuario", $txtUsuario);
         $sql->bindParam(":texto", $texto);
+        $sql->bindParam(":emoji", $emoji);
         $sql->execute();
         $id = $con->lastInsertId();
     } catch (PDOException $e) {
@@ -433,20 +434,117 @@ function insertarMensaje($usuario, $texto)
     return $id;
 }
 
-function redirect($url)
+function obtenerTodosLosMensajes(){
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+        $sql = $con->prepare("SELECT * from mensaje;");
+        $sql->execute();
+        $miArray = [];
+        while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+            $miArray[] = $row;
+        }    
+    } catch (PDOException $e) {
+        echo $e;
+    }
+    $con = null;
+    return $miArray;
+}
+
+function obtenerMensaje($id){
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+
+        $sql = $con->prepare("SELECT * from mensaje where id=:id");
+        $sql->bindParam(":id", $id); //Para evitar inyecciones SQL
+        $sql->execute();
+        $row = $sql->fetch(PDO::FETCH_ASSOC); //Recibimos la linea correspondiente en ROW
+        $con = null; //Cerramos la conexión
+        return $row;
+    } catch (PDOException $e) {
+        echo $e;
+    }
+}
+
+function eliminarMensaje($id){
+    $retorno = false;
+    try {
+        $con = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['pass']);
+        $sql = $con->prepare("DELETE from mensaje where id=:id");
+        $sql->bindParam(":id", $id);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $retorno = true;
+        }
+    } catch (PDOException $e) {
+        redirect();
+    }
+    $con = null;
+    return $retorno;
+}
+
+
+
+//Redireccion de error
+function redirectGestionServicios()
 {
-    if (!headers_sent())
+    if (headers_sent())
     {    
-        header('Location: '.$url);
+        echo '<script type="text/javascript"> window.location.href="gestionServicios.php"</script>';
         exit;
         }
     else
         {  
-        echo '<script type="text/javascript">';
-        echo 'window.location.href="'.$url.'";';
-        echo '</script>';
+        echo '<script type="text/javascript"> window.location.href="../../php/error.php"</script>';
         echo '<noscript>';
-        echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
+        echo '<meta http-equiv="refresh" content="0;url=../../php/error.php" />';
+        echo '</noscript>'; exit;
+    }
+}
+
+function redirectGestionProductos()
+{
+    if (headers_sent())
+    {    
+        echo '<script type="text/javascript"> window.location.href="gestionProductos.php"</script>';
+        exit;
+        }
+    else
+        {  
+        echo '<script type="text/javascript"> window.location.href="../../php/error.php"</script>';
+        echo '<noscript>';
+        echo '<meta http-equiv="refresh" content="0;url=../../php/error.php" />';
+        echo '</noscript>'; exit;
+    }
+}
+
+function redirectGestionUsuarios()
+{
+    if (headers_sent())
+    {    
+        echo '<script type="text/javascript"> window.location.href="gestionUsuarios.php"</script>';
+        exit;
+        }
+    else
+        {  
+        echo '<script type="text/javascript"> window.location.href="../../php/error.php"</script>';
+        echo '<noscript>';
+        echo '<meta http-equiv="refresh" content="0;url=../../php/error.php" />';
+        echo '</noscript>'; exit;
+    }
+}
+
+function redirect()
+{
+    if (headers_sent())
+    {    
+        echo '<script type="text/javascript"> window.location.href="../../php/error.php"</script>';
+        exit;
+        }
+    else
+        {  
+        echo '<script type="text/javascript"> window.location.href="../../php/error.php"</script>';
+        echo '<noscript>';
+        echo '<meta http-equiv="refresh" content="0;url=../../php/error.php" />';
         echo '</noscript>'; exit;
     }
 }

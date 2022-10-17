@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/servicios.css">
-    <link rel="stylesheet" href="../css/carrito.css">
     <!-- link para iconos -->
     <link rel="stylesheet" href="../css/fontawesome-free-5.15.4-web/css/all.min.css">
     <title>Pedido Confirmado</title>

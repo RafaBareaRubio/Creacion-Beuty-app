@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/servicios.css">
-    <link rel="stylesheet" href="../css/carrito.css">
     <!-- link para iconos -->
     <link rel="stylesheet" href="../css/fontawesome-free-5.15.4-web/css/all.min.css">
     <title>Galería</title>
@@ -119,15 +118,15 @@
                   <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
                 <div class="slide1 carousel-inner">
-                    <div class="carousel-item active">
+                    <div class="carousel-item active w-100 h-auto">
                         <img src="../img/Salon/peluqueria.jpeg">
 
                     </div>
-                    <div class="slide2 carousel-item">
+                    <div class="slide2 carousel-item w-100 h-auto">
                         <img src="../img/Salon/salon1.jpeg">
 
                     </div>
-                    <div class="slide3 carousel-item">
+                    <div class="slide3 carousel-item w-100 h-auto">
                         <img src="../img/Salon/salon2.jpeg">
                     </div>
                 </div>

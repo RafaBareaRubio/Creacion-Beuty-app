@@ -117,12 +117,12 @@
                 chmod('../../img/productos/' . $image, 0777);
             }
         } else {
-            $image = $productos["foto"];
+            $image = $producto["foto"];
         }
 
-        $cumplido = editarProducto($id, $_POST["nombre"], $_POST["precio"], $_POST["tipo"], $_POST["oferta"], $_POST["descripcion"]);
+        $cumplido = editarProducto($id, $_POST["nombre"], $_POST["unidad"] , $_POST["precio"], $_POST["oferta"], $_POST["descripcion"]);
         if ($cumplido == true) {
-            header("Location: index.php?varId=" . $id);
+            redirect("Location: index.php?varId=" . $id);
             exit();
         } else {
             $error = "Datos incorrectos o no se ha actualizado nada";
@@ -137,11 +137,11 @@
             <!--aquí va el id, es hidden por lo tanto no es visible en la web, pero si accesible desde PHP -->
             
             <table>
-                <tr><td><p>Nombre</p><input type="text" name="nombre" placeholder='<?php echo $producto["nombre"]; ?>' class="input-100" required value='<?php echo $producto["nombre"]; ?>'><br><br></td></tr>
+                <tr><td><p>Nombre</p><input type="text" name="nombre" class="input-100" required value='<?php echo $producto["nombre"]; ?>'><br><br></td></tr>
                 <tr><td><p>Unidad</p><input type="text" name="unidad" class="input-100" required value='<?php $producto["unidad"]; echo $producto["unidad"]; ?>'><br><br></td></tr>
                 <tr><td><p>Precio</p><input type="text" name="precio" class="input-100" value='<?php $producto["precio"]; echo $producto["precio"]; ?>'><br><br></td></tr>
-                <tr><td><p>Oferta</p><textarea name="oferta" id="oferta" placeholder='<?php echo $producto["oferta"]; ?>' value='<?php echo $producto["oferta"]; ?>'></textarea><br><br></td></tr>
-                <tr><td><p>Descripcion</p><textarea name="descripcion" id="descripcion" placeholder='<?php echo $producto["descripcion"]; ?>' value='<?php echo $producto["descripcion"]; ?>'></textarea><br><br></td></tr>
+                <tr><td><p>Oferta</p><input type="text" name="oferta" id="oferta" class="input-100" value='<?php echo $producto["oferta"]; ?>'><br><br></td></tr>
+                <tr><td><p>Descripcion</p><input type="text" name="descripcion" class="input-100" value='<?php echo $producto["descripcion"]; ?>'><br><br></td></tr>
                 <tr><td><p>Foto Actual</p><img name="fotoActual" width=200px <?php if ($producto["foto"] != '' && file_exists("../../img/productos/" . $producto["foto"])) {
                                                         echo "src='../../img/productos/" . $producto['foto'] . "'";
                                                     } ?>><!-- Aquí tienes que cargar la imagen actual -->
@@ -249,7 +249,6 @@
             </div>
         </div>
     </footer>
-    <script src="../js/anadirCarrito.js"></script>
     <script src="../../js/bootstrap.bundle.min.js"></script>
     <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </body>

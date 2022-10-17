@@ -11,10 +11,9 @@
     <link rel="stylesheet" href="../../css/productos.css">
     <link rel="stylesheet" href="../../css/footer.css">
     <link rel="stylesheet" href="../../css/gestion.css">
-    <link rel="stylesheet" href="../../css/formularioGestion.css">
     <!-- link para iconos -->
     <link rel="stylesheet" href="../../css/fontawesome-free-5.15.4-web/css/all.min.css">
-    <title>Insertar Producto</title>
+    <title>Eliminar Mensaje</title>
 </head>
 
 <body>
@@ -87,80 +86,39 @@
                 </div>
         </nav>
     </header>
+    </div>
+    <!-- ARTICLE -->
+    <article>  
+    <!-- Preguntar antes de eliminar y asegurarse de si tiene permisos como usuario -->
+    <?php include_once "../../php/metodos.php";
+    //Variables
+    $id = $_GET["varId"];
+    if (count($_GET) > 0) { 
+        $mensaje = obtenerMensaje($id);
+    } else {
+        $mensaje = obtenerMensaje($id);
+    }
+    
+    
+    //nombre
 
-    <article>
-        <?php include_once "../../php/metodos.php";
+    $cumplido=eliminarMensaje($id);
+    $error='Se ha borrado el mensaje con el id: ' . $id;
+    $error='Se ha borrado el mensaje: ' . $mensaje["texto"];
 
-            
-
-        $confirmacion = '';
-        $error=false;//Control de errores
-        $errores="";
-        //Variables obtenidas por metodo post del formulario
-        //isset para controlar errores
-            
-            $nombre = isset($_POST['nombre']);
-            $unidad = $_POST['unidad'];
-            $precio = $_POST['precio'];
-            $oferta = $_POST['oferta'];
-            $descripcion = $_POST['descripcion'];
-            $foto = $_POST['foto'];
-
-
-            //El HTML no lo controlaremos con required, para que así nos puedan meter valores vacios, ademas le daremos type text a todos para que puedan fallar y controlarlo aqui.
-            if($nombre==""){
-                $errores .= "<li>Necesitamos saber el nombre del producto</li>";
-                $error=true;
-            }else{
-                $nombre =$_POST['nombre'];
-            }
-
-            if($unidad==""){
-                $errores .= "<li>Es necesario saber la unidad para poder decir si esta o no en stock</li>";
-                $error=true;
-            }else{
-                $unidad =$_POST['unidad'];
-            }
-
-            if($precio==""){
-                $errores .= "<li>Es obligatorio conocer el precio del producto</li>";
-                $error=true;
-            }else{
-                $precio = $_POST['precio'];
-            }
-
-            if($descripcion==""){
-                $errores .= "<li>Es necesaria una breve descripcion del producto</li>";
-                $error=true;
-            }
-
-
-            if (!$error) {
-                $confirmacion = "Estos son los datos introducidos: <br>";
-                $confirmacion .= "<li>Nombre: $nombre</li>";
-                $confirmacion .= "<li>Unidad: $unidad</li>";
-                $confirmacion .= "<li>Precio: $precio</li>";
-                $confirmacion .= "<li>Oferta: $oferta</li>";
-                $confirmacion .= "<li>Descripcion: $descripcion</li>";
-                $confirmacion .= "<li>Foto: $foto</li><br>";
-                $confirmacion .= "<img height='15%' width='25%' src='../../img/productos/$foto'/>";
-
-                insertarProducto( $nombre, $unidad, $precio, $oferta, $descripcion, $foto);
-            }else{
-                $confirmacion = "No se han podido realizar la inserción";
-                $confirmacion .= $errores;
-
-            }
-
-        ?>
-        <div class="container text-center">
-            <p><?php print($confirmacion); ?></p>   
-            <a href="gestionProductos.php">[ Insertar otro producto ]</a>
-            <a href="../../index.php">[ Volver a la pagina principal ]</a>
-        </div>
-    </article>
+    if(!$cumplido){
+        $error="Error al borrar el mensaje";
+    }
+    ?> 
+    
+    <div class="container text-center">
+        <h2><?php echo $error;?></h2>
+        <a href="gestionFeedback.php">[Eliminar otro mensaje]</a>
+        <a href="../../index.php">[Pagina principal]</a>
+    </div>
+     </article>
 <!-- FOOTER -->
-    <footer id="footer" class="footer-1 mt-5">
+<footer id="footer" class="footer-1 mt-5">
         <div class="main-footer widgets-dark typo-light">
             <div class="container">
                 <div class="row">

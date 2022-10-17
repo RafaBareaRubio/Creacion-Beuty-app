@@ -11,10 +11,9 @@
     <link rel="stylesheet" href="../../css/productos.css">
     <link rel="stylesheet" href="../../css/footer.css">
     <link rel="stylesheet" href="../../css/gestion.css">
-    <link rel="stylesheet" href="../../css/formularioGestion.css">
     <!-- link para iconos -->
     <link rel="stylesheet" href="../../css/fontawesome-free-5.15.4-web/css/all.min.css">
-    <title>Insertar Producto</title>
+    <title>Gestion Mensajes</title>
 </head>
 
 <body>
@@ -87,80 +86,62 @@
                 </div>
         </nav>
     </header>
-
+ 
+ <section>
     <article>
-        <?php include_once "../../php/metodos.php";
+        <div class="tablon container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <div class="container">
+                        <div class="col-12">
+                    <div class="row">
+                        <div class="col-8">
+                            <h2 class="mt-4">Gestión De Mensajes</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="containerTable">
+                    <div class="row ">
+                        <div class="col-12">
+                        <!-- Obtener todos los servicios en una tabla -->
+                            <table>
+                                <thead>
+                                    <!-- Ordenar tabla por tipo -->
+                                    <tr>
+                                        <th>Usuario</th>
+                                        <th>Mensaje</th>
+                                        <th>Emoji</th>
+                                        <th>Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>                        
+                                    <?php include_once "../../php/metodos.php";
 
-            
-
-        $confirmacion = '';
-        $error=false;//Control de errores
-        $errores="";
-        //Variables obtenidas por metodo post del formulario
-        //isset para controlar errores
-            
-            $nombre = isset($_POST['nombre']);
-            $unidad = $_POST['unidad'];
-            $precio = $_POST['precio'];
-            $oferta = $_POST['oferta'];
-            $descripcion = $_POST['descripcion'];
-            $foto = $_POST['foto'];
-
-
-            //El HTML no lo controlaremos con required, para que así nos puedan meter valores vacios, ademas le daremos type text a todos para que puedan fallar y controlarlo aqui.
-            if($nombre==""){
-                $errores .= "<li>Necesitamos saber el nombre del producto</li>";
-                $error=true;
-            }else{
-                $nombre =$_POST['nombre'];
-            }
-
-            if($unidad==""){
-                $errores .= "<li>Es necesario saber la unidad para poder decir si esta o no en stock</li>";
-                $error=true;
-            }else{
-                $unidad =$_POST['unidad'];
-            }
-
-            if($precio==""){
-                $errores .= "<li>Es obligatorio conocer el precio del producto</li>";
-                $error=true;
-            }else{
-                $precio = $_POST['precio'];
-            }
-
-            if($descripcion==""){
-                $errores .= "<li>Es necesaria una breve descripcion del producto</li>";
-                $error=true;
-            }
-
-
-            if (!$error) {
-                $confirmacion = "Estos son los datos introducidos: <br>";
-                $confirmacion .= "<li>Nombre: $nombre</li>";
-                $confirmacion .= "<li>Unidad: $unidad</li>";
-                $confirmacion .= "<li>Precio: $precio</li>";
-                $confirmacion .= "<li>Oferta: $oferta</li>";
-                $confirmacion .= "<li>Descripcion: $descripcion</li>";
-                $confirmacion .= "<li>Foto: $foto</li><br>";
-                $confirmacion .= "<img height='15%' width='25%' src='../../img/productos/$foto'/>";
-
-                insertarProducto( $nombre, $unidad, $precio, $oferta, $descripcion, $foto);
-            }else{
-                $confirmacion = "No se han podido realizar la inserción";
-                $confirmacion .= $errores;
-
-            }
-
-        ?>
-        <div class="container text-center">
-            <p><?php print($confirmacion); ?></p>   
-            <a href="gestionProductos.php">[ Insertar otro producto ]</a>
-            <a href="../../index.php">[ Volver a la pagina principal ]</a>
-        </div>
+                                    //Saca el id del usuario con la sesion iniciada
+                                    $mensaje =  obtenerTodosLosMensajes();                                   
+                                    
+                                    for ($i=0;$i<sizeof($mensaje);$i++){
+                                        echo "<tr>";
+                                            echo "<td name='nombre' id='nombre' method='post' >".$mensaje[$i]['idUsuario']."</td>";
+                                            echo "<td>".$mensaje[$i]['texto']."</td>";
+                                            echo "<td>".$mensaje[$i]['emoji']."</td>";
+                                            echo "<td><a href='eliminarMensaje.php?varId=".$mensaje[$i]["id"]."'><i class='fas fa-trash-alt'></i></a></td>";
+                                        echo "</tr>";
+                                    }//Fin Para
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
     </article>
+ </section>
+ 
 <!-- FOOTER -->
-    <footer id="footer" class="footer-1 mt-5">
+<footer id="footer" class="footer-1 mt-5">
         <div class="main-footer widgets-dark typo-light">
             <div class="container">
                 <div class="row">

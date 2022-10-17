@@ -91,14 +91,19 @@
 
     <article>
         <section>
-            <div class="containerFormulario col-12">
+            <h1 class="mt-4 mb-4">Reserva tú cita</h1>
+            <div class="containerFormulario col-12 container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-auto">
-                        <h1 class="mt-4">Reserva tú cita</h1>
+                        
+                        <br>
                             <!-- Formulario para insertar el producto -->
                             <form method="post" action="insertarCita.php" name="reservadaCita" id="reservadaCita">
                                 <div class="containerFormularioFirst">
-                                    <h2>Trabajador</h2>       
+                                    <h2>Trabajador</h2>  
+                                    <hr class="subtitu"> 
+                                    <hr class="subtitu2">       
+                                    <br>    
                                         <?php
                                         //El nombre que tenia previamente, para que ese tipo no se repita tenemos el if dentro del for
                                         include_once "../../php/metodos.php";
@@ -111,30 +116,39 @@
                                         ?>
                                 </div>
                                 <div class="containerFormularioMiddle">
-                                    <h2>Servicio</h2>         
+                                    <h2>Servicio</h2>
+                                    <hr class="subtitu">     
+                                    <hr class="subtitu2">         
+                                    <br>   
                                         <?php
                                         //El nombre que tenia previamente, para que ese tipo no se repita tenemos el if dentro del for
                                         include_once "../../php/metodos.php";
-                                            echo '<select name="servicio" id="servicio">';
+                                            echo '<select class="serviciosForm" id="serviciosForm">';
                                             echo '<option value=""></option>';
 
                                             $nombre = obtenerTodosNombreServicios();
                                             for ($i=0;$i<sizeof($nombre);$i++){
-                                                echo '<option class="text-center" value="'.$nombre[$i]['tipo'].'">'.$nombre[$i]['nombre'].'</option>';                    
+                                                echo '<option value="'.$nombre[$i]['tipo'].'">'.$nombre[$i]['nombre'].'</option>';                    
                                             }
                                             echo '</select><br><br>';
                                         ?>                                       
                                 </div>
-                                <div class="containerFormularioLast">
-                                    <h2>Fecha</h2>         
-                                    <div class="calendar-wrapper">
-                                        <button id="btnPrev" type="button">Anterior</button>
-                                        <button id="btnNext" type="button">Siguiente</button>
-                                        <div id="divCal"></div>
-                                    </div>
-                                  
+                                <div class="containerFormularioMiddle">
+                                    <h2>Fecha</h2>  
+                                    <hr class="subtitu">    
+                                    <hr class="subtitu2">       
+                                    <br>
+                                    <input type="date">
                                 </div>
-                            <input class="guardar" type="submit" value="Guardar">
+                                <div class="containerFormularioLast">
+                                    <h2>Hora</h2>  
+                                    <hr class="subtitu">  
+                                    <hr class="subtitu2">             
+                                    <br>
+                                    <input type="time">
+                                </div>
+                                <br>
+                            <input class="guardar" type="submit" value="Confirmar Cita">
                             </form>
                     </div>
                 </div>
@@ -150,8 +164,8 @@
                 <div class="row">
 
                     <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="widget subscribe no-box">
-                            <h5 class="widget-title">La Creación<span></span></h5>
+                        <div class="widget subscribe">
+                            <h5 class="widget-title widget-last">La Creación<span></span></h5>
                             <a href="../../index.php"><img src="../../img/LOGO.png" width="150em"></a>
                             <p class="mt-2">Tu barberia de confianza</p>
                         </div>

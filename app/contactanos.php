@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/servicios.css">
-    <link rel="stylesheet" href="../css/carrito.css">
     <!-- link para iconos -->
     <link rel="stylesheet" href="../css/fontawesome-free-5.15.4-web/css/all.min.css">
     <title>Contáctanos</title>
@@ -92,7 +91,30 @@
     <article>
         <!-- card -->
         <section class="mt-5">
-            <h2>CONTACT&Aacute;NOS</h2>
+            
+            <div class="container col-12">
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <h2>CONTACT&Aacute;NOS</h2>
+                    </div>
+                    <div class="col-auto">
+                        <?php 
+                        // Boton para gestionar sesiones si eres admin
+                            if(isset($_SESSION['sesion_iniciada']) == true ){
+                                $tipo = session_id();
+                                if($tipo=="admin"){
+                                    echo " <a href='gestion/gestionFeedback.php'>
+                                                <button class='btn float-end'>
+                                                    <i class='fas fa-envelope-square'></i>
+                                                </button>
+                                            </a>";
+                                }
+                            }//Fin si
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <br>
             <div class="container col-12 mb-5 mt-3 text-center ">
                 <div class="row p-2 justify-content-center align-items-center">
                     <div class="card col-auto pt-2" style="width: 75%;">
@@ -103,7 +125,6 @@
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ranked">
                                 Contáctanos
                             </button>
-
                             <!-- Modal -->
                             <div class="modal fade" id="ranked" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
@@ -118,13 +139,16 @@
                                             <!-- formulario -->
 
                                             <h1 id="title">Formulario</h1>
-                                            <form class="contactame" action="formulario.php" method="post">
+                                            <form class="contactame" action="gestion/insertarMensaje.php" method="post">
+                                            <!-- Meter con php el idUsuario -->
                                                 <input type="text" name="nombre" placeholder="Nombre">
+                                            <!--  -->
                                                 <br>
                                                 <textarea type="text" name="texto" placeholder="Texto" class="mt-3"></textarea>
                                                 <br>
                                                 <p>¿Te Gusta la app?</p>
-                                                <button class="emoji" value="si" type="button" name="bien" id="Bien" onclick="botonFormularioBien()">&#128512;</button><button class="emoji" name="mal" value="no" id="Mal" type="button" onclick="botonFormularioMal()">&#128528;</button>
+                                                <button class="emoji" value="Contento" type="submit" name="emoji" id="bien" onclick="botonFormularioBien()">&#128512;</button>
+                                                <button class="emoji" value="Serio" type="submit" name="emoji"  id="mal" onclick="botonFormularioMal()">&#128528;</button>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn
                                                             btn-secondary" data-bs-dismiss="modal">Cerrar</button>

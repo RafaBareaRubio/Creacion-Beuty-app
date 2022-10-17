@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/servicios.css">
-    <link rel="stylesheet" href="../css/carrito.css">
     <!-- link para iconos -->
     <link rel="stylesheet" href="../css/fontawesome-free-5.15.4-web/css/all.min.css">
     <title>Productos</title>
@@ -128,9 +127,11 @@
                                 if(isset($_SESSION['sesion_iniciada']) == true ){
                                     $tipo = session_id();
                                     if($tipo=="admin"){
-                                        echo "<button class='btn float-end m-2'>
-                                                <a href='gestion/gestionProductos.php'><i class='fas fa-edit'></i></a>
-                                            </button>";
+                                        echo "<a href='gestion/gestionProductos.php'>
+                                                <button class='btn float-end m-2'>
+                                                    <i class='fas fa-edit'></i>
+                                                </button>
+                                            </a>";
                                     }
                                 }//Fin si
                             ?>
@@ -268,7 +269,6 @@
             </div>
         </div>
     </footer>
-    <script src="../js/anadirCarrito.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </body>

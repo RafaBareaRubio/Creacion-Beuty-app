@@ -88,26 +88,21 @@
     </header>
 
     <article>
-        <div class="tablon container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-auto">
-                    <div class="container">
-                        <div class="col-12">
-                    <div class="row">
-                        <div class="col-8">
-                            <h2 class="mt-4">Gestión De Productos</h2>
-                        </div>
-                        <div class="col-4 justify-content-end">
-                            <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
-                                <a href="aniadirProducto.php" class="anadirProducto"><i class="far fa-plus-square"></i> Añadir Producto</a>    
-                            </form>
-                        </div>
-                    </div>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-10">
+                    <h2>Gestión De Productos</h2>
+                </div>
+                <div class="col-2">
+                    <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
+                        <a href="aniadirProducto.php" class="anadirProducto"><i class="far fa-plus-square"></i></a>    
+                    </form>
                 </div>
             </div>
-                <div class="container col-12">
-                    <div class="row justify-content-center">
-                        <div class="col-auto">
+
+                <div class="containerTable">
+                    <div class="row">
+                        <div class="col-12">
                         <!-- Obtener todos los productos en una tabla -->
                             <table>
                                 <thead>
@@ -134,7 +129,12 @@
                                             echo "<td>".$producto[$i]['unidad']."</td>";
                                             echo "<td>".$producto[$i]['precio']."</td>";
                                             echo "<td>".$producto[$i]['oferta']."</td>";
-                                            echo "<td>".$producto[$i]['descripcion']."</td>";
+                                            //Truncamos la descripcion pq sino ocupa toda la pantalla
+                                            if(strlen($producto[$i]['descripcion'])>60){
+                                                echo "<td>".substr($producto[$i]['descripcion'],0,60)."...</td>";
+                                            }else{
+                                                echo "<td>".$producto[$i]['descripcion']."</td>";
+                                            }
                                             // Añadir foto de editar y eliminar fontawesaome
                                             echo "<td><a href='editarProducto.php?varId=".$producto[$i]["id"]."'><i class='fas fa-edit'></i></a></td>";
                                             echo "<td><a href='eliminarProducto.php?varId=".$producto[$i]["id"]."'><i class='fas fa-trash-alt'></i></a></td>";
@@ -245,7 +245,6 @@
             </div>
         </div>
     </footer>
-    <script src="../js/anadirCarrito.js"></script>
     <script src="../../js/bootstrap.bundle.min.js"></script>
     <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </body>

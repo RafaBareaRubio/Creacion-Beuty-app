@@ -280,7 +280,6 @@
             </div>
         </div>
     </footer>
-    <script src="../js/anadirCarrito.js"></script>
     <script src="../../js/bootstrap.bundle.min.js"></script>
     <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </body>

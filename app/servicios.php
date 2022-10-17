@@ -96,92 +96,95 @@
 
     <article>
         <!-- Corte -->
-        <section>
-        <div class="container mt-4">
-            <h2>Servicios</h2>
+        <section class="mt-5">
+            <div class="container-fluid col-9">
+                <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-auto">
+                            <h2>SERVICIOS</h2>
+                        </div>
+                        <div class="col-auto">
+                            <?php 
+                                // Boton para gestionar sesiones si eres admin
+                                if(isset($_SESSION['sesion_iniciada']) == true ){
+                                    $tipo = session_id();
+                                    if($tipo=="admin"){
+                                        echo "<a href='gestion/gestionServicios.php'>
+                                                <button class='btn float-end '>
+                                                    <i class='fas fa-edit'></i>
+                                                </button>
+                                            </a>"
+                                        ;
+                                    }
+                                }//Fin si
+                            ?>
+                        <!-- toggler -->
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="slider carousel col-12 mt-5">
+                    <div class="row justify-content-center">
 
-            <a class="text-center" href="citas/cita.php">Reservar Cita</a>
-
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                    <?php 
-                        // Boton para gestionar sesiones si eres admin
-                        if(isset($_SESSION['sesion_iniciada']) == true ){
-                            $tipo = session_id();
-                            if($tipo=="admin"){
-                                echo "<button class='btn float-end m-2' data-bs-toggle='offcanvas' data-bs-target='#offcanvas'role='button'>
-                                        <a href='gestion/gestionServicios.php'><i class='fas fa-edit'></i></a>
-                                    </button>";
-                            }
-                        }//Fin si
-                    ?>
-                    <!-- toggler -->
+                        <!-- Añado uno a uno cada servicio -->
+                        <?php include_once "../php/metodos.php";
+                        
+                        error_reporting(0);   
+                        try{
+                            $servicio=obtenerTodosServicios();
+                            $contador=0;
+                            echo "<h2>"."CORTES"."</h2>";
+                            for ($i=0;$i<sizeof($servicio);$i++){
+                                
+                                echo "<div class='producto item'>";
+                                    echo "<a href='https://booksy.com/es-es/20227_la-creacion-beauty-concept_barberia_29784_bencarron#ba_s=sr_1' style='color: black;'>";
+                                        echo "<div class='contenedor-imagen'>";
+                                            echo "<img src='../img/Servicios/".$servicio[$i]['foto']."' class='img-nohover'>";
+                                            echo "<img src='../img/Servicios/".$servicio[$i]['foto']."' class='img-hover'>";
+                                        echo "</div>";
+                                        echo "<div class='datos'>";
+                                            echo "<div class='starrr'></div>";
+                                            echo "<h4 id='nombreServicio'>".$servicio[$i]['nombre']."</h4>";
+                                            echo "<small id='caracteristicas'>".$servicio[$i]['descripcion']."</small>";
+                                        echo "</div>";
+                                        echo "<div class='precios'>";
+                                            echo "<div>";
+                                                echo "<h5>Precio</h5>";
+                                                echo "<small id='precioServicio'>".$servicio[$i]['precio']."€</small>";
+                                            echo "</div>";
+                                        echo "</div>";
+                                    echo "</a>";
+                                echo "</div>";
+                                
+                                if($servicio[$i]['tipo']!=$servicio[$i+1]['tipo']){
+                                    $contador++;
+                                    if($contador==1){
+                                        echo "<h2>"."Rituales"."</h2>";
+                                    }
+                                    if($contador==2){
+                                        echo "<h2>"."Barba y Afeitado"."</h2>";
+                                    }
+                                    if($contador==3){
+                                        echo "<h2>"."Tinte y Coloración"."</h2>";
+                                    }
+                                    if($contador==4){
+                                        echo "<h2>"."Tratamientos"."</h2>";
+                                    }
+                                    if($contador==5){
+                                        echo "<h2>"."Depilación"."</h2>";
+                                    }
+                                    
+                                }
+                            }//Fin Para
+                        }catch (Exception $e){
+                            echo ("");
+                        }
+                            
+                        ?>              
                     </div>
                 </div>
             </div>
-
-            <div class="slider carousel col-12 mt-5">
-                <div class="row justify-content-center">
-
-                    <!-- Añado uno a uno cada servicio -->
-                    <?php include_once "../php/metodos.php";
-                    
-                    error_reporting(0);   
-                    try{
-                        $servicio=obtenerTodosServicios();
-                        $contador=0;
-                        echo "<h2>"."CORTES"."</h2>";
-                        for ($i=0;$i<sizeof($servicio);$i++){
-                            
-                            echo "<div class='producto item'>";
-                                echo "<a href='https://booksy.com/es-es/20227_la-creacion-beauty-concept_barberia_29784_bencarron#ba_s=sr_1' style='color: black;'>";
-                                    echo "<div class='contenedor-imagen'>";
-                                        echo "<img src='../img/Servicios/".$servicio[$i]['foto']."' class='img-nohover'>";
-                                        echo "<img src='../img/Servicios/".$servicio[$i]['foto']."' class='img-hover'>";
-                                    echo "</div>";
-                                    echo "<div class='datos'>";
-                                        echo "<div class='starrr'></div>";
-                                        echo "<h4 id='nombreServicio'>".$servicio[$i]['nombre']."</h4>";
-                                        echo "<small id='caracteristicas'>".$servicio[$i]['descripcion']."</small>";
-                                    echo "</div>";
-                                    echo "<div class='precios'>";
-                                        echo "<div>";
-                                            echo "<h5>Precio</h5>";
-                                            echo "<small id='precioServicio'>".$servicio[$i]['precio']."€</small>";
-                                        echo "</div>";
-                                    echo "</div>";
-                                echo "</a>";
-                            echo "</div>";
-                            
-                            if($servicio[$i]['tipo']!=$servicio[$i+1]['tipo']){
-                                $contador++;
-                                if($contador==1){
-                                    echo "<h2>"."Rituales"."</h2>";
-                                }
-                                if($contador==2){
-                                    echo "<h2>"."Barba y Afeitado"."</h2>";
-                                }
-                                if($contador==3){
-                                    echo "<h2>"."Tinte y Coloración"."</h2>";
-                                }
-                                if($contador==4){
-                                    echo "<h2>"."Tratamientos"."</h2>";
-                                }
-                                if($contador==5){
-                                    echo "<h2>"."Depilación"."</h2>";
-                                }
-                                
-                            }
-                        }//Fin Para
-                    }catch (Exception $e){
-                        echo ("");
-                    }
-                        
-                    ?>              
-                </div>
-            </div>
-        </div>
+        </section>
     </article>
 
     <!-- FOOTER -->
@@ -278,9 +281,6 @@
             </div>
         </div>
     </footer>
-
-    <script src="../JavaScript/OBJETOS/ServiciObj.js"></script>
-
 </body>
 
 </html>

@@ -1,26 +1,18 @@
-.tablon {
-    width: auto;
-    height: auto;
-    background-color: white;
-    border: 0.1em solid rgb(180, 180, 180);
-    padding: 2em;
-}
-
-.tablon h2 {
+h2 {
     font-size: 150%;
 	font-weight: bold;
 }
 
 
-.tablon .anadirProducto {
-    float: right;
+ .anadirProducto {
     background-color: #c98f40;
-    padding: 0.5em 1em;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	padding-top: 0.4em;
+	padding-bottom: 0.4em;
+	border-radius: 45%;
     transition: 0.4s;
-    border-radius: 2em;
     cursor: pointer;
-    font-size: 1em;
-    margin-top: 12%;
     color: white;
     border: 0.125em solid #393939;
     text-decoration: none;
@@ -110,4 +102,7 @@ tr:nth-child(odd) td {
 
 tr:hover, tr:first-child{
 	opacity: 100%;
+}
+.containerTable{
+	overflow-x: scroll;
 }

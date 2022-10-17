@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="../../css/footer.css">
     <link rel="stylesheet" href="../../css/index.css">
     <link rel="stylesheet" href="../../css/servicios.css">
-    <link rel="stylesheet" href="../../css/carrito.css">
     <!-- link para iconos -->
     <link rel="stylesheet" href="../../css/fontawesome-free-5.15.4-web/css/all.min.css">
     <title>Insertar Usuario</title>
@@ -269,7 +268,6 @@
             </div>
         </div>
     </footer>
-    <script src="../js/anadirCarrito.js"></script>
     <script src="../../js/bootstrap.bundle.min.js"></script>
     <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </body>

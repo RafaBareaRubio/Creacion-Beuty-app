@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-06-2022 a las 18:00:30
+-- Tiempo de generación: 20-10-2022 a las 15:25:35
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.12
 
@@ -28,10 +28,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `mensaje` (
-  `id` int(5) NOT NULL,
-  `usuario` varchar(4) NOT NULL,
-  `texto` varchar(500) NOT NULL
+  `id` int(4) NOT NULL,
+  `idUsuario` varchar(30) NOT NULL,
+  `texto` varchar(500) NOT NULL,
+  `emoji` set('Contento','Serio') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `mensaje`
+--
+
+INSERT INTO `mensaje` (`id`, `idUsuario`, `texto`, `emoji`) VALUES
+(18, 'Rafita', 'Hola que tal', 'Contento'),
+(19, 'Rafita', 'No me gusta', 'Serio');
 
 -- --------------------------------------------------------
 
@@ -74,6 +83,21 @@ INSERT INTO `producto` (`id`, `nombre`, `unidad`, `precio`, `oferta`, `descripci
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `reserva`
+--
+
+CREATE TABLE `reserva` (
+  `id` int(4) NOT NULL,
+  `idUsuario` varchar(30) NOT NULL,
+  `fechaReserva` date NOT NULL,
+  `horaReserva` time NOT NULL,
+  `total` int(4) NOT NULL,
+  `idServicio` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `servicio`
 --
 
@@ -92,7 +116,7 @@ CREATE TABLE `servicio` (
 --
 
 INSERT INTO `servicio` (`id`, `nombre`, `precio`, `tipo`, `oferta`, `descripcion`, `foto`) VALUES
-(1, 'Diseño corte personzalizado', '12,00', 'Cortes', NULL, 'Te asesoramos y adaptamos tu cabello a tu estilo, genetica capilar y rostro. Lavado con shot de champu específico para tu cabello o cuero cabelludo con un masaje express. Corte localizado y aplicación de un producto específico de peinado.', 'Corte.jpeg'),
+(1, 'Diseño corte personzalizado', '12,00', 'Cortes', '', 'Te asesoramos y adaptamos tu cabello a tu estilo, genetica capilar y rostro. Lavado con shot de champu específico para tu cabello o cuero cabelludo con un masaje express. Corte localizado y aplicación de un producto específico de peinado.', 'Corte.jpeg'),
 (2, 'Corte o arreglo a máquina', '8,00', 'Cortes', NULL, 'Corte de cabello solo y exclusivo a máquina shot de champu específico para tu cabello o cuero cabelludo con un masaje express. Aplicación de producto específico de peinado.(degradado o rapado)', 'Cortes1.jpg\r\n'),
 (3, 'Corte + barba', '18,00', 'Cortes', NULL, 'Diseño de corte personalizado + arreglo de barba completo.', 'Cortes3.jpg'),
 (4, 'Corte máquina+barba exprés', '11,50', 'Cortes', NULL, 'Corte exclusivo a máquina + barba exclusiva a máquina', 'Cortes4.jpg'),
@@ -127,15 +151,15 @@ INSERT INTO `servicio` (`id`, `nombre`, `precio`, `tipo`, `oferta`, `descripcion
 --
 
 CREATE TABLE `usuario` (
-  `id` int(11) NOT NULL,
+  `id` int(4) NOT NULL,
   `usuario` varchar(30) NOT NULL,
   `contrasena` varchar(20) NOT NULL,
   `nombreYape` varchar(30) NOT NULL,
   `dni` varchar(9) NOT NULL,
   `gmail` varchar(30) NOT NULL,
   `telefono` int(9) DEFAULT NULL,
-  `confirmado` tinyint(1) NOT NULL DEFAULT 0,
-  `tipo` set('admin','usuario') NOT NULL DEFAULT 'usuario',
+  `confirmado` set('0','1') NOT NULL DEFAULT '0',
+  `tipo` set('admin','usuario','trabajador') NOT NULL DEFAULT 'usuario',
   `direccion` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -144,8 +168,10 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `usuario`, `contrasena`, `nombreYape`, `dni`, `gmail`, `telefono`, `confirmado`, `tipo`, `direccion`) VALUES
-(1, 'Rafita', 'Rafalote1', 'Rafa Barea Rubio', '77852962D', 'rabarub@gmail.com', 671639726, 0, 'admin', 'Doctor Pastor nº27'),
-(2, 'Cranexitto', 'Rafalote1', 'Rafa Barea', '77852962D', 'rabarub@gmail.com', NULL, 0, 'usuario', NULL);
+(1, 'Rafita', 'Rafalote1', 'Rafa Barea', '77852962D', 'rabarub@gmail.com', 671639726, '0', 'admin', NULL),
+(2, 'ZaloAparicio', 'Gonzalo1', 'Gonzalo Aparicio', '11111111F', 'gonzalo@gmail.com', 111111111, '0', 'trabajador', NULL),
+(3, 'JoseManuel', 'JoseManuel1', 'José Manuel', '22222222D', 'josemanuel@gmail.com', 222222222, '0', 'trabajador', NULL),
+(4, 'usuario1', 'usuario1', 'Usuario', '00000000J', 'usu@gmail.com', 0, '0', 'usuario', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -155,7 +181,8 @@ INSERT INTO `usuario` (`id`, `usuario`, `contrasena`, `nombreYape`, `dni`, `gmai
 -- Indices de la tabla `mensaje`
 --
 ALTER TABLE `mensaje`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idUsuario` (`idUsuario`) USING BTREE;
 
 --
 -- Indices de la tabla `producto`
@@ -164,16 +191,26 @@ ALTER TABLE `producto`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `reserva`
+--
+ALTER TABLE `reserva`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idUsuario` (`idUsuario`),
+  ADD KEY `idServicio` (`idServicio`);
+
+--
 -- Indices de la tabla `servicio`
 --
 ALTER TABLE `servicio`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nombre` (`nombre`);
 
 --
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `usuario` (`usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -183,7 +220,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `mensaje`
 --
 ALTER TABLE `mensaje`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -192,16 +229,39 @@ ALTER TABLE `producto`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
+-- AUTO_INCREMENT de la tabla `reserva`
+--
+ALTER TABLE `reserva`
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `servicio`
 --
 ALTER TABLE `servicio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `mensaje`
+--
+ALTER TABLE `mensaje`
+  ADD CONSTRAINT `mensaje_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`usuario`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `reserva`
+--
+ALTER TABLE `reserva`
+  ADD CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`idServicio`) REFERENCES `servicio` (`nombre`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `reserva_ibfk_2` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`usuario`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
